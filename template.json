@@ -1,0 +1,49 @@
+{
+"Actor": {
+  "types": ["character"],
+  "htmlFields": ["biography"],
+  "character": {
+    "biography": "",
+    "health": {
+      "value": 100,
+      "min": 0,
+      "max": 100
+    },
+    "power": {
+      "value": 100,
+      "min": 0,
+      "max": 100
+    },
+    "attributes": {},
+    "groups": {
+      "handeln": {
+          "key": "handeln",
+          "label": "Handeln",
+          "dtype": "String"
+      },
+      "wissen": {
+          "key": "wissen",
+          "label": "Wissen",
+          "dtype": "String"
+      },
+      "sozial": {
+          "key": "sozial",
+          "label": "Sozial",
+          "dtype": "String"
+      }
+  }
+  }
+},
+"Item": {
+  "types": ["item"],
+  "htmlFields": ["description"],
+  "item": {
+    "description": "",
+    "quantity": 1,
+    "weight": 0,
+    "attributes": {},
+    "groups": {},
+    "skill": ""
+  }
+}
+}
