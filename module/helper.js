@@ -305,7 +305,7 @@ export class EntitySheetHelper {
     const button = event.currentTarget;
     const label = button.closest(".attribute").querySelector(".attribute-label")?.value;
     const chatLabel = label ?? button.parentElement.querySelector(".attribute-key").value;
-    const shorthand = game.settings.get("worldbuilding", "macroShorthand");
+    const shorthand = game.settings.get("aranthoz", "macroShorthand");
 
     // Use the actor for rollData so that formulas are always in reference to the parent actor.
     const rollData = this.actor.getRollData();
@@ -332,7 +332,7 @@ export class EntitySheetHelper {
 
   /* -------------------------------------------- *
 
-    /**
+  /**
    * Listen for the roll button on attributes.
    * @param {MouseEvent} event    The originating left click event
    */
@@ -343,8 +343,17 @@ export class EntitySheetHelper {
       const category = button.getAttribute("data-group")
       const skillKey = button.getAttribute("data-key")
       const skillValue = parseInt(button.getAttribute("data-value"))
-      const skillLabel = button.getAttribute("data-label")
+      var skillLabel = button.getAttribute("data-label")
       const characterName = "Valentin"
+
+      if (!skillValue) {
+        ui.notifications.error("This attribute has no attribute value!");
+        return
+      }
+      if (!skillLabel) {
+        ui.notifications.warn("This attribute has no attribute label!")
+        skillLabel = "Attribut"
+      }
 
       console.log(skillValue)
 
@@ -758,7 +767,7 @@ export class EntitySheetHelper {
 
     // Identify the template Actor types
     const collection = game.collections.get(this.documentName);
-    const templates = collection.filter(a => a.getFlag("worldbuilding", "isTemplate"));
+    const templates = collection.filter(a => a.getFlag("aranthoz", "isTemplate"));
     const defaultType = this.metadata.types[0];
     const types = {
       [defaultType]: game.i18n.localize("SIMPLE.NoTemplate")
@@ -796,7 +805,7 @@ export class EntitySheetHelper {
         if ( template ) {
           createData = foundry.utils.mergeObject(template.toObject(), createData);
           createData.type = template.type;
-          delete createData.flags.worldbuilding.isTemplate;
+          delete createData.flags.aranthoz.isTemplate;
         }
 
         // Merge provided override data

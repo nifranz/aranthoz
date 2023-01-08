@@ -11,7 +11,7 @@ export class SimpleItemSheet extends ItemSheet {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["worldbuilding", "sheet", "item"],
-      template: "systems/worldbuilding/templates/simple/item-sheet.html",
+      template: "systems/aranthoz/templates/simple/item-sheet.html",
       width: 520,
       height: 480,
       tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description"}],
@@ -83,7 +83,7 @@ export class AranthozItemSheet extends ItemSheet {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["worldbuilding", "sheet", "item"],
-      template: "systems/worldbuilding/templates/aranthoz/item-sheet.html",
+      template: "systems/aranthoz/templates/aranthoz/item-sheet.html",
       width: 520,
       height: 480,
       tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description"}],

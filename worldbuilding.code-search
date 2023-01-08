@@ -1,0 +1,27 @@
+# Query: worldbuilding
+
+16 results - 4 files
+
+module/actor-sheet.js:
+   29:     context.shorthand = !!game.settings.get("worldbuilding", "macroShorthand");
+  148:     context.shorthand = !!game.settings.get("worldbuilding", "macroShorthand");
+
+module/helper.js:
+  308:     const shorthand = game.settings.get("worldbuilding", "macroShorthand");
+
+module/macro.js:
+   8: export async function createWorldbuildingMacro(data, slot) {
+  18:       flags: { "worldbuilding.attrMacro": true }
+
+module/simple.js:
+   14: import { createWorldbuildingMacro } from "./macro.js";
+   36:   game.worldbuilding = {
+   38:     createWorldbuildingMacro
+   49:   Actors.registerSheet("worldbuilding", SimpleActorSheet );
+   50:   Actors.registerSheet("worldbuilding", AranthozActorSheet, { makeDefault: true });
+   52:   Items.registerSheet("worldbuilding", SimpleItemSheet);
+   53:   Items.registerSheet("worldbuilding", AranthozItemSheet, { makeDefault: true });
+   56:   game.settings.register("worldbuilding", "macroShorthand", {
+   66:   game.settings.register("worldbuilding", "initFormula", {
+   77:   const initFormula = game.settings.get("worldbuilding", "initFormula");
+  108: Hooks.on("hotbarDrop", (bar, data, slot) => createWorldbuildingMacro(data, slot));
