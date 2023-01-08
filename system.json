@@ -18,7 +18,7 @@
     }
   ],
   "esmodules": [
-    "module/simple.js"
+    "module/aranthoz.js"
   ],
   "styles": [
     "styles/simple.css"
