@@ -20,7 +20,11 @@
     <nav class="sheet-tabs tabs" data-group="primary">
         <a class="item" data-tab="description">Description</a>
         <a class="item" data-tab="attributes">Attributes</a>
+        {{#unless isOfTypeItem}}
+        {{#if ownerAttributes}}
         <a class="item" data-tab="skill">Skill</a>
+        {{/if}}
+        {{/unless}}
     </nav>
 
     {{!-- Sheet Body --}}
@@ -52,7 +56,8 @@
                 </div>
             </div>
         </div>
-
+        {{#if ownerAttributes}}
+        {{#unless isOfTypeItem}}        
         {{!-- Skills Tab --}}
         <div class="tab skill attributes" data-group="primary" data-tab="skill">
             <div class="group-controls flexrow">
@@ -64,5 +69,7 @@
                 </select>
             </div>
         </div>
+        {{/unless}}
+        {{/if}}
     </section>
 </form>
