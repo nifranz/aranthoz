@@ -16,11 +16,12 @@ export class EntitySheetHelper {
     return undefined;
   }
 
+  /* -------------------------------------------- */
+
   /**
    * Returns an array holding every attribute (as a string) of a given actor, referenced by actor id 
    * @param {String} actorId    The actorId of the actor
    */
-
 
   static getActorAttributes(actorId) {
     var ownerAttributes = Actor.get(actorId).system.attributes
@@ -44,6 +45,7 @@ export class EntitySheetHelper {
         attr.isCheckbox = attr.dtype === "Boolean";
         attr.isResource = attr.dtype === "Resource";
         attr.isFormula = attr.dtype === "Formula";
+        attr.isReadonly = attr.readonly === "True";
       }
     }
 
@@ -768,12 +770,12 @@ export class EntitySheetHelper {
     // Identify the template Actor types
     const collection = game.collections.get(this.documentName);
     const templates = collection.filter(a => a.getFlag("aranthoz", "isTemplate"));
-    const defaultType = this.metadata.types[0];
+    // const defaultType = this.TYPES[1];
     const types = {
-      [defaultType]: game.i18n.localize("SIMPLE.NoTemplate")
+      // [defaultType]: game.i18n.localize("SIMPLE.NoTemplate")
     }
-    for ( let a of templates ) {
-      types[a.id] = a.name;
+    for ( let t of this.TYPES ) {
+      types[t] = t.charAt(0).toUpperCase() + t.slice(1); // t.charAt(0).toUpperCase() + t.slice(1); -> capitalizes string t
     }
 
     // Render the document creation form
@@ -802,6 +804,7 @@ export class EntitySheetHelper {
 
         // Merge with template data
         const template = collection.get(form.type.value);
+        console.log(collection)
         if ( template ) {
           createData = foundry.utils.mergeObject(template.toObject(), createData);
           createData.type = template.type;

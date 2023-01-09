@@ -54,19 +54,22 @@
               "value": "",
               "label": "Kritischer Schaden",
               "dtype": "String",
-              "group": "damage"
+              "group": "damage",
+              "readonly": "True"
           },
           "bonus": {
               "value": "",
               "label": "Bonusschaden",
               "dtype": "String",
-              "group": "damage"
+              "group": "damage",
+              "readonly": "True"
           },
           "base": {
               "value": "",
               "label": "Grundschaden",
               "dtype": "String",
-              "group": "damage"
+              "group": "damage",
+              "readonly": "True"
           }
       }
     },
@@ -74,7 +77,8 @@
       "damage": {
           "key": "damage",
           "label": "Schadenswerte",
-          "dtype": "String"
+          "dtype": "String",
+          "readonly": "True"
       },
       "other": {
           "key": "other",

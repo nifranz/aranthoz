@@ -83,6 +83,7 @@ export class SimpleActorSheet extends ActorSheet {
     switch ( button.dataset.action ) {
       case "create":
         const cls = getDocumentClass("Item");
+
         return cls.create({name: game.i18n.localize("SIMPLE.ItemNew"), type: "item"}, {parent: this.actor});
       case "edit":
         return item.sheet.render(true);
@@ -192,7 +193,7 @@ export class AranthozActorSheet extends ActorSheet {
    * @param event
    * @private
    */
-  _onItemControl(event) {
+  async _onItemControl(event) {
     event.preventDefault();
 
     // Obtain event data
@@ -203,8 +204,47 @@ export class AranthozActorSheet extends ActorSheet {
     // Handle different actions
     switch ( button.dataset.action ) {
       case "create":
-        const cls = getDocumentClass("Item");
-        return cls.create({name: game.i18n.localize("SIMPLE.ItemNew"), type: "item"}, {parent: this.actor});
+        
+        const types = {
+          // [defaultType]: game.i18n.localize("SIMPLE.NoTemplate")
+        }
+        for ( let t of Item.TYPES ) {
+          types[t] = t.charAt(0).toUpperCase() + t.slice(1); // t.charAt(0).toUpperCase() + t.slice(1); -> capitalizes string t
+        }
+    
+        // Render the document creation form
+        const template = "templates/sidebar/document-create.html";
+        const html = await renderTemplate(template, {
+          name: "New Item", //data.name || game.i18n.format("DOCUMENT.New", {type: label}),
+          folder: undefined, //data.folder,
+          folders: undefined, //folders,
+          hasFolders: false, //folders.length > 1,
+          type: "Type", //data.type || templates[0]?.id || "",
+          types: types,
+          hasTypes: true
+        });
+    
+        // Render the confirmation dialog window
+        return Dialog.prompt({
+          title: "Create Item for " + this.actor.name,
+          content: html,
+          label: "Item Name",
+          callback: html => {
+    
+            // Get the form data
+            const form = html[0].querySelector("form");
+            const fd = new FormDataExtended(form);
+            let createData = fd.toObject();
+    
+            // Merge provided override data
+            const cls = getDocumentClass("Item");
+            return cls.create({name: createData.name || "New Item", type: createData.type}, {parent: this.actor});
+          },
+          rejectClose: false,
+          options: undefined
+        });
+
+        return
       case "edit":
         return item.sheet.render(true);
       case "delete":
