@@ -1,0 +1,23 @@
+
+<div class="dice-roll">
+    <div class="dice-result">
+        <div class="dice-formula">3d10</div>
+        <div class="dice-tooltip" style="display: none;">
+            <section class="tooltip-part">
+                <div class="dice">
+                    <header class="part-header flexrow">
+                        <span class="part-formula">3d10</span>
+                            
+                        <span class="part-total">25</span>
+                    </header>
+                    <ol class="dice-rolls">
+                        <li class="roll die d10">8</li>
+                        <li class="roll die d10 max">10</li>
+                        <li class="roll die d10">7</li>
+                    </ol>
+                </div>
+            </section>
+        </div>
+        <h4 class="dice-total">25</h4>
+    </div>
+</div>

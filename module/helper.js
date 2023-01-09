@@ -438,7 +438,7 @@ export class EntitySheetHelper {
         return
       }
 
-      const skillValue = skill.value
+      const skillValue = parseInt(skill.value)
       const skillLabel = skill.label
       
       const characterName = itemOwner.name
@@ -476,7 +476,6 @@ export class EntitySheetHelper {
           let successState = 0;
           if(rollHit.total <= skillValue + modifier){
               console.log("Success");
-              console.log(item)
 
               var itemBaseDamageFormula = item.system.attributes['damage']['base'].value
               console.log(itemBaseDamageFormula)
@@ -486,6 +485,7 @@ export class EntitySheetHelper {
               }              
               
               if(rollHit.total <= ((skillValue + modifier) / 10)){
+                  console.log("crit")
                   // results_html = `${characterName} has a critical success with ${rollHit.result} ` + "<" + ` ${actor.system.attributes[category][skill].value} ${actor.system.attributes[category][skill].label}`
                   results_html = rollMessage + ` hat damit einen <b>kritischen Erfolg</b>!`;
                   successStateLabel = "Kritischer Erfolg!"
@@ -497,11 +497,6 @@ export class EntitySheetHelper {
                   successState = 1;
               }
 
-
-
-
-
-
           }else{
               console.log("Fail");
               // results_html = `${characterName} failed with ${rollHit.result} ` + ">" + ` ${actor.system.attributes[category][skill].value}`;
@@ -509,8 +504,32 @@ export class EntitySheetHelper {
               successStateLabel = "Fehlschlag!"
               successState = 0;
           }
-          let rollDisplay = `</br></br><div class="dice-roll"><div class="dice-result"><div class="dice-formula">1d100: <i class="fas fa-dice-d20"></i>${rollHit.result}</div><div class="dice-tooltip"><section class="tooltip-part"><div class="dice"><header class="part-header flexrow"><span class="part-formula">1d100</span><span class="part-total">${rollHit.result}</span></header><ol class="dice-rolls"><li class="roll die d100">${rollHit.result}</li></ol></div></section></div><h4 class="dice-total">${successStateLabel}</h4></div></div></div>`
-          results_html = results_html + rollDisplay
+          let hitRollDisplay = `</br></br><div class="dice-roll"><div class="dice-result"><div class="dice-formula">1d100: <i class="fas fa-dice-d20"></i>${rollHit.result}</div><div class="dice-tooltip"><section class="tooltip-part"><div class="dice"><header class="part-header flexrow"><span class="part-formula">1d100</span><span class="part-total">${rollHit.result}</span></header><ol class="dice-rolls"><li class="roll die d100">${rollHit.result}</li></ol></div></section></div><h4 class="dice-total">${successStateLabel}</h4></div></div></div>`
+          let dmgRollDisplay = 
+          results_html = results_html + hitRollDisplay + dmgRollDisplay
+          
+          // const cls = ChatMessage.implementation;
+          // const chatData = {
+          //   user: game.user.id,
+          //   speaker: cls.getSpeaker()
+          // };
+
+          // const rolls = [];
+          // roll = Roll.create("1d10", rollData);
+
+          // chatData.type = CONST.CHAT_MESSAGE_TYPES.ROLL;
+          // chatData.rolls = rolls;
+          // chatData.sound = CONFIG.sounds.dice;
+          // chatData.content = rolls.reduce((t, r) => t + r.total, 0);
+          // createOptions.rollMode = command;
+
+          // ChatMessage.create({
+          //   type: CONST.CHAT_MESSAGE_TYPES.ROLL,
+          //   rolls: rolls,
+          //   chatData.sound = CONFIG.sounds.dice;
+          //   chatData.content = rolls.reduce((t, r) => t + r.total, 0);
+          //   createOptions.rollMode = command;
+          // })
 
           ChatMessage.create({
               user: game.user._id,
