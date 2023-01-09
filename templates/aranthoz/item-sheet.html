@@ -21,7 +21,7 @@
         <a class="item" data-tab="description">Description</a>
         <a class="item" data-tab="attributes">Attributes</a>
         {{#unless isOfTypeItem}}
-        {{#if ownerAttributes}}
+        {{#if ownerId}}
         <a class="item" data-tab="skill">Skill</a>
         {{/if}}
         {{/unless}}
@@ -56,7 +56,7 @@
                 </div>
             </div>
         </div>
-        {{#if ownerAttributes}}
+        {{#if ownerId}}
         {{#unless isOfTypeItem}}        
         {{!-- Skills Tab --}}
         <div class="tab skill attributes" data-group="primary" data-tab="skill">

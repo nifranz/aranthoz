@@ -1,5 +1,9 @@
 export class EntitySheetHelper {
 
+  static createRollMessage() {
+
+  }
+
   /**
    * Check if an item is in the inventory of an actor and if so, return the _id of the actor object. Else return undefined.
    * @param {String} itemId    The itemId of the item to be checked
@@ -348,13 +352,13 @@ export class EntitySheetHelper {
       var skillLabel = button.getAttribute("data-label")
       const characterName = "Valentin"
 
-      if (!skillValue) {
-        ui.notifications.error("This attribute has no attribute value!");
-        return
-      }
       if (!skillLabel) {
-        ui.notifications.warn("This attribute has no attribute label!")
+        ui.notifications.warn("This attribute (attribute-key: " + skillKey + ") has no attribute label!")
         skillLabel = "Attribut"
+      }
+      if (!skillValue) {
+        ui.notifications.error("This attribute (attribute-key: " + skillKey + ") has no attribute value!");
+        return
       }
 
       console.log(skillValue)
@@ -432,25 +436,37 @@ export class EntitySheetHelper {
       const item = itemOwner.items.get(itemID)
       const skillKey = item.system.skill
 
+      if (!skillKey) {
+        ui.notifications.warn("No skill link has been set. Please choose a skill link");
+        return
+        
+
+      }
+
       const skill = itemOwner.system.attributes['handeln'][skillKey]
-      if (!skill) {
-        ui.notifications.error('Linked skill "' + skillKey + '" not found for actor ' + itemOwner.name + '!');
+      if (!skill && item.skill != "") {
+        ui.notifications.error("It appears that the linked attribute (attribute-key: " + skillKey + ") has been deleted from the attributes of character " + itemOwner.name + ". Please choose a new link.");
         return
       }
 
       const skillValue = parseInt(skill.value)
-      const skillLabel = skill.label
+      var skillLabel = skill.label
       
       const characterName = itemOwner.name
 
-      if (!skillValue) {
-        ui.notifications.error("This attribute has no attribute value!");
-        return
-      }
+ 
+
       if (!skillLabel) {
-        ui.notifications.warn("This attribute has no attribute label!")
+        ui.notifications.warn("The attribute linked to this item (attribute-key: " + skillKey + ") has no attribute label!")
         skillLabel = "Attribut"
       }
+
+      if (!skillValue) {
+        ui.notifications.error("The attribute linked to this item (attribute-key: " + skillKey + ") has no attribute value!");
+        return
+      }
+
+
 
       console.log(skillValue)
 
@@ -505,8 +521,7 @@ export class EntitySheetHelper {
               successState = 0;
           }
           let hitRollDisplay = `</br></br><div class="dice-roll"><div class="dice-result"><div class="dice-formula">1d100: <i class="fas fa-dice-d20"></i>${rollHit.result}</div><div class="dice-tooltip"><section class="tooltip-part"><div class="dice"><header class="part-header flexrow"><span class="part-formula">1d100</span><span class="part-total">${rollHit.result}</span></header><ol class="dice-rolls"><li class="roll die d100">${rollHit.result}</li></ol></div></section></div><h4 class="dice-total">${successStateLabel}</h4></div></div></div>`
-          let dmgRollDisplay = 
-          results_html = results_html + hitRollDisplay + dmgRollDisplay
+          results_html = results_html + hitRollDisplay;
           
           // const cls = ChatMessage.implementation;
           // const chatData = {

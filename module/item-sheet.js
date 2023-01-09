@@ -21,36 +21,46 @@ export class AranthozItemSheet extends ItemSheet {
 
   /* -------------------------------------------- */
 
-  /** @inheritdoc */
+  /**
+   * Prepares data used by handlebar templating in variable "context".
+   * Also checks, if item.skill property has been set for an item that has been deleted. If so, removes the link by setting item.skill = ""
+   * 
+   * @inheritdoc 
+   */
+
   async getData(options) {
     const context = await super.getData(options);
     EntitySheetHelper.getAttributeData(context.data);
     context.systemData = context.data.system;
-    console.log(context)
-
-    var itemOwnerId = EntitySheetHelper.getItemOwnerId(context.data._id);
-    console.log("itemOwnerId: " + itemOwnerId)
-    context.ownerId = itemOwnerId
-
-    context.isOfTypeItem = context.data.type === "item";
-    console.log(context.isOfTypeItem)
+    const itemId = context.data._id;
+    const itemOwner = Actor.get(EntitySheetHelper.getItemOwnerId(itemId));
+    const itemOwnerId = itemOwner._id;
+    console.log("itemOwnerId: " + itemOwnerId);
+    const item = itemOwner.items.get(itemId);
+    context.ownerId = itemOwnerId;
+    context.isOfTypeItem = context.data.type === "item";    
 
     if (itemOwnerId) {
-      // add an ownerAttributes property to the context object that holds an object {"value": skill, "selected": selected} for all available attributes of the owner
-      var ownerAttributes = []
+      // add an ownerAttributes property to the context object that holds an object {"value": skill, "selected": "selected" or ""} for all available attributes of the owner
+      var ownerAttributes = [];
+      var hasSkill = false
       for (var a of EntitySheetHelper.getActorAttributes(itemOwnerId)) {
-        var selected = ""
+        var selected = "";
         if (a == context.systemData.skill) {
-          selected = " selected"
+          selected = " selected";
+          hasSkill = true;
         }
-        ownerAttributes.push({"value": a, "selected": selected})
-        console.log(ownerAttributes)
+        ownerAttributes.push({"value": a, "selected": selected});
+        console.log(ownerAttributes);
       }
-      context.ownerAttributes = ownerAttributes
-    }
-    
-    console.log(context)
-    
+      context.ownerAttributes = ownerAttributes;
+
+      // check if item.skill has been set for an item that has been deleted. if so, remove the link.
+      if (!hasSkill) {
+        item.skill = "";
+      }
+    } 
+   
     context.dtypes = ATTRIBUTE_TYPES;
     context.descriptionHTML = await TextEditor.enrichHTML(context.systemData.description, {
       secrets: this.document.isOwner,

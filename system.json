@@ -21,8 +21,8 @@
     "module/aranthoz.js"
   ],
   "styles": [
-    "styles/simple.css",
-    "styles/fonts.css"
+    "styles/fonts.css",
+    "styles/simple.css"
   ],
   "languages": [
     {
