@@ -145,11 +145,13 @@ body {
 
 .sheet-body {
     width: 100%;
+    min-width: 800px;
     /*background-color: rgb(51, 90, 173);*/
     overflow-x: hidden;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .sheet-header {
@@ -165,38 +167,25 @@ body {
 /* Body - Navigation */
 /* - */
 
-.body-nav-container {
-    margin-top: 32px;
-    width: 100%;
-    min-width: 500px;
-    /*background-color: rgb(169, 186, 87);*/
-    display: flex;
-    justify-content: center;
-
-}
 
 .body-nav {
-    width: 500px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-image: 
-        url(./assets/banner_vertical_stacked2.png);
-    background-size: 600px;
+    background-image: url(./assets/banner_vertical_stacked2.png);
+    background-size: 1000px;
     background-position: center;
-    height: 50px;
+    height: 40px;
     box-shadow: inset 0px 0px 20px #000000cb;
     box-shadow: 0px 3px 8px #000000cb;
-}
-.nav-links {    
-    width: 500px;
+    margin-top: 32px;
+
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .body-nav a {
     text-align: center;
-    width: 100px;
+    margin-left:30px;
+    margin-right: 30px;
     color: rgb(255, 248, 232);
     font-size: 18px;
     text-shadow: 0px 2px 3px rgba(0, 0, 0, 0.8);
@@ -217,31 +206,44 @@ body {
     justify-content: center;
 }
 
-.main-section {
-    margin-top: 30px;
-}
-
 .content-container {
     margin-top: 10px;
     min-width: 500px;
     display: flex;
-    justify-content: center;
+    align-items: center;
     gap: 20px;
 }
 
+.content-part {
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+}
+
+
+
 .portrait-column {
-    width: 170px;
-    height: 200px;
+    width: 190px;
+    height: 220px;
 }
 
 .character-portrait {
     width: 170px;
     height: 200px;
+    margin-right: 40px;
     padding: -10px;
     background-size: 250px;
     background-repeat: no-repeat;
     background-position: center;
     background-image: url("assets/character/begeneu_hand_drawn_concept_art_of_a_arrogant_human_in_amour_med_4aa9aa57-1afb-4dac-a931-22bea0978e61.png");
+}
+
+.section-divider {
+    height: 40px;
+    width: 100%;
+    background-size: 100% 37px;
+    background-repeat: no-repeat;
+    background-image: url("./assets/body/content-divider.png");
 }
 
 .heritage-column {
