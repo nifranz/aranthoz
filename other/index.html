@@ -1,0 +1,291 @@
+<head>
+    <link rel="stylesheet" href="item-sheet.css">
+</head>
+<body>
+    <form class="flexcol" autocomplete="off">
+        <container class = "main-container">
+            <div class = "banner-container">
+                <aside class = "sheet-banner">
+                    <div class = "banner-body">
+                        <div class = "banner-logo-container">
+                            <section class = "banner-logo">
+                                <input type = "text" id ="input" class = "logo-name" onkeyup="myFunction()" value="Valentin Flamel">
+                            </section>
+                        </div>  
+                        <div class = "banner-tiles-container">
+                            <div class ="banner-tiles">
+                                <section class = "banner-tile health">
+                                    <div class = "banner-tile-content hp ">
+                                        <input class = "banner-tile-content-value" value = "NaN">
+                                        <div class = "banner-tile-content-label">HP</div>
+                                    </div>
+                                    <div class = "banner-tile-content max-hp">
+                                        <input class = "banner-tile-content-value" value ="100">
+                                        <div class = "banner-tile-content-label">MAX-HP</div>
+                                    </div>
+                                </section>
+                                <section class = "banner-tile defenses">
+                                    <div class = "banner-tile-content armor">
+                                        <input class = "banner-tile-content-value" value = "17.5">
+                                        <div class = "banner-tile-content-label">Armor</div>
+                                    </div>
+                                    <div class = "banner-tile-content shield">
+                                        <input class = "banner-tile-content-value" value ="0">
+                                        <div class = "banner-tile-content-label">Shield</div>
+                                    </div>
+                                </section>
+                                <section class = "banner-tile ressources">
+                                    <div class = "banner-tile-content mana">
+                                        <input class = "banner-tile-content-value" value = "90">
+                                        <div class = "banner-tile-content-label">Mana</div>
+                                    </div>
+                                    <div class = "banner-tile-content stamina">
+                                        <input class = "banner-tile-content-value" value = "-">
+                                        <div class = "banner-tile-content-label">Stamina</div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+            <div class = "sheet-body">
+                <!-- <div class = "sheet-header">
+                        <div class = "name"><h2></h2></div>
+                        <div class = "character-flavor"></div>       
+                </div> -->
+                <div class = "body-nav-container">
+                    <div class = "body-nav borderimg">
+                        <div class = "nav-links">                    
+                            <a class = "nav-link"content-link = "character">Character</a>
+                            <a class = "nav-link selected" content-link = "skills">Skills</a>
+                            <a class = "nav-link" content-link = "weapons">Weapons</a> 
+                            <a class = "nav-link" content-link = "actions">Spells</a>
+                            <a class = "nav-link" content-link = "inventory">Inventory</a>            
+                        </div>
+                    </div>    
+                </div>
+                <div class = "sheet-main">
+                    <section class = "main-section-character inactive">
+                        <div class = "content-container">
+                            <div class = "portrait-column">
+                                <div class ="character-portrait borderimg" ></div>
+                            </div>
+                            <div class = "heritage-column">
+                                <div class = "origin">
+                                    <div class = "character-label">Herkunft</div>
+                                    <input class = "basic-input origin" value="Myhriad">
+                                </div>
+                                <div class = "gender">
+                                    <div class = "character-label">Geschlecht</div>
+                                    <input class = "basic-input gender-value" value="Männlich">
+                                </div>
+                                <div class = "background">
+                                    <div class = "character-label">Hintergrund</div>
+                                    <input class = "basic-input gender-value" value="Alchemist">
+                                </div>
+                            </div>
+                            <div class = "physical-column">
+                                <div class = "origin">
+                                    <div class = "character-label">Alter</div>
+                                    <input class = "basic-input origin" value="20">
+                                </div>
+                                <div class = "gender">
+                                    <div class = "character-label">Gewicht</div>
+                                    <input class = "basic-input gender-value" value="70kg">
+                                </div>
+                                <div class = "background">
+                                    <div class = "character-label">Größe</div>
+                                    <input class = "basic-input gender-value" value="179">
+                                </div>
+                            </div>
+                            <div class = "section-divider"></div>
+                            <div class = "description"></div>
+                        </div>
+                    </section>
+                    <section class = "main-section-skills active">
+                        <div class = "content-container">
+                            <div class = "skillgroup-table" skillgroup = "handeln">
+                                <div class = "skillgroup-table-header borderimg">
+                                    <div class = "header-label" style = "text-align: center;">Key</div>
+                                    <div class = "header-label">Value</div>
+                                    <div class = "header-label">Label</div>
+                                </div>
+                                <div class = "skillgroup-table-rows">
+                                    <div class = "skillgroup-table-row">
+                                        <div class = "skillgroup-table-row-columns">
+                                            <input class = "skillgroup-table-input basic-input" value = "skillKey">
+                                            <input class = "skillgroup-table-input basic-input" value = "skillKey">
+                                            <input class = "skillgroup-table-input basic-input" value = "skillKey">
+                                        </div>
+                                        <div class = "skillgroup-table-row-columns">
+                                            <input class = "skillgroup-table-input basic-input" value = "skillKey">
+                                            <input class = "skillgroup-table-input basic-input" value = "skillKey">
+                                            <input class = "skillgroup-table-input basic-input" value = "skillKey">
+                                        </div>
+                                        <div class = "skillgroup-table-row-columns">
+                                            <input class = "skillgroup-table-input basic-input" value = "skillKey">
+                                            <input class = "skillgroup-table-input basic-input" value = "skillKey">
+                                            <input class = "skillgroup-table-input basic-input" value = "skillKey">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class = "main-section-weapons inactive">
+                        <div class = "content-container">
+                            <div class = "heritage-column">
+                                <div class = "origin">
+                                    <div class = "character-label">Herkunft</div>
+                                    <input class = "basic-input origin" value="Myhriad">
+                                </div>
+                                <div class = "gender">
+                                    <div class = "character-label">Geschlecht</div>
+                                    <input class = "basic-input gender-value" value="Männlich">
+                                </div>
+                                <div class = "background">
+                                    <div class = "character-label">Hintergrund</div>
+                                    <input class = "basic-input gender-value" value="Alchemist">
+                                </div>
+                            </div>
+                            <div class = "physical-column">
+                                <div class = "origin">
+                                    <div class = "character-label">Alter</div>
+                                    <input class = "basic-input origin" value="20">
+                                </div>
+                                <div class = "gender">
+                                    <div class = "character-label">Gewicht</div>
+                                    <input class = "basic-input gender-value" value="70kg">
+                                </div>
+                                <div class = "background">
+                                    <div class = "character-label">Größe</div>
+                                    <input class = "basic-input gender-value" value="179">
+                                </div>
+                            </div>
+                            <div class = "section-divider"></div>
+                            <div class = "description"></div>
+                        </div>
+                    </section>
+                    <section class = "main-section-actions inactive">
+                        <div class = "content-container">
+                            <div class = "heritage-column">
+                                <div class = "origin">
+                                    <div class = "character-label">Herkunft</div>
+                                    <input class = "basic-input origin" value="Myhriad">
+                                </div>
+                                <div class = "gender">
+                                    <div class = "character-label">Geschlecht</div>
+                                    <input class = "basic-input gender-value" value="Männlich">
+                                </div>
+                                <div class = "background">
+                                    <div class = "character-label">Hintergrund</div>
+                                    <input class = "basic-input gender-value" value="Alchemist">
+                                </div>
+                            </div>
+                            <div class = "physical-column">
+                                <div class = "origin">
+                                    <div class = "character-label">Alter</div>
+                                    <input class = "basic-input origin" value="20">
+                                </div>
+                                <div class = "gender">
+                                    <div class = "character-label">Gewicht</div>
+                                    <input class = "basic-input gender-value" value="70kg">
+                                </div>
+                                <div class = "background">
+                                    <div class = "character-label">Größe</div>
+                                    <input class = "basic-input gender-value" value="179">
+                                </div>
+                            </div>
+                            <div class = "section-divider"></div>
+                            <div class = "description"></div>
+                        </div>
+                    </section>
+                    <section class = "main-section-inventory inactive">
+                        <div class = "content-container">
+                            <div class = "heritage-column">
+                                <div class = "origin">
+                                    <div class = "character-label">Herkunft</div>
+                                    <input class = "basic-input origin" value="Myhriad">
+                                </div>
+                                <div class = "gender">
+                                    <div class = "character-label">Geschlecht</div>
+                                    <input class = "basic-input gender-value" value="Männlich">
+                                </div>
+                                <div class = "background">
+                                    <div class = "character-label">Hintergrund</div>
+                                    <input class = "basic-input gender-value" value="Alchemist">
+                                </div>
+                            </div>
+                            <div class = "physical-column">
+                                <div class = "origin">
+                                    <div class = "character-label">Alter</div>
+                                    <input class = "basic-input origin" value="20">
+                                </div>
+                                <div class = "gender">
+                                    <div class = "character-label">Gewicht</div>
+                                    <input class = "basic-input gender-value" value="70kg">
+                                </div>
+                                <div class = "background">
+                                    <div class = "character-label">Größe</div>
+                                    <input class = "basic-input gender-value" value="179">
+                                </div>
+                            </div>
+                            <div class = "section-divider"></div>
+                            <div class = "description"></div>
+                        </div>
+                    </section>
+
+                </div>
+            </div>  
+        </container>
+    </form>
+    <script type="text/javascript">
+        // content nav 
+
+        var navLinks = document.getElementsByClassName("nav-link");
+        for (el of navLinks) {
+            console.log(el)
+            el.addEventListener("click", e => {
+                // relocate class .selected for links
+                document.getElementsByClassName("selected")[0].classList.remove("selected");
+                e.target.classList.add("selected");
+
+                // relocate class .active for content panes
+                var activeEl = document.getElementsByClassName("active")[0];
+                activeEl.classList.remove("active");;
+                activeEl.classList.add("inactive")
+                var contentEl = document.getElementsByClassName("main-section-" + e.target.getAttribute("content-link"))[0];
+                contentEl.classList.add("active");
+                contentEl.classList.remove("inactive");
+            });
+            console.log(el);
+        }
+
+        var charLink=document.getElementsByClassName("banner-tile-content-label")[0];
+        charLink.addEventListener("click", function() {
+            console.log("hi");
+            var banner = document.getElementsByClassName("banner-container")[0]
+            if (banner.style.height > "260px") {
+                banner.style.height = "260px"
+            } else {
+                banner.style.height = "620px" 
+            }
+        });
+
+        var x=document.getElementById("input");
+        if (!x.value.length <= 12) {
+            x.style.fontSize = 43 - x.value.length;
+        }       
+        function myFunction(){
+            var x=document.getElementById("input");
+            if (x.value.length <= 12) {
+                x.style.fontSize = "34px"
+                return
+            }
+            var initialSize=43-x.value.length;
+            initialSize=initialSize<=10?10:initialSize;
+            x.style.fontSize = initialSize + "px";
+        }
+    </script>
+</body>
