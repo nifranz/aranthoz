@@ -410,7 +410,7 @@ svg {
 }
 .item-count-value {
     width:50px;
-    background-color: rgba(161, 144, 124, 0.215);
+    background-color: rgba(161, 144, 124, 0);
     box-shadow: 0px 2px 0px rgba(88, 13, 4, 0.426);
     color: rgb(40, 40, 40);
     border-radius: 1px;
@@ -427,13 +427,26 @@ svg {
     text-align: center;
     font-size: 20px;
     margin-right: 5px;
+    transition: .2s;
+}
+
+.item-count-update:hover {
+    transition: .2s;
+    color: rgb(255, 255, 255);
+    background-color:rgba(106, 7, 0, 0.728);
+    box-shadow: none;
+}
+
+.item-count-update:hover {
+    transition: .4s;
+    box-shadow: none;
 }
 
 
 .weapon-info {
     flex: 1;
     padding-left: 5px;
-    background-color: rgba(161, 144, 124, 0.215);
+    background-color: rgba(161, 144, 124, 0);
     box-shadow: 0px 2px 0px rgba(88, 13, 4, 0.426);
     color: rgb(40, 40, 40);
     border-radius: 1px;
@@ -465,13 +478,12 @@ input {
     font-family: "Eczar";
 }
 
-a {
-    transition: 1s;
-}
+
 
 
 a:hover {
     cursor: pointer;
+    text-shadow: 0px 0px 3px rgba(123, 22, 15, 0.63);
 }
 
 .active {
