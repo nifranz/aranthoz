@@ -27,7 +27,7 @@ body {
 /* - */
 
 .banner-container {
-    transition: 1s;
+    transition: 2s;
     flex: 0 0 200px;
     background-image: 
         url(./assets/banner_bottom_sized.png);
@@ -96,6 +96,7 @@ body {
     justify-content: center;
     width: 100%;
 }
+
 .banner-tiles {
     display: flex;
     flex-direction: column;
@@ -142,7 +143,6 @@ body {
 /* Body */
 /* - */
 
-
 .sheet-body {
     width: 100%;
     min-width: 700px;
@@ -176,7 +176,8 @@ body {
     height: 40px;
     box-shadow: inset 0px 0px 20px #000000cb;
     box-shadow: 0px 3px 8px #000000cb;
-    margin-top: 32px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 
     display: flex;
     justify-content: center;
@@ -266,29 +267,37 @@ body {
     font-weight:700;
 }
 
-
 .basic-input {
     width: 100%;
     background-color: rgba(161, 144, 124, 0.215);
-    box-shadow: 0px 2px 1px rgba(88, 13, 4, 0.426);
+    box-shadow: 0px 2px 0px rgba(88, 13, 4, 0.426);
     color: rgb(40, 40, 40);
     border-radius: 1px;
-    text-align: center;
-    font-size: 16px;
+    text-align: left;
+    font-size: 15px;
+    font-family: fantasy;
 }
 
-
-
+.inline-input {
+    width: 100%;
+    box-shadow: 0px 2px 0px rgba(88, 13, 4, 0.426);
+    color: #52120a;
+    border-radius: 1px;
+    text-align: left;
+    font-size: 18px;
+    font-family: fantasy;
+}
 
 .borderimg {
     border: 10px solid transparent;
     border-image: url(./assets/nav_borderimg.png) 12 round;
+    box-shadow:  0px 0px 2px;
 }
 
-.borderimg-tb {
-    border-bottom: 10px solid transparent;
-    border-top: 10px solid transparent;
-    border-image: url(./assets/nav_borderimg.png) 12 round;
+.borderimg-ne {
+    box-shadow:  0px 0px 2px;
+    border: 10px solid transparent;
+    border-image: url(./assets/nav_borderimg_ne.png) 12 round;
 }
 
 input {
@@ -305,7 +314,7 @@ input {
 }
 
 .skillgroup-tables {
-    width: 90%;
+    width: 95%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -315,29 +324,32 @@ input {
 
 .tables-header {
     width: 100%;
-    height: 15px;
+    height: 20px;
 
     background-image: url(./assets/banner_vertical_stacked2.png);
     background-size: 130%;
     background-position: center;
-
-    color: rgb(251, 231, 207);
 
     display:flex;
     justify-content: center;
     align-items: center;
 }
 
-
+.tables-header-label {
+    flex: 1;
+    text-align: center;
+    color: rgb(251, 231, 207);
+    font-size: 20px;
+ }
+ 
 .skillgroup-table {
-    width: 100%;
+    width: 95%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     gap:5px;
     margin-bottom: 10px;
-
 }
 
 .skillgroup-table-header {
@@ -347,19 +359,24 @@ input {
     /* background-image: url(./assets/banner_vertical_stacked2.png);
     background-size: 130%;
     background-position: center; */
-    background-color: #ffffff5e;
-
-    color: #353535;
+    background-color: #ffffff85;
 
     display:flex;
     justify-content: center;
     align-items: center;
 }
+.table-header-label {
+    color: #353535;
+    font-size: 20px;
+    flex: 1;
+    text-align: center;
+ }
 
-.header-label {
-   width: 33.3%;
-   text-align: center;
-}
+ .table-header-controls {
+    flex: 1;
+ }
+ 
+ 
 
 .skillgroup-table-rows {
     width: 100%;
@@ -370,9 +387,14 @@ input {
 .skillgroup-table-row {
     width: 100%;
     display: flex;
+    gap: 10px;
 }
 
-.skillgroup-table-input {
+.skillgroup-table-entry {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex: 1;
 }
 
