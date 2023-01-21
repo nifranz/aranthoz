@@ -10,6 +10,7 @@ import { SimpleItemSheet } from "./item-sheet.js";
 import { SimpleActorSheet } from "./actor-sheet.js";
 import { AranthozItemSheet } from "./item-sheet.js";
 import { AranthozActorSheet } from "./actor-sheet.js";
+import { AranthozActorSheet2 } from "./actor-sheet.js";
 import { preloadHandlebarsTemplates } from "./templates.js";
 import { createWorldbuildingMacro } from "./macro.js";
 import { SimpleToken, SimpleTokenDocument } from "./token.js";
@@ -48,6 +49,7 @@ Hooks.once("init", async function() {
   Actors.unregisterSheet("core", ActorSheet);
   Actors.registerSheet("aranthoz", SimpleActorSheet );
   Actors.registerSheet("aranthoz", AranthozActorSheet, { makeDefault: true });
+  Actors.registerSheet("aranthoz", AranthozActorSheet2);
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet("aranthoz", SimpleItemSheet);
   Items.registerSheet("aranthoz", AranthozItemSheet, { makeDefault: true });
