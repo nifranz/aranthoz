@@ -11,11 +11,14 @@
         unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
     }
 .aranthoz{
+    margin: 0;
+    font-family: "Eczar";
+    
     .main-container {
         transform: translate(-15px);
         display: block;
-        height: 100vh;
-        width: 100vw;
+        height: 100%;
+        width: 100%;
         display: flex;
 
         background-image: url(https://demo.foundryvtt.com/ui/parchment.jpg);
@@ -27,10 +30,9 @@
     /* - */
 
     .banner-container {
-        transition: 2s;
         flex: 0 0 200px;
         background-image: 
-            url(./assets/banner_bottom_sized.png);
+            url(../assets/banner/banner-bottom.png);
         background-size: 230px 130px;
         background-repeat: no-repeat;
         background-position-x: center;
@@ -60,7 +62,7 @@
     }
 
     .sheet-banner {
-        background-image: url(./assets/banner_vertical_stacked.png);
+        background-image: url(../assets/banner/banner-body.png);
         background-size: 230px;
         background-repeat: repeat-y;
         background-position-x: center;
@@ -84,7 +86,7 @@
 
 
     .banner-logo {
-        background-image: url(./assets/logo_source_less_sat_npc.png);
+        background-image: url(../assets/banner/banner-nameplate.png);
         background-size: 300px;
         background-repeat: no-repeat;
         background-position: center;
@@ -163,7 +165,7 @@
     /* Body */
     /* - */
 
-    .sheet-body {
+    .sheet-main {
         width: 100%;
         min-width: 700px;
         /*background-color: rgb(51, 90, 173);*/
@@ -188,8 +190,8 @@
     /* - */
 
 
-    .body-nav {
-        background-image: url(./assets/banner_vertical_stacked2.png);
+    .sheet-tabs {
+        background-image: url(../assets/banner/banner-body.png);
         background-size: 1000px;
         min-width: 640px;
         background-position: center;
@@ -204,7 +206,7 @@
         align-items: center;
     }
 
-    .body-nav a {
+    .sheet-tabs a {
         text-align: center;
         margin-left:30px;
         margin-right: 30px;
@@ -217,7 +219,7 @@
     /* Body - Main */
     /* - */
 
-    .sheet-main {
+    .sheet-body {
         background-color: rgba(240, 248, 255, 0);
         width: 90%;
         border: 10px;
@@ -258,7 +260,7 @@
         background-size: 250px;
         background-repeat: no-repeat;
         background-position: center;
-        background-image: url("assets/character/begeneu_hand_drawn_concept_art_of_a_arrogant_human_in_amour_med_4aa9aa57-1afb-4dac-a931-22bea0978e61.png");
+        background-image: url("../assets/character/character-valentin.png");
     }
 
     .heritage-column {
@@ -319,7 +321,7 @@
         width: 100%;
         height: 20px;
 
-        background-image: url(./assets/banner_vertical_stacked2.png);
+        background-image: url(../assets/banner/banner-body.png);
         background-size: 130%;
         background-position: center;
 
@@ -392,14 +394,14 @@
         align-items: center;
     }
 
-    .weapon-list {
+    .item-list {
         display: flex;
         flex-direction: column;
         width: 100%;
         gap: 15px;
     }
 
-    .weapon-element {
+    .item {
         height: 30px;
         display: flex;
         align-items: center;
@@ -446,13 +448,13 @@
 
     .borderimg {
         border: 10px solid transparent;
-        border-image: url(./assets/nav_borderimg.png) 12 round;
+        border-image: url(../assets/nav_borderimg.png) 12 round;
         box-shadow:  0px 0px 2px;
     }
     .borderimg-ne {
         box-shadow:  0px 0px 2px;
         border: 10px solid transparent;
-        border-image: url(./assets/nav_borderimg_ne.png) 12 round;
+        border-image: url(../assets/nav_borderimg_ne.png) 12 round;
     }
 
     input {
@@ -472,14 +474,6 @@
 
     a:hover {
         cursor: pointer;
-    }
-
-    .active {
-        display: block;
-    }
-
-    .inactive {
-        display: none;
     }
 
     .selected {

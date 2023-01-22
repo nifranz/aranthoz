@@ -11,12 +11,12 @@ export class AranthozActorSheet2 extends ActorSheet {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["aranthoz", "sheet", "actor"],
-      template: "systems/aranthoz/other/sheets/index.html",
+      template: "systems/aranthoz/templates/aranthoz2/aranthoz2.html",
       width: 600,
-      height: 600 //,
-      // tabs: [] [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description"}],
-      // scrollY: [] //, // [".biography", ".items", ".attributes"],
-      //dragDrop: []// [{dragSelector: ".item-list .item", dropSelector: null}]
+      height: 600,
+      tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: ".character"}],
+      scrollY: [".character",".skills", ".weapons", ".actions", ".inventory"],
+      dragDrop: [{dragSelector: ".item-list .item", dropSelector: null}]
     });
   }
 
