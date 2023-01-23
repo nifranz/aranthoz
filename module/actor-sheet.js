@@ -12,10 +12,10 @@ export class AranthozActorSheet2 extends ActorSheet {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["aranthoz", "sheet", "actor"],
       template: "systems/aranthoz/templates/aranthoz2/aranthoz2.html",
-      width: 600,
+      width: 1000,
       height: 600,
-      tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: ".character"}],
-      scrollY: [".character",".skills", ".weapons", ".actions", ".inventory"],
+      tabs: [{navSelector: ".body-nav", contentSelector: ".sheet-body", initial: "character"}],
+      scrollY: [".character", ".skills", ".weapons", ".actions", ".inventory"],
       dragDrop: [{dragSelector: ".item-list .item", dropSelector: null}]
     });
   }
@@ -39,6 +39,7 @@ export class AranthozActorSheet2 extends ActorSheet {
       async: true
     });
     context.isActor = true;
+    console.log("context:")
     console.log(context)
     return context;
   }
@@ -48,12 +49,13 @@ export class AranthozActorSheet2 extends ActorSheet {
   /** @inheritdoc */
   activateListeners(html) {
     super.activateListeners(html);
+    return
 
     // Everything below here is only needed if the sheet is editable
     if ( !this.isEditable ) return;
 
-    // Attribute Management
-    html.find(".attributes").on("click", ".attribute-control", EntitySheetHelper.onClickAttributeControl.bind(this));
+    // Skills Management
+    html.find(".skills").on("click", ".attribute-control", EntitySheetHelper.onClickAttributeControl.bind(this));
     html.find(".groups").on("click", ".group-control", EntitySheetHelper.onClickAttributeGroupControl.bind(this));
     html.find(".attributes").on("click", "a.attribute-roll", EntitySheetHelper.onAranthozAttributeRoll.bind(this));
     html.find(".items").on("click", "a.item-roll", EntitySheetHelper.onAranthozItemRoll.bind(this));
@@ -160,12 +162,24 @@ export class AranthozActorSheet2 extends ActorSheet {
 
   /** @inheritdoc */
   _getSubmitData(updateData) {
+
+  console.log("ya");
+  console.log(updateData);
     let formData = super._getSubmitData(updateData);
+    console.log("formData, this.object");
+    console.log(formData);
+    console.log(this.object)
     formData = EntitySheetHelper.updateAttributes(formData, this.object);
     formData = EntitySheetHelper.updateGroups(formData, this.object);
     return formData;
   }
 }
+
+
+/* ////////////////////////////////////* ////////////////////////////////////* ///////////////////////////////////
+/* ////////////////////////////////////* ////////////////////////////////////* ///////////////////////////////////
+/* ////////////////////////////////////* ////////////////////////////////////* ///////////////////////////////////
+/* ////////////////////////////////////* ////////////////////////////////////* ///////////////////////////////////
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -326,7 +340,14 @@ export class AranthozActorSheet extends ActorSheet {
 
   /** @inheritdoc */
   _getSubmitData(updateData) {
+    console.log("ye");
+    console.log(updateData);
+
+
     let formData = super._getSubmitData(updateData);
+    console.log("formData, this.object");
+    console.log(formData);
+    console.log(this.object)
     formData = EntitySheetHelper.updateAttributes(formData, this.object);
     formData = EntitySheetHelper.updateGroups(formData, this.object);
     return formData;

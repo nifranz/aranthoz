@@ -25,6 +25,9 @@ body {
   /* Body - Main */
   /* - */
 }
+.aranthoz .window-content {
+  padding: 0px;
+}
 .aranthoz .main-container {
   transform: translate(-15px);
   display: block;
@@ -92,7 +95,7 @@ body {
   justify-content: center;
 }
 .aranthoz .logo-name {
-  font-size: 99px;
+  font-size: 34px;
   margin-top: 33px;
   width: 85%;
   height: 47px;
@@ -164,7 +167,7 @@ body {
   overflow-y: auto;
   display: flex;
 }
-.aranthoz .sheet-tabs {
+.aranthoz .body-nav {
   background-image: url(../assets/banner/banner-body.png);
   background-size: 1000px;
   min-width: 640px;
@@ -172,13 +175,13 @@ body {
   height: 40px;
   box-shadow: inset 0px 0px 20px #000000cb;
   box-shadow: 0px 3px 8px #000000cb;
-  margin-top: 20px;
+  margin-top: 50px;
   margin-bottom: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.aranthoz .sheet-tabs a {
+.aranthoz .body-nav a {
   text-align: center;
   margin-left: 30px;
   margin-right: 30px;
@@ -211,19 +214,22 @@ body {
   justify-content: center;
 }
 .aranthoz .portrait-column {
-  flex: 0 0 190px;
-  width: 190px;
-  height: 220px;
+  flex: 0 0 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .aranthoz .character-portrait {
-  width: 170px;
-  height: 200px;
-  margin-right: 40px;
-  padding: -10px;
-  background-size: 250px;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-image: url("../assets/character/character-valentin.png");
+  /*
+        width: 170px;
+        height: 200px;
+        margin-right: 40px;
+        padding: -10px;
+
+        background-size: 250px;
+        background-repeat: no-repeat;
+        background-position: center;
+        /*background-image: url("../assets/character/character-valentin.png"); */
 }
 .aranthoz .heritage-column {
   flex: 1;
@@ -278,7 +284,7 @@ body {
 }
 .aranthoz .tables-header {
   width: 100%;
-  height: 20px;
+  height: 40px;
   background-image: url(../assets/banner/banner-body.png);
   background-size: 130%;
   background-position: center;
@@ -303,7 +309,7 @@ body {
 }
 .aranthoz .skillgroup-table-header {
   width: 100%;
-  height: 15px;
+  height: 35px;
   /* background-image: url(./assets/banner_vertical_stacked2.png);
         background-size: 130%;
         background-position: center; */
@@ -410,6 +416,10 @@ body {
   border: none;
   text-align: center;
   font-family: "Eczar";
+}
+.aranthoz input:active {
+  border: none;
+  box-shadow: none;
 }
 .aranthoz a {
   transition: 1s;

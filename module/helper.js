@@ -10,14 +10,17 @@ export class EntitySheetHelper {
    */
 
   static getItemOwnerId(itemId) {
+    // loop through all actors
     for (var a of game.actors._source) {
+      // loop through all items per actor
       for (var i of a.items) {
+        // if the item._id matches an item._id of an actor, return the actor._id
         if (i._id == itemId) {
           return a._id;
         }
       }
     }
-    return undefined;
+    return undefined; // if no matching item._id has been found in the items of all actors return undefined
   }
 
   /* -------------------------------------------- */
@@ -28,18 +31,32 @@ export class EntitySheetHelper {
    */
 
   static getActorAttributes(actorId) {
+    // Get the attribute object of the actor
     var ownerAttributes = Actor.get(actorId).system.attributes
+
+    // Initilialize attribute list for later
     var ownerAttributeList = []
 
-    for (var a of Object.entries(ownerAttributes)) {
-      for (var attr of Object.keys(a[1])) {
-        ownerAttributeList.push(attr)
+    // Loop through all attribute groups
+    var attributeGroups = Object.entries(ownerAttributes);    
+    for (var group of attributeGroups) {
+      var attributes = Object.keys(group[1])      
+      // Loop through the attributes
+      for (var attribute of attributes) {
+        // Append an attribute to the attribute list
+        ownerAttributeList.push(attribute)
       }
     }
     return ownerAttributeList
   }
 
   /* -------------------------------------------- */
+
+  static getActorSheetData(data) {
+
+  }
+
+
 
   static getAttributeData(data) {
 
@@ -130,10 +147,12 @@ export class EntitySheetHelper {
 
   /** @override */
   static onSubmit(event) {
+    console.log("yey")
     // Closing the form/sheet will also trigger a submit, so only evaluate if this is an event.
     if ( event.currentTarget ) {
       // Exit early if this isn't a named attribute.
       if ( (event.currentTarget.tagName.toLowerCase() === 'input') && !event.currentTarget.hasAttribute('name')) {
+        console.log("submit")
         return false;
       }
 
@@ -471,6 +490,7 @@ export class EntitySheetHelper {
       console.log(skillValue)
 
       async function handleSubmit(html) {
+        console.log("ye")
           const formElement = html[0].querySelector('form');
           const formData = new FormDataExtended(formElement);
           const formDataObject = formData.toObject();
