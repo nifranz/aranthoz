@@ -56,8 +56,6 @@ export class EntitySheetHelper {
 
   }
 
-
-
   static getAttributeData(data) {
 
     // Determine attribute type.
@@ -736,7 +734,7 @@ export class EntitySheetHelper {
    */
   static async deleteAttribute(event, app) {
     const a = event.currentTarget;
-    const li = a.closest(".attribute");
+    const li = a.closest("li"); //changed ".attribute" to "li" for compatibility with aranthoz2 sheet
     if ( li ) {
       li.parentElement.removeChild(li);
       await app._onSubmit(event);

@@ -1,5 +1,5 @@
 import { EntitySheetHelper } from "./helper.js";
-import {ATTRIBUTE_TYPES} from "./constants.js";
+import { ATTRIBUTE_TYPES } from "./constants.js";
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -49,7 +49,6 @@ export class AranthozActorSheet2 extends ActorSheet {
   /** @inheritdoc */
   activateListeners(html) {
     super.activateListeners(html);
-    return
 
     // Everything below here is only needed if the sheet is editable
     if ( !this.isEditable ) return;
