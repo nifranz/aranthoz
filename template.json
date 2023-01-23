@@ -14,6 +14,14 @@
       "min": 0,
       "max": 100
     },
+    "identity-attributes": {
+      "origin":"",
+      "gender":"",
+      "background":"",
+      "age":0,
+      "weight":"",
+      "height":""      
+    },
     "attributes": {},
     "groups": {
       "handeln": {

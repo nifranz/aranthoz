@@ -8,7 +8,7 @@
                 <div class="banner-body">
                     <div class="banner-logo-container">
                         <section class="banner-logo">
-                            <input type="text" id ="input" class="logo-name" onkeyup="myFunction()" value="{{data.name}}">
+                            <input name="name" id="input" class="logo-name" onkeyup="myFunction()" value="{{data.name}}">
                         </section>
                     </div>
                     <div class="banner-tiles-container">
@@ -55,7 +55,7 @@
             {{!-- Sheet Tab Navigation --}}
             <nav class="body-nav tabs borderimg" data-group="primary">
                 <a class="nav-link" data-tab="character" content-link="character">Character</a>
-                <a class="nav-link" data-tab="skills" content-link="skills">Skills</a>
+                <a class="nav-link" data-tab="skills" content-link="skills">Fähigkeiten</a>
                 <a class="nav-link" data-tab="weapons" content-link="weapons">Weapons</a> 
                 <a class="nav-link" data-tab="actions" content-link="actions">Spells</a>
                 <a class="nav-link" data-tab="inventory" content-link="inventory">Inventory</a>
@@ -63,8 +63,9 @@
 
             {{!-- Sheet Body --}}
             <section class="sheet-body">
+
                 {{!-- Character Tab --}}
-                <div class="tab character" data-group="primary" data-tab="character">
+                <section class="tab character" data-group="primary" data-tab="character">
                     <div class="content-container">
                         <div class="content">
                             <div class="portrait-column">
@@ -72,30 +73,30 @@
                             </div>
                             <div class="heritage-column">
                                 <div class="origin">
-                                    <div class="character-label">Herkunft</div>
-                                    <input class="basic-input origin" value="Myhriad">
+                                    <div class="character-label">Herkunft{{system.identity-attributes.origin}}</div>
+                                    <input class="basic-input origin" name="system.identity-attributes.origin"  value="{{data.system.identity-attributes.origin}}">
                                 </div>
                                 <div class="gender">
                                     <div class="character-label">Geschlecht</div>
-                                    <input class="basic-input gender-value" value="Männlich">
+                                    <input class="basic-input gender-value" name="system.identity-attributes.gender"  value="{{data.system.identity-attributes.gender}}">
                                 </div>
                                 <div class="background">
                                     <div class="character-label">Hintergrund</div>
-                                    <input class="basic-input gender-value" value="Alchemist">
+                                    <input class="basic-input gender-value" name="system.identity-attributes.background"  value="{{data.system.identity-attributes.background}}">
                                 </div>
                             </div>
                             <div class="physical-column">
                                 <div class="origin">
                                     <div class="character-label">Alter</div>
-                                    <input class="basic-input origin" value="20">
+                                    <input class="basic-input origin" name="system.identity-attributes.age"  value="{{data.system.identity-attributes.age}}">
                                 </div>
                                 <div class="gender">
                                     <div class="character-label">Gewicht</div>
-                                    <input class="basic-input gender-value" value="70kg">
+                                    <input class="basic-input gender-value" name="system.identity-attributes.weight"  value="{{data.system.identity-attributes.weight}}">
                                 </div>
                                 <div class="background">
                                     <div class="character-label">Größe</div>
-                                    <input class="basic-input gender-value" value="179">
+                                    <input class="basic-input gender-value" name="system.identity-attributes.height"  value="{{data.system.identity-attributes.height}}">
                                 </div>
                             </div>
                         </div>
@@ -103,17 +104,15 @@
                     <div class="content">
                         <div class="div-divider"></div>
                     </div>
-                    <!-- <div class="content">
-                        <div class="description">Valentin wurde als Findelkind von Nicholas Flamel, seinem Zieh-(groß-)Vater auf einem Bauernhof außerhalb einer kleinen, bäuerlichen Siedlung in Durodia großgezogen. Über seine Eltern oder den Rest seiner leiblichen Familie weiß Valentin nur sehr wenig, nur dass sie offenbar Grund genug hatten, ihn vor 22 Jahren als Säugling auszusetzen. Auch wenn sein Ziehvater nie offen mit Valentin darüber gesprochen hatte, so glaubte er doch, dass Nicholas mehr über seine leibliche Familie wusste, als er ihn glauben ließ.
-                            Auf dem Bauernhof von Flamel wuchs Valentin neben Nicholas auch mit seinem 3 Jahre älteren stief-Bruder Rickon auf, dem Enkel von Flamel. Gemeinsam verrichteten sie über das Jahr die Ernte, hielten den Bauernhof und das Werkzeug instand und suchten für Nicholas in der hauptsächlich unberührten Natur, in der sich der Bauernhof befand, die Kräuter, der er brauchte, um seine Forschungen in der Alchemie voranzubringen. Daher hat Valentin einen großen Wissensumfang in handwerklichen und naturwissenschaftlichen Dingen erlangt. Er weiß, welche Pflanzen essbar sind, und welche sich von diesen kultivierbar sind. Außerdem kann er einfache Dinge wie zum Beispiel einen Karren oder notwendiges Werkzeug reparieren. Die Wirkungsweise und Konstruktion komplexerer Maschinen, Bauwerke oder Werkzeuge entziehen sich aber seiner Kenntnis.
-                            Von Zeit zur Zeit, meist im Frühjahr, wo die Ernte knapp und die Vorräte aufgebraucht waren, musste einer der Jungen ausziehen, um Wild zu jagen, um das Überleben der kleinen Familie zu sichern, wenn sie sich sich ihre Vorräte nicht teuer im Dorf einkaufen wollten. Meist war dies xxx, da er stärker und älter war, aber auch Valentin gab einen soliden Schützen ab und konnte in der Natur für ein paar Tage auf sich allein gestellt überleben.
-                            Da Valentin bereits in frühem Alter großes Interesse an der Natur zeigte, fing Flamel früh an, seinen zieh-Sohn in der komplexen Kunst der Alchemie zu unterweisen. Valentin erwies sich als ein äußerst eifriger und talentierter Schüler. Nach nur einigen Jahren, als Valentin das Mannesalter erreichte, konnte er ein für sein Alter schon großes Maß an Erfahrung in alchemistischen Dingen vorweisen. Dennoch empfand der ehrgeizige Valentin seine Entwicklung als zu langsam und er hatte das Gefühl, dass sein Ziehvater, welcher sehr erfahren im Umgang mit der Alchemie war und deshalb sehr waghalsige und komplexe Experimente wagte,  seinen Fortschritt absichtlich zu bremsen versuchte. Er wusste, dass die Dinge, mit denen sich Flamel beschäftigte, sehr gefährlich waren und ein Maß an Kenntnis der Alchemie erforderten, welches nur wenige Menschen je erreichten, trotzdem fühlte er sich ungerecht behandelt und forderte Nicholas oft auf, ihn in seine Experimente mit einzubeziehen.</div>
-                    </div> -->
-                    
-                </div>
+                    <div class="content">
+                        <div class="description">
+                            {{editor biographyHTML target="system.biography" button=true editable=editable engine="prosemirror"}}
+                        </div>
+                    </div>                
+                </section>
 
                 {{!-- Skills Tab --}}
-                <div class="tab skills" data-group="primary" data-tab="skills">
+                <section class="tab skills" data-group="primary" data-tab="skills">
                     <div class="content-container">
 
                         {{!-- Skill Tables --}}
@@ -167,10 +166,10 @@
                             {{/each}}
                         </div>
                     </div>
-                </div>
+                </section>
 
                 {{!-- Weapons Tab --}}
-                <div class="tab weapons" data-group="primary" data-tab="weapons">
+                <section class="tab weapons" data-group="primary" data-tab="weapons">
                     <div class="content-container">
                         <ul class="item-list">
                             <li class ="item">
@@ -196,10 +195,10 @@
                         </ul>
                         <a class="itemAddButton borderimg-ne"><span class="material-symbols-outlined">add</span></a>
                     </div>
-                </div>
+                </section>
 
                 {{!-- Actions Tab --}}
-                <div class="tab actions" data-group="primary" data-tab="actions">
+                <section class="tab actions" data-group="primary" data-tab="actions">
                     <div class="content-container">
                         <ul class="item-list">
                             <li class ="item">
@@ -226,10 +225,10 @@
                         </ul>
                         <a class="itemAddButton borderimg-ne"><span class="material-symbols-outlined">add</span></a>                       
                     </div>
-                </div>
+                </section>
 
                 {{!-- Inventory Tab --}}
-                <div class="tab inventory" data-group="primary" data-tab="inventory">
+                <section class="tab inventory" data-group="primary" data-tab="inventory">
                     <div class="content-container">
                         <ul class="item-list">
                             <li class ="item">
@@ -260,7 +259,7 @@
                         </ul>        
                         <a class="itemAddButton borderimg-ne"><span class="material-symbols-outlined">add</span></a>   
                     </div>
-                </div>
+                </section>
             </section>
         </div>
     </container>

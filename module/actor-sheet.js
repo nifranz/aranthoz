@@ -15,7 +15,7 @@ export class AranthozActorSheet2 extends ActorSheet {
       width: 1000,
       height: 600,
       tabs: [{navSelector: ".body-nav", contentSelector: ".sheet-body", initial: "character"}],
-      scrollY: [".character", ".skills", ".weapons", ".actions", ".inventory"],
+      // scrollY: [".character", ".skills", ".weapons", ".actions", ".inventory"],
       dragDrop: [{dragSelector: ".item-list .item", dropSelector: null}]
     });
   }

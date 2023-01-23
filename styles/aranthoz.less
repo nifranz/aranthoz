@@ -10,6 +10,8 @@
         src: url(https://fonts.gstatic.com/s/eczar/v17/BXR2vF3Pi-DLmxcpJB-qbNTyTMDXHd6mrjgUC2daW2wr.woff2) format('woff2');
         unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
     }
+
+
 .aranthoz{
     margin: 0;
     font-family: "Eczar";
@@ -25,8 +27,8 @@
         width: 100%;
         display: flex;
 
-        background-image: url(https://demo.foundryvtt.com/ui/parchment.jpg);
-        background-repeat: repeat;
+        // background-image: url(https://demo.foundryvtt.com/ui/parchment.jpg);
+        // background-repeat: repeat;
     }
 
     /* ----------------------- */
@@ -42,7 +44,7 @@
         background-position-x: center;
         background-position-y: bottom;
         height: calc(100% );
-        min-height: 260px;
+        min-height: 60px;
         max-height: 620px;
         /* background-color: red; */
     }
@@ -108,7 +110,7 @@
     }
 
     .banner-body {
-        min-height: 400px;
+        // min-height: 400px;
         width: 100%;
         display: flex;
         flex-direction: column;
@@ -168,7 +170,8 @@
 
     .sheet-main {
         width: 100%;
-        min-width: 700px;
+        min-width: 600px;
+        height: 100%;
         /*background-color: rgb(51, 90, 173);*/
         overflow-x: hidden;
         overflow-y: auto;
@@ -192,45 +195,49 @@
 
 
     .body-nav {
+        margin-top: 20px;
+        flex: 0 0 60px;
         background-image: url(../assets/banner/banner-body.png);
         background-size: 1000px;
-        min-width: 640px;
+        min-width: 550px;
         background-position: center;
-        height: 40px;
         box-shadow: inset 0px 0px 20px #000000cb;
         box-shadow: 0px 3px 8px #000000cb;
-        margin-top: 50px;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
         display: flex;
         justify-content: center;
         align-items: center;
-    }
 
-    .body-nav a {
-        text-align: center;
-        margin-left:30px;
-        margin-right: 30px;
-        color: rgb(255, 248, 232);
-        font-size: 18px;
-        text-shadow: 0px 2px 3px rgba(0, 0, 0, 0.8);
-    }
+        .nav-link {
+            text-align: center;
+            margin-left:18px;
+            margin-right: 18px;
+            color: rgb(255, 248, 232);
+            font-size: 18px;
+            text-shadow: 0px 2px 3px rgba(0, 0, 0, 0.8);
+
+        }
+        .active {
+            text-decoration: underline;
+        }
+    }   
 
     /* ----------------------- */
     /* Body - Main */
     /* - */
 
     .sheet-body {
+        flex: 1 0px;
         background-color: rgba(240, 248, 255, 0);
         width: 90%;
         border: 10px;
-        height: 100%;
         overflow-x: hidden;
         overflow-y: auto;
+        margin-bottom: 20px;
     }
 
     .content-container {
         width: 100%;
-        margin-top: 10px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -306,6 +313,13 @@
         text-align: left;
         font-size: 18px;
         font-weight: bolder;
+    }
+
+    .inline-input:focus {
+        box-shadow: 0px 2px 0px rgba(88, 12, 4, 0.939);
+    }
+    .basic-input:focus {
+        box-shadow: 0px 2px 0px rgba(88, 12, 4, 0.939);
     }
 
     .description {
@@ -467,9 +481,8 @@
         font-family: "Eczar";
     }
 
-    input:active {
-        border: none;
-        box-shadow: none;
+    input:focus {
+
     }
 
     a {
