@@ -16,7 +16,7 @@ export class AranthozActorSheet2 extends ActorSheet {
       height: 600,
       tabs: [{navSelector: ".body-nav", contentSelector: ".sheet-body", initial: "character"}],
       // scrollY: [".character", ".attributes", ".weapons", ".actions", ".inventory"],
-      dragDrop: [{dragSelector: ".item-list .item", dropSelector: null}]
+      dragDrop: [{dragSelector: ".item-list .dragItem", dropSelector: null}]
     });
   }
 
@@ -44,6 +44,21 @@ export class AranthozActorSheet2 extends ActorSheet {
     context.isActor = true;
     console.log("context:")
     console.log(context)
+
+    // get actionType
+    context.isMage = context.data.system.identityAttributes.actionType === "spell";
+    context.isFighter = context.data.system.identityAttributes.actionType === "maneuver";
+
+    // get origin
+    context.origin = {};
+    context.origin.isMyhriad = context.data.system.identityAttributes.origin === "myhriad";
+    context.origin.isSalir = context.data.system.identityAttributes.origin === "salir";
+    context.origin.isDunvia = context.data.system.identityAttributes.origin === "dunvia";
+    context.origin.isDunrodia = context.data.system.identityAttributes.origin === "dunrodia";
+    context.origin.isThyrgrad = context.data.system.identityAttributes.origin === "thyrgrad";
+    context.origin.isVenicria = context.data.system.identityAttributes.origin === "venicria";
+    context.origin.isLorthing = context.data.system.identityAttributes.origin === "lorthing";
+    context.origin.isRhykva = context.data.system.identityAttributes.origin === "rhykva";
     return context;
   }
 
@@ -82,6 +97,17 @@ export class AranthozActorSheet2 extends ActorSheet {
     });
 
     html.find(".weapons a.weapon-roll").each((i, a) => {
+      a.setAttribute("draggable", true);
+      a.addEventListener("dragstart", ev => {
+        let dragData = ev.currentTarget.dataset;
+        console.log(ev.currentTarget)
+        console.log(dragData);
+        ev.dataTransfer.setData('text/plain', JSON.stringify(dragData));
+        console.log(ev.dataTransfer);
+      }, false);
+    });
+
+    html.find(".actions a.action-roll").each((i, a) => {
       a.setAttribute("draggable", true);
       a.addEventListener("dragstart", ev => {
         let dragData = ev.currentTarget.dataset;

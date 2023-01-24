@@ -36,11 +36,14 @@ export class AranthozItemSheet extends ItemSheet {
     context.systemData = context.data.system;
     const itemId = context.data._id;
     const itemOwner = Actor.get(EntitySheetHelper.getItemOwnerId(itemId));
-    const itemOwnerId = itemOwner._id;
-    console.log("itemOwnerId: " + itemOwnerId);
-    const item = itemOwner.items.get(itemId);
-    context.ownerId = itemOwnerId;
-    context.isOfTypeItem = context.data.type === "item";    
+    if (itemOwner) {
+      var itemOwnerId = itemOwner._id;
+      console.log("itemOwnerId: " + itemOwnerId);
+      var item = itemOwner.items.get(itemId);
+      context.ownerId = itemOwnerId;
+      context.isOfTypeItem = context.data.type === "item";    
+    }
+
 
     if (itemOwnerId) {
       // add an ownerAttributes property to the context object that holds an object {"value": skill, "selected": "selected" or ""} for all available attributes of the owner

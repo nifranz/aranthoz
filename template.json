@@ -14,13 +14,13 @@
       "min": 0,
       "max": 100
     },
-    "identity-attributes": {
+    "identityAttributes": {
       "origin":"",
       "gender":"",
       "background":"",
       "age":0,
       "build":"",
-      "skill":""     
+      "actionType":""     
     },
     "attributes": {},
     "groups": {

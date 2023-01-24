@@ -85,8 +85,11 @@ export async function aranthozSkillRoll (actorid, skillGroup, skillKey) {
     return null;
 }
 
-export async function aranthozWeaponRoll (actorid, skillGroup, skillKey) {
+export async function aranthozWeaponRoll (actorid, itemid) {
     const actor = Actor.get(actorid)
+    const item = fromUuid(`Actor.${actorid}.Item.${itemid}`)
+    console.log(item)
+    return
     const characterName = actor.name;
     const skill = actor.system.attributes[skillGroup][skillKey];
     if (!skill) {
@@ -172,10 +175,12 @@ export async function aranthozWeaponRoll (actorid, skillGroup, skillKey) {
     return null;
 }
 
-export async function aranthozActionRoll (actorid, skillGroup, skillKey) {
+export async function aranthozActionRoll (actorid, itemid) {
     const actor = Actor.get(actorid)
     const characterName = actor.name;
+    return;
     const skill = actor.system.attributes[skillGroup][skillKey];
+
     if (!skill) {
         ui.notifications.error(`Cant find skill for Actor: ${actor.name}, Skill-Group-Key: ${skillGroup}, Skill-Key: ${skillKey}. Please check your skills tab.`);
         return

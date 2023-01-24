@@ -15,7 +15,8 @@ import { preloadHandlebarsTemplates } from "./templates.js";
 import { createWorldbuildingMacro } from "./macro.js";
 import { createAranthozMacro } from "./macro.js";
 import { SimpleToken, SimpleTokenDocument } from "./token.js";
-import { aranthozSkillRoll } from "./roll.js";
+import { aranthozSkillRoll, aranthozActionRoll, aranthozWeaponRoll } from "./roll.js";
+
 
 /* -------------------------------------------- */
 /*  Foundry VTT Initialization                  */
@@ -40,7 +41,9 @@ Hooks.once("init", async function() {
     SimpleActor,
     createWorldbuildingMacro,
     createAranthozMacro,
-    aranthozSkillRoll
+    aranthozSkillRoll,
+    aranthozWeaponRoll,
+    aranthozActionRoll
   };
 
   // Define custom Document classes
