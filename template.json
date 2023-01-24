@@ -19,8 +19,8 @@
       "gender":"",
       "background":"",
       "age":0,
-      "weight":"",
-      "height":""      
+      "build":"",
+      "skill":""     
     },
     "attributes": {},
     "groups": {
@@ -43,7 +43,7 @@
   }
 },
 "Item": {
-  "types": ["item","weapon","skill"],
+  "types": ["item","weapon","action"],
   "htmlFields": ["description"],
   "item": {
     "description": "",
@@ -95,7 +95,7 @@
     },
     "skill": ""
   },
-  "skill": {
+  "action": {
     "description": "",
     "quantity": 1,
     "weight": 0,

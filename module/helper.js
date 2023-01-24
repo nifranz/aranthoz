@@ -1,3 +1,5 @@
+import { aranthozSkillRoll } from "./roll.js";
+
 export class EntitySheetHelper {
 
   static createRollMessage() {
@@ -65,6 +67,22 @@ export class EntitySheetHelper {
         attr.isResource = attr.dtype === "Resource";
         attr.isFormula = attr.dtype === "Formula";
         attr.isReadonly = attr.readonly === "True";
+      }
+    }
+
+    // Determine item type
+    console.log("item log");
+    console.log(data.items);
+    if (data.items) {
+      for ( let item of Object.values(data.items) ) {
+        console.log("Check item types");
+        if ( item.type ) {
+          console.log("item type" + item.type)
+          item.isItem = item.type === "item";
+          item.isWeapon = item.type === "weapon";
+          item.isAction = item.type === "action";
+          item.isArmor = item.type === "armor";
+        }
       }
     }
 
@@ -226,9 +244,9 @@ export class EntitySheetHelper {
       if(itemOwnerId) {
         const item = Actor.get(itemOwnerId).items.get(itemId)
         if (skillKey != "none") {
-          item.update({"system.skill":skillKey}) 
+          item.updateSource({"system.skill":skillKey}) 
         } else {
-          item.update({"system.skill":""}) 
+          item.updateSource({"system.skill":""}) 
         }
       } else {
         new Dialog({
@@ -275,7 +293,7 @@ export class EntitySheetHelper {
 
         // if the owner has the skill update the item, if not display an error message
         if (hasSkill) {
-          item.update({"system.skill":skillKey})
+          item.updateSource({"system.skill":skillKey})
         } else {
           new Dialog({
             title: "Achtung!",
@@ -362,12 +380,15 @@ export class EntitySheetHelper {
     static onAranthozAttributeRoll(event) {
       event.preventDefault();
       console.log(event)
-      const button = event.currentTarget;
-      const category = button.getAttribute("data-group")
-      const skillKey = button.getAttribute("data-key")
-      const skillValue = parseInt(button.getAttribute("data-value"))
-      var skillLabel = button.getAttribute("data-label")
-      const characterName = "Valentin"
+      const rollData = event.currentTarget.dataset;
+      const skillGroup = rollData.group;
+      const skillKey = rollData.key;
+      const actorid = rollData.actorid;
+
+      aranthozSkillRoll(actorid, skillGroup, skillKey);
+
+      const skillValue = parseInt(rollData.value);
+      var skillLabel = rollData.label;
 
       if (!skillLabel) {
         ui.notifications.warn("This attribute (attribute-key: " + skillKey + ") has no attribute label!")
@@ -444,14 +465,13 @@ export class EntitySheetHelper {
 
     static onAranthozItemRoll(event) {
       event.preventDefault();
-      console.log(event)
-      const button = event.currentTarget;
-      const itemID = button.getAttribute("data-id")
-      const itemOwnerID = button.getAttribute("data-actor-id")
+      const rollData = event.currentTarget.dataset;
+      const itemID = rollData.id;
+      const itemOwnerID = rollData.actorid;
 
-      const itemOwner = Actor.get(itemOwnerID)
-      const item = itemOwner.items.get(itemID)
-      const skillKey = item.system.skill
+      const itemOwner = Actor.get(itemOwnerID);
+      const item = itemOwner.items.get(itemID);
+      const skillKey = item.system.skill;
 
       if (!skillKey) {
         ui.notifications.warn("No skill link has been set. Please choose a skill link");
@@ -466,16 +486,16 @@ export class EntitySheetHelper {
         return
       }
 
-      const skillValue = parseInt(skill.value)
-      var skillLabel = skill.label
+      const skillValue = parseInt(skill.value);
+      var skillLabel = skill.label;
       
-      const characterName = itemOwner.name
+      const characterName = itemOwner.name;
 
  
 
       if (!skillLabel) {
-        ui.notifications.warn("The attribute linked to this item (attribute-key: " + skillKey + ") has no attribute label!")
-        skillLabel = "Attribut"
+        ui.notifications.warn("The attribute linked to this item (attribute-key: " + skillKey + ") has no attribute label!");
+        skillLabel = "Attribut";
       }
 
       if (!skillValue) {
@@ -483,18 +503,16 @@ export class EntitySheetHelper {
         return
       }
 
-
-
-      console.log(skillValue)
+      console.log(skillValue);
 
       async function handleSubmit(html) {
-        console.log("ye")
+        console.log("ye");
           const formElement = html[0].querySelector('form');
           const formData = new FormDataExtended(formElement);
           const formDataObject = formData.toObject();
 
           const modifier = parseInt(formDataObject.modifier);
-          const modifiedValue = skillValue + modifier
+          const modifiedValue = skillValue + modifier;
 
           // depending on if there was a value != 0 the modifier will be shown in the chat message by appending the variable modifierString to it
 

@@ -30,6 +30,8 @@ export class AranthozItemSheet extends ItemSheet {
 
   async getData(options) {
     const context = await super.getData(options);
+    console.log("Context");
+    console.log(context)
     EntitySheetHelper.getAttributeData(context.data);
     context.systemData = context.data.system;
     const itemId = context.data._id;

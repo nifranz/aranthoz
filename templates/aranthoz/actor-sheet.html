@@ -42,6 +42,7 @@
                     <img src="{{item.img}}" title="{{item.name}}" width="24" height="24" />
                     <h4 class="item-name">{{item.name}}</h4>
                     {{#unless item.isOfTypeItem}}
+                
                     <a class="item-roll" data-name="{{item.name}}" data-id="{{item._id}}" data-type="{{item.type}}" data-actor-id="{{../data._id}}"><i class="fas fa-dice-d20"></i></a>
                     {{/unless}}
                     {{!-- Iterate through all attributes on the item and output buttons for any that are formula. --}}

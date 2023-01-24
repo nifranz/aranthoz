@@ -15,7 +15,7 @@ export class AranthozActorSheet2 extends ActorSheet {
       width: 1000,
       height: 600,
       tabs: [{navSelector: ".body-nav", contentSelector: ".sheet-body", initial: "character"}],
-      // scrollY: [".character", ".skills", ".weapons", ".actions", ".inventory"],
+      // scrollY: [".character", ".attributes", ".weapons", ".actions", ".inventory"],
       dragDrop: [{dragSelector: ".item-list .item", dropSelector: null}]
     });
   }
@@ -25,6 +25,9 @@ export class AranthozActorSheet2 extends ActorSheet {
   /** @inheritdoc */
   async getData(options) {
     const context = await super.getData(options);
+    console.log("Context:");
+    console.log(context);
+
     EntitySheetHelper.getAttributeData(context.data);
     context.shorthand = !!game.settings.get("aranthoz", "macroShorthand");
     context.systemData = context.data.system;
@@ -54,21 +57,38 @@ export class AranthozActorSheet2 extends ActorSheet {
     if ( !this.isEditable ) return;
 
     // Skills Management
-    html.find(".skills").on("click", ".attribute-control", EntitySheetHelper.onClickAttributeControl.bind(this));
+    html.find(".skills").on("click", ".skill-control", EntitySheetHelper.onClickAttributeControl.bind(this));
     html.find(".groups").on("click", ".group-control", EntitySheetHelper.onClickAttributeGroupControl.bind(this));
-    html.find(".attributes").on("click", "a.attribute-roll", EntitySheetHelper.onAranthozAttributeRoll.bind(this));
-    html.find(".items").on("click", "a.item-roll", EntitySheetHelper.onAranthozItemRoll.bind(this));
+
+    // Sheet Rolls Management
+    html.find(".skills").on("click", "a.skill-roll", EntitySheetHelper.onAranthozAttributeRoll.bind(this));
+    html.find(".item-list").on("click", "a.weapon-roll", EntitySheetHelper.onAranthozItemRoll.bind(this));
+    html.find(".item-list").on("click", "a.action-roll", EntitySheetHelper.onAranthozItemRoll.bind(this));
 
     // Item Controls
     html.find(".item-control").click(this._onItemControl.bind(this));
     html.find(".items .rollable").on("click", this._onItemRoll.bind(this));
 
     // Add draggable for Macro creation
-    html.find(".attributes a.attribute-roll").each((i, a) => {
+    html.find(".skills a.skill-roll").each((i, a) => {
       a.setAttribute("draggable", true);
       a.addEventListener("dragstart", ev => {
         let dragData = ev.currentTarget.dataset;
+        console.log(ev.currentTarget)
+        console.log(dragData);
         ev.dataTransfer.setData('text/plain', JSON.stringify(dragData));
+        console.log(ev.dataTransfer);
+      }, false);
+    });
+
+    html.find(".weapons a.weapon-roll").each((i, a) => {
+      a.setAttribute("draggable", true);
+      a.addEventListener("dragstart", ev => {
+        let dragData = ev.currentTarget.dataset;
+        console.log(ev.currentTarget)
+        console.log(dragData);
+        ev.dataTransfer.setData('text/plain', JSON.stringify(dragData));
+        console.log(ev.dataTransfer);
       }, false);
     });
   }
@@ -91,47 +111,51 @@ export class AranthozActorSheet2 extends ActorSheet {
     // Handle different actions
     switch ( button.dataset.action ) {
       case "create":
+        const cls = getDocumentClass("Item");
+        console.log(button.getAttribute("item-type"))
+        var name = (button.getAttribute("item-type"))
+        if (name) {
+          name = "New " + name[0].toUpperCase() + name.substring(1)
+        }
+        return cls.create({name: name || game.i18n.localize("SIMPLE.ItemNew"), type: button.getAttribute("item-type")}, {parent: this.actor});
         
-        const types = {
-          // [defaultType]: game.i18n.localize("SIMPLE.NoTemplate")
-        }
-        for ( let t of Item.TYPES ) {
-          types[t] = t.charAt(0).toUpperCase() + t.slice(1); // t.charAt(0).toUpperCase() + t.slice(1); -> capitalizes string t
-        }
+        // const types = {
+        //   // [defaultType]: game.i18n.localize("SIMPLE.NoTemplate")
+        // }
+        // for ( let t of Item.TYPES ) {
+        //   types[t] = t.charAt(0).toUpperCase() + t.slice(1); // t.charAt(0).toUpperCase() + t.slice(1); -> capitalizes string t
+        // }    
+        // // Render the document creation form
+        // const template = "templates/sidebar/document-create.html";
+        // const html = await renderTemplate(template, {
+        //   name: "New Item", //data.name || game.i18n.format("DOCUMENT.New", {type: label}),
+        //   folder: undefined, //data.folder,
+        //   folders: undefined, //folders,
+        //   hasFolders: false, //folders.length > 1,
+        //   type: "Type", //data.type || templates[0]?.id || "",
+        //   types: types,
+        //   hasTypes: true
+        // });
     
-        // Render the document creation form
-        const template = "templates/sidebar/document-create.html";
-        const html = await renderTemplate(template, {
-          name: "New Item", //data.name || game.i18n.format("DOCUMENT.New", {type: label}),
-          folder: undefined, //data.folder,
-          folders: undefined, //folders,
-          hasFolders: false, //folders.length > 1,
-          type: "Type", //data.type || templates[0]?.id || "",
-          types: types,
-          hasTypes: true
-        });
+        // // Render the confirmation dialog window
+        // return Dialog.prompt({
+        //   title: "Create Item for " + this.actor.name,
+        //   content: html,
+        //   label: "Item Name",
+        //   callback: html => {
     
-        // Render the confirmation dialog window
-        return Dialog.prompt({
-          title: "Create Item for " + this.actor.name,
-          content: html,
-          label: "Item Name",
-          callback: html => {
+        //     // Get the form data
+        //     const form = html[0].querySelector("form");
+        //     const fd = new FormDataExtended(form);
+        //     let createData = fd.toObject();
     
-            // Get the form data
-            const form = html[0].querySelector("form");
-            const fd = new FormDataExtended(form);
-            let createData = fd.toObject();
-    
-            // Merge provided override data
-            const cls = getDocumentClass("Item");
-            return cls.create({name: createData.name || "New Item", type: createData.type}, {parent: this.actor});
-          },
-          rejectClose: false,
-          options: undefined
-        });
-
-        return
+        //     // Merge provided override data
+        //     const cls = getDocumentClass("Item");
+        //     return cls.create({name: createData.name || "New Item", type: createData.type}, {parent: this.actor});
+        //   },
+        //   rejectClose: false,
+        //   options: undefined
+        // });
       case "edit":
         return item.sheet.render(true);
       case "delete":
@@ -412,7 +436,11 @@ export class SimpleActorSheet extends ActorSheet {
       a.setAttribute("draggable", true);
       a.addEventListener("dragstart", ev => {
         let dragData = ev.currentTarget.dataset;
+        console.log(ev.currentTarget)
+        console.log(dragData);
+        console.log(JSON.stringify(dragData));
         ev.dataTransfer.setData('text/plain', JSON.stringify(dragData));
+        console.log(ev.dataTransfer);
       }, false);
     });
   }

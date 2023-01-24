@@ -49,23 +49,23 @@
         /* background-color: red; */
     }
 
-    svg:active {
-        -ms-transform: rotate(0deg); 
-        -webkit-transform: rotate(0deg); 
-        transform: rotate(0deg);
-    }
+    // svg:active {
+    //     -ms-transform: rotate(0deg); 
+    //     -webkit-transform: rotate(0deg); 
+    //     transform: rotate(0deg);
+    // }
 
-    svg:hover{
-        -ms-transform: rotate(1200deg); 
-        -webkit-transform: rotate(1200deg); 
-        transform: rotate(1200deg);
-        transition: 5s;
+    // svg:hover{
+    //     -ms-transform: rotate(1200deg); 
+    //     -webkit-transform: rotate(1200deg); 
+    //     transform: rotate(1200deg);
+    //     transition: 5s;
 
-    }
-    svg {
-        transition: 1s;
-        transition-delay: .3s;
-    }
+    // }
+    // svg {
+    //     transition: 1s;
+    //     transition-delay: .3s;
+    // }
 
     .sheet-banner {
         background-image: url(../assets/banner/banner-body.png);
@@ -316,10 +316,10 @@
     }
 
     .inline-input:focus {
-        box-shadow: 0px 2px 0px rgba(88, 12, 4, 0.939);
+        box-shadow: 0px 2px 0px rgba(88, 12, 4, 0.79);
     }
     .basic-input:focus {
-        box-shadow: 0px 2px 0px rgba(88, 12, 4, 0.939);
+        box-shadow: 0px 2px 0px rgba(88, 12, 4, 0.79);
     }
 
     .description {
@@ -382,9 +382,23 @@
     }
     .table-header-controls {
         flex: 1;
+        display: flex;
+        align-items: center;
+        height: 100%;
+
+        .skill-control {
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+    }
+    .skill-control {
+        height: 100%;
+        display: flex;
+        align-items: center;
     }
     .skillgroup-table-rows {
-        width: 100%;
+        width: 96%;
         display: flex;
         flex-direction: column;
         gap: 10px;
@@ -400,11 +414,16 @@
         align-items: center;
         justify-content: center;
         flex: 1;
+        .skill-control {
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
     }
 
     .itemAddButton {
         width: 60px;
-        height: 15px;
+        height: 30px;
         background-color: #ffffff85;
         display:flex;
         justify-content: center;
@@ -452,7 +471,7 @@
         flex: 1;
         padding-left: 5px;
         background-color: rgba(161, 144, 124, 0.215);
-        box-shadow: 0px 2px 0px rgba(88, 13, 4, 0.426);
+        // box-shadow: 0px 2px 0px rgba(88, 13, 4, 0.426);
         color: rgb(40, 40, 40);
         border-radius: 1px;
         text-align: left;
@@ -486,7 +505,7 @@
     }
 
     a {
-        transition: 1s;
+        transition: .1s;
     }
 
 

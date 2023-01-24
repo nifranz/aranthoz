@@ -13,7 +13,9 @@ import { AranthozActorSheet } from "./actor-sheet.js";
 import { AranthozActorSheet2 } from "./actor-sheet.js";
 import { preloadHandlebarsTemplates } from "./templates.js";
 import { createWorldbuildingMacro } from "./macro.js";
+import { createAranthozMacro } from "./macro.js";
 import { SimpleToken, SimpleTokenDocument } from "./token.js";
+import { aranthozSkillRoll } from "./roll.js";
 
 /* -------------------------------------------- */
 /*  Foundry VTT Initialization                  */
@@ -36,7 +38,9 @@ Hooks.once("init", async function() {
 
   game.aranthoz = {
     SimpleActor,
-    createWorldbuildingMacro
+    createWorldbuildingMacro,
+    createAranthozMacro,
+    aranthozSkillRoll
   };
 
   // Define custom Document classes
@@ -108,6 +112,7 @@ Hooks.once("init", async function() {
  * Macrobar hook.
  */
 Hooks.on("hotbarDrop", (bar, data, slot) => createWorldbuildingMacro(data, slot));
+Hooks.on("hotbarDrop", (bar, data, slot) => createAranthozMacro(data, slot));
 
 /**
  * Adds the actor template context menu.

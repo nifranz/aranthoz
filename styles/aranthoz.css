@@ -47,21 +47,6 @@ body {
   max-height: 620px;
   /* background-color: red; */
 }
-.aranthoz svg:active {
-  -ms-transform: rotate(0deg);
-  -webkit-transform: rotate(0deg);
-  transform: rotate(0deg);
-}
-.aranthoz svg:hover {
-  -ms-transform: rotate(1200deg);
-  -webkit-transform: rotate(1200deg);
-  transform: rotate(1200deg);
-  transition: 5s;
-}
-.aranthoz svg {
-  transition: 1s;
-  transition-delay: 0.3s;
-}
 .aranthoz .sheet-banner {
   background-image: url(../assets/banner/banner-body.png);
   background-size: 230px;
@@ -273,10 +258,10 @@ body {
   font-weight: bolder;
 }
 .aranthoz .inline-input:focus {
-  box-shadow: 0px 2px 0px rgba(88, 12, 4, 0.939);
+  box-shadow: 0px 2px 0px rgba(88, 12, 4, 0.79);
 }
 .aranthoz .basic-input:focus {
-  box-shadow: 0px 2px 0px rgba(88, 12, 4, 0.939);
+  box-shadow: 0px 2px 0px rgba(88, 12, 4, 0.79);
 }
 .aranthoz .description {
   max-width: 800px;
@@ -333,9 +318,22 @@ body {
 }
 .aranthoz .table-header-controls {
   flex: 1;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+.aranthoz .table-header-controls .skill-control {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.aranthoz .skill-control {
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
 .aranthoz .skillgroup-table-rows {
-  width: 100%;
+  width: 96%;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -352,9 +350,14 @@ body {
   justify-content: center;
   flex: 1;
 }
+.aranthoz .skillgroup-table-entry .skill-control {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
 .aranthoz .itemAddButton {
   width: 60px;
-  height: 15px;
+  height: 30px;
   background-color: #ffffff85;
   display: flex;
   justify-content: center;
@@ -398,7 +401,6 @@ body {
   flex: 1;
   padding-left: 5px;
   background-color: rgba(161, 144, 124, 0.215);
-  box-shadow: 0px 2px 0px rgba(88, 13, 4, 0.426);
   color: #282828;
   border-radius: 1px;
   text-align: left;
@@ -425,7 +427,7 @@ body {
   font-family: "Eczar";
 }
 .aranthoz a {
-  transition: 1s;
+  transition: 0.1s;
 }
 .aranthoz a:hover {
   cursor: pointer;
