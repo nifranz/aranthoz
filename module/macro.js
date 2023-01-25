@@ -30,16 +30,16 @@ export async function createAranthozMacro(data, slot) {
   if (!data.rolltype) return;
   switch (data.rolltype) {
     case "skill":
-      var command = `game.aranthoz.aranthozSkillRoll("${data.actorid}", "${data.group}", "${data.key}")`
+      var command = `game.aranthoz.skillRoll("${data.actorid}", "${data.group}", "${data.key}")`
       var macroName = data.label;
       break;
     case "weapon":
-      var command = `game.aranthoz.aranthozWeaponRoll("${data.actorid}", "${data.itemid}")`;
+      var command = `game.aranthoz.weaponRoll("${data.actorid}", "${data.itemid}")`;
       var item = await fromUuid(`Actor.${data.actorid}.Item.${data.itemid}`)
       var macroName = item.name;
       break;
     case "action":
-      var command = `game.aranthoz.aranthozActionRoll("${data.actorid}", "${data.itemid}")`;
+      var command = `game.aranthoz.actionRoll("${data.actorid}", "${data.itemid}")`;
       var item = await fromUuid(`Actor.${data.actorid}.Item.${data.itemid}`)
       var macroName = item.name;
       break;

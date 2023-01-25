@@ -15,7 +15,7 @@ import { preloadHandlebarsTemplates } from "./templates.js";
 import { createWorldbuildingMacro } from "./macro.js";
 import { createAranthozMacro } from "./macro.js";
 import { SimpleToken, SimpleTokenDocument } from "./token.js";
-import { aranthozSkillRoll, aranthozActionRoll, aranthozWeaponRoll } from "./roll.js";
+import { skillRoll, actionRoll, weaponRoll } from "./roll.js";
 
 
 /* -------------------------------------------- */
@@ -41,9 +41,9 @@ Hooks.once("init", async function() {
     SimpleActor,
     createWorldbuildingMacro,
     createAranthozMacro,
-    aranthozSkillRoll,
-    aranthozWeaponRoll,
-    aranthozActionRoll
+    skillRoll,
+    weaponRoll,
+    actionRoll
   };
 
   // Define custom Document classes

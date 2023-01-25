@@ -25,40 +25,41 @@ export class AranthozActorSheet2 extends ActorSheet {
   /** @inheritdoc */
   async getData(options) {
     const context = await super.getData(options);
-    console.log("Context:");
-    console.log(context);
-
     EntitySheetHelper.getAttributeData(context.data);
     context.shorthand = !!game.settings.get("aranthoz", "macroShorthand");
     context.systemData = context.data.system;
-    console.log(context.systemData)
-    for (var i of context.data.items) {
-      i.isOfTypeItem = i.type === "item";
-    }
-    console.log(context.data.items)
+
     context.dtypes = ATTRIBUTE_TYPES;
     context.biographyHTML = await TextEditor.enrichHTML(context.systemData.biography, {
       secrets: this.document.isOwner,
       async: true
     });
-    context.isActor = true;
-    console.log("context:")
-    console.log(context)
 
-    // get actionType
+    // add sheet-specific booleans to hbs-context
+    // add actor-sheet boolean
+    context.isActor = true;
+    for (var i of context.data.items) {
+      // add if an item is of type "item" (-> not "weapon" or "skill")
+      i.isOfTypeItem = i.type === "item";
+    }
+
+    // add character-specific information to hbs-context
+    // add actionType booleans
     context.isMage = context.data.system.identityAttributes.actionType === "spell";
     context.isFighter = context.data.system.identityAttributes.actionType === "maneuver";
 
-    // get origin
-    context.origin = {};
-    context.origin.isMyhriad = context.data.system.identityAttributes.origin === "myhriad";
-    context.origin.isSalir = context.data.system.identityAttributes.origin === "salir";
-    context.origin.isDunvia = context.data.system.identityAttributes.origin === "dunvia";
-    context.origin.isDunrodia = context.data.system.identityAttributes.origin === "dunrodia";
-    context.origin.isThyrgrad = context.data.system.identityAttributes.origin === "thyrgrad";
-    context.origin.isVenicria = context.data.system.identityAttributes.origin === "venicria";
-    context.origin.isLorthing = context.data.system.identityAttributes.origin === "lorthing";
-    context.origin.isRhykva = context.data.system.identityAttributes.origin === "rhykva";
+    // add origin booleans
+    var origin = {};
+    origin.isMyhriad = context.data.system.identityAttributes.origin === "myhriad";
+    origin.isSalir = context.data.system.identityAttributes.origin === "salir";
+    origin.isDunvia = context.data.system.identityAttributes.origin === "dunvia";
+    origin.isDunrodia = context.data.system.identityAttributes.origin === "dunrodia";
+    origin.isThyrgrad = context.data.system.identityAttributes.origin === "thyrgrad";
+    origin.isVenicria = context.data.system.identityAttributes.origin === "venicria";
+    origin.isLorthing = context.data.system.identityAttributes.origin === "lorthing";
+    origin.isRhykva = context.data.system.identityAttributes.origin === "rhykva";
+    context.origin = origin;
+
     return context;
   }
 
@@ -76,15 +77,16 @@ export class AranthozActorSheet2 extends ActorSheet {
     html.find(".groups").on("click", ".group-control", EntitySheetHelper.onClickAttributeGroupControl.bind(this));
 
     // Sheet Rolls Management
-    html.find(".skills").on("click", "a.skill-roll", EntitySheetHelper.onAranthozAttributeRoll.bind(this));
-    html.find(".item-list").on("click", "a.weapon-roll", EntitySheetHelper.onAranthozItemRoll.bind(this));
-    html.find(".item-list").on("click", "a.action-roll", EntitySheetHelper.onAranthozItemRoll.bind(this));
+    html.find(".skills").on("click", "a.skill-roll", EntitySheetHelper.onAranthozAttributeRoll.bind(this)); // skill roll
+    html.find(".item-list").on("click", "a.weapon-roll", EntitySheetHelper.onAranthozItemRoll.bind(this)); // weapon roll
+    html.find(".item-list").on("click", "a.action-roll", EntitySheetHelper.onAranthozItemRoll.bind(this)); // action roll
 
     // Item Controls
     html.find(".item-control").click(this._onItemControl.bind(this));
     html.find(".items .rollable").on("click", this._onItemRoll.bind(this));
 
-    // Add draggable for Macro creation
+    // Add draggable for Roll-Macro creation
+    // Skill rolls
     html.find(".skills a.skill-roll").each((i, a) => {
       a.setAttribute("draggable", true);
       a.addEventListener("dragstart", ev => {
@@ -95,7 +97,7 @@ export class AranthozActorSheet2 extends ActorSheet {
         console.log(ev.dataTransfer);
       }, false);
     });
-
+    // Weapon rolls
     html.find(".weapons a.weapon-roll").each((i, a) => {
       a.setAttribute("draggable", true);
       a.addEventListener("dragstart", ev => {
@@ -106,7 +108,7 @@ export class AranthozActorSheet2 extends ActorSheet {
         console.log(ev.dataTransfer);
       }, false);
     });
-
+    // Action rolls
     html.find(".actions a.action-roll").each((i, a) => {
       a.setAttribute("draggable", true);
       a.addEventListener("dragstart", ev => {

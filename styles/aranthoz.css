@@ -192,6 +192,17 @@ body {
   gap: 20px;
   flex-direction: column;
 }
+.aranthoz .editor {
+  height: 100%;
+  min-height: 70px;
+  width: 100%;
+  overflow: visible;
+}
+.aranthoz .editor-content {
+  height: 100%;
+  width: 100%;
+  overflow: visible;
+}
 .aranthoz .content {
   width: 100%;
   margin-top: 20px;
@@ -240,6 +251,7 @@ body {
   font-weight: 700;
 }
 .aranthoz .basic-input {
+  padding-left: 7px;
   width: 100%;
   background-color: rgba(161, 144, 124, 0.215);
   box-shadow: 0px 2px 0px rgba(88, 13, 4, 0.426);
@@ -248,15 +260,8 @@ body {
   text-align: left;
   font-size: 18px;
 }
-.aranthoz .basic-select {
-  width: 100%;
-  height: 35px;
-  background-color: rgba(161, 144, 124, 0.215);
-  box-shadow: 0px 2px 0px rgba(88, 13, 4, 0.426);
-  color: #282828;
-  border-radius: 1px;
-  text-align: left;
-  font-size: 18px;
+.aranthoz :focus {
+  box-shadow: 0px 2px 0px rgba(88, 12, 4, 0.79);
 }
 .aranthoz .inline-input {
   width: 100%;
@@ -267,14 +272,24 @@ body {
   font-size: 18px;
   font-weight: bolder;
 }
-.aranthoz .inline-input:focus {
+.aranthoz :focus {
   box-shadow: 0px 2px 0px rgba(88, 12, 4, 0.79);
 }
-.aranthoz .basic-input:focus {
-  box-shadow: 0px 2px 0px rgba(88, 12, 4, 0.79);
+.aranthoz .basic-select {
+  width: 100%;
+  height: 35px;
+  background-color: rgba(161, 144, 124, 0.215);
+  box-shadow: 0px 2px 0px rgba(88, 13, 4, 0.426);
+  color: #282828;
+  border-radius: 1px;
+  border: none;
+  text-align: left;
+  font-size: 18px;
 }
 .aranthoz .description {
-  max-width: 800px;
+  display: block;
+  width: 100%;
+  overflow: visible;
 }
 .aranthoz .skillgroup-tables {
   width: 95%;

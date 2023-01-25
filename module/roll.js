@@ -1,4 +1,4 @@
-export async function aranthozSkillRoll (actorid, skillGroup, skillKey) {
+export async function skillRoll (actorid, skillGroup, skillKey) {
     const actor = Actor.get(actorid)
     const characterName = actor.name;
     const skill = actor.system.attributes[skillGroup][skillKey];
@@ -85,7 +85,7 @@ export async function aranthozSkillRoll (actorid, skillGroup, skillKey) {
     return null;
 }
 
-export async function aranthozWeaponRoll (actorid, itemid) {
+export async function weaponRoll (actorid, itemid) {
     const actor = Actor.get(actorid)
     const item = fromUuid(`Actor.${actorid}.Item.${itemid}`)
     console.log(item)
@@ -113,7 +113,7 @@ export async function aranthozWeaponRoll (actorid, itemid) {
     }
     skillValue = parseInt(skillValue);
     
-    async function handleSubmit(html) {
+    async function executeRoll(html) {
         const formElement = html[0].querySelector('form');
         const formData = new FormDataExtended(formElement);
         const formDataObject = formData.toObject();
@@ -175,7 +175,7 @@ export async function aranthozWeaponRoll (actorid, itemid) {
     return null;
 }
 
-export async function aranthozActionRoll (actorid, itemid) {
+export async function actionRoll (actorid, itemid) {
     const actor = Actor.get(actorid)
     const characterName = actor.name;
     return;
