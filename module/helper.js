@@ -1,4 +1,4 @@
-import { aranthozSkillRoll } from "./roll.js";
+import { skillRoll } from "./roll.js";
 
 export class EntitySheetHelper {
 
@@ -385,7 +385,7 @@ export class EntitySheetHelper {
       const skillKey = rollData.key;
       const actorid = rollData.actorid;
 
-      aranthozSkillRoll(actorid, skillGroup, skillKey);
+      skillRoll(actorid, skillGroup, skillKey);
     }
 
     static onAranthozItemRoll(event) {
