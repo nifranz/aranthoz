@@ -1,4 +1,4 @@
-import { skillRoll } from "./roll.js";
+import { skillRoll, weaponRoll, actionRoll } from "./roll.js";
 
 export class EntitySheetHelper {
 
@@ -13,16 +13,16 @@ export class EntitySheetHelper {
 
   static getItemOwnerId(itemId) {
     // loop through all actors
-    for (var a of game.actors._source) {
-      // loop through all items per actor
-      for (var i of a.items) {
-        // if the item._id matches an item._id of an actor, return the actor._id
-        if (i._id == itemId) {
-          return a._id;
+      for (var a of game.actors._source) {
+        // loop through all items per actor
+        for (var i of a.items) {
+          // if the item._id matches an item._id of an actor, return the actor._id
+          if (i._id == itemId) {
+            return a._id;
+          }
         }
       }
-    }
-    return undefined; // if no matching item._id has been found in the items of all actors return undefined
+      return undefined; // if no matching item._id has been found in the items of all actors return undefined
   }
 
   /* -------------------------------------------- */
@@ -232,22 +232,16 @@ export class EntitySheetHelper {
       const inputElement = formElements.filter(el => el.classList.contains("skill-select"))[0] // the input HTML element of class .skill-field
 
       // define the variables of interest to be used later
-      const itemId = this.object._id // the _id of the item viewed
+      const item = this.object
+      const itemId = item._id// the _id of the item viewed
       const skillKey = inputElement.value // the attributeKey of the skill to be linked from the inputElement
 
       console.log("skillKey: " + skillKey)
       console.log("itemId: " + itemId)
+      console.log(item)
 
-      // get the actor that owns the item of item id 
-      // by accessing all actors and filter them for the unique actor that stores the item that matches the item id of the viewed item
-      var itemOwnerId = EntitySheetHelper.getItemOwnerId(itemId)
-      if(itemOwnerId) {
-        const item = Actor.get(itemOwnerId).items.get(itemId)
-        if (skillKey != "none") {
-          item.updateSource({"system.skill":skillKey}) 
-        } else {
-          item.updateSource({"system.skill":""}) 
-        }
+      if (item.actor) {
+        item.update({"system.skill":skillKey})
       } else {
         new Dialog({
           title: "Achtung!",
@@ -257,64 +251,6 @@ export class EntitySheetHelper {
           }
         }).render(true);
       }
-    }
-
-    static async onSkillSubmit(event) {
-      event.preventDefault();
-      const a = event.currentTarget;
-      const formElements = Array.from(this.form.elements) // all HTML Elements in the current item form window
-      const inputElement = formElements.filter(el => el.classList.contains("skill-field"))[0] // the input HTML element of class .skill-field
-      console.log(formElements)
-      // define the variables of interest to be used later
-      const itemId = this.object._id // the _id of the item viewed
-      const skillKey = inputElement.value // the attributeKey of the skill to be linked from the inputElement
-
-      console.log("skillKey: " + skillKey)
-      console.log("itemId: " + itemId)      
-
-      // get the actor that owns the item of item id 
-      // by accessing all actors and filter them for the unique actor that stores the item that matches the item id of the viewed item
-
-      var itemOwnerId = EntitySheetHelper.getItemOwnerId(itemId)
-
-      if(itemOwnerId) {
-        // if an item owner exists check if the owner has the given skill
-        const actor = Actor.get(itemOwnerId)
-        const item = actor.items.get(itemId)
-        const attributes = actor.system.attributes
-        console.log(attributes)
-        console.log("attributes")
-        console.log("Item OwnerID: " + itemOwnerId)
-        console.log(item)
-        var hasSkill = false
-        for (var g of Object.entries(attributes)) {
-           if (g[1][skillKey]) hasSkill = true
-        }
-
-        // if the owner has the skill update the item, if not display an error message
-        if (hasSkill) {
-          item.updateSource({"system.skill":skillKey})
-        } else {
-          new Dialog({
-            title: "Achtung!",
-            content: 'Der Charakter besitzt den Skill "' + skillKey + '" nicht.' ,
-            buttons: {
-                submit: {label: "Got it!"}
-            }
-          }).render(true);
-        }
-
-      }
-      else {
-        new Dialog({
-          title: "Achtung!",
-          content: "Du hast ein Item ausgewählt, dass sich nicht in deinem Inventar befindet. Bitte öffne ein Item aus deinem Inventar und versuche es erneut.",
-          buttons: {
-              submit: {label: "Got it!"}
-          }
-        }).render(true);
-      }
-
     }
   
   /* -------------------------------------------- */
@@ -371,166 +307,37 @@ export class EntitySheetHelper {
     }
   }
 
-  /* -------------------------------------------- *
+  /* -------------------------------------------- */
 
   /**
-   * Listen for the roll button on attributes.
+   * Handles roll exection after a roll button has been pressed on the actor-sheet
    * @param {MouseEvent} event    The originating left click event
    */
-    static onAranthozAttributeRoll(event) {
-      event.preventDefault();
-      console.log(event)
-      const rollData = event.currentTarget.dataset;
-      const skillGroup = rollData.group;
-      const skillKey = rollData.key;
-      const actorid = rollData.actorid;
 
-      skillRoll(actorid, skillGroup, skillKey);
+  static onActorSheetRoll(event) {
+    event.preventDefault();
+    console.log(event.currentTarget.dataset);
+
+    const rollData = event.currentTarget.dataset;
+
+    switch (rollData.rolltype) {
+      case "skill":
+        // call skillRoll() function to evaluate skill rolls
+        skillRoll(rollData.actorid, rollData.group, rollData.key);
+        break;
+
+      case "weapon":
+        // call weaponRoll() function to evaluate weapon roll
+        weaponRoll(rollData.actorid, rollData.itemid);
+        break;
+
+      case "action":
+        // call actionRoll() function to evaluate action roll
+        actionRoll(rollData.actorid, rollData.itemid);
+        break;
     }
+  }
 
-    static onAranthozItemRoll(event) {
-      event.preventDefault();
-      const rollData = event.currentTarget.dataset;
-      const itemID = rollData.id;
-      const itemOwnerID = rollData.actorid;
-
-      const itemOwner = Actor.get(itemOwnerID);
-      const item = itemOwner.items.get(itemID);
-      const skillKey = item.system.skill;
-
-      if (!skillKey) {
-        ui.notifications.warn("No skill link has been set. Please choose a skill link");
-        return
-        
-
-      }
-
-      const skill = itemOwner.system.attributes['handeln'][skillKey]
-      if (!skill && item.skill != "") {
-        ui.notifications.error("It appears that the linked attribute (attribute-key: " + skillKey + ") has been deleted from the attributes of character " + itemOwner.name + ". Please choose a new link.");
-        return
-      }
-
-      const skillValue = parseInt(skill.value);
-      var skillLabel = skill.label;
-      
-      const characterName = itemOwner.name;
-
- 
-
-      if (!skillLabel) {
-        ui.notifications.warn("The attribute linked to this item (attribute-key: " + skillKey + ") has no attribute label!");
-        skillLabel = "Attribut";
-      }
-
-      if (!skillValue) {
-        ui.notifications.error("The attribute linked to this item (attribute-key: " + skillKey + ") has no attribute value!");
-        return
-      }
-
-      console.log(skillValue);
-
-      async function handleSubmit(html) {
-        console.log("ye");
-          const formElement = html[0].querySelector('form');
-          const formData = new FormDataExtended(formElement);
-          const formDataObject = formData.toObject();
-
-          const modifier = parseInt(formDataObject.modifier);
-          const modifiedValue = skillValue + modifier;
-
-          // depending on if there was a value != 0 the modifier will be shown in the chat message by appending the variable modifierString to it
-
-          let modifierString = '';
-          if (modifier > 0) {modifierString = " + " + modifier + " = " + modifiedValue}; 
-          if (modifier < 0) {modifierString = modifier + " = " + modifiedValue};
-
-          let rollHit = await new Roll("1d100").evaluate();
-          let results_html = '';
-
-          let rollMessage = `${characterName} würfelt auf <b>${skillLabel}</b>, sein ${skillLabel}-Wert beträgt <a class="inline-roll inline-result" data-tooltip="${skillLabel}">${skillValue}${modifierString}</a>. Er würfelt <a class="inline-roll inline-result" data-tooltip="1d100"><i class="fas fa-dice-d20"></i>${rollHit.result}</a> und `;
-          let successStateLabel = "";
-          let successState = 0;
-          if(rollHit.total <= skillValue + modifier){
-              console.log("Success");
-
-              var itemBaseDamageFormula = item.system.attributes['damage']['base'].value
-              console.log(itemBaseDamageFormula)
-              if (itemBaseDamageFormula) {
-                let rollDamage = await new Roll(itemBaseDamageFormula).evaluate();
-                console.log(rollDamage.total)
-              }              
-              
-              if(rollHit.total <= ((skillValue + modifier) / 10)){
-                  console.log("crit")
-                  // results_html = `${characterName} has a critical success with ${rollHit.result} ` + "<" + ` ${actor.system.attributes[category][skill].value} ${actor.system.attributes[category][skill].label}`
-                  results_html = rollMessage + ` hat damit einen <b>kritischen Erfolg</b>!`;
-                  successStateLabel = "Kritischer Erfolg!"
-                  successState = 2;
-              }else{
-                  // results_html = `${characterName} is successful with ${rollHit.result}  + "<" + ${actor.system.attributes[category][skill].value} ${actor.system.attributes[category][skill].label}`
-                  results_html = rollMessage + ` ist damit <b>erfolgreich</b>! `;
-                  successStateLabel = "Erfolg!"
-                  successState = 1;
-              }
-
-          }else{
-              console.log("Fail");
-              // results_html = `${characterName} failed with ${rollHit.result} ` + ">" + ` ${actor.system.attributes[category][skill].value}`;
-              results_html = rollMessage + ` ist damit <b>nicht erfolgreich</b>!`;
-              successStateLabel = "Fehlschlag!"
-              successState = 0;
-          }
-          let hitRollDisplay = `</br></br><div class="dice-roll"><div class="dice-result"><div class="dice-formula">1d100: <i class="fas fa-dice-d20"></i>${rollHit.result}</div><div class="dice-tooltip"><section class="tooltip-part"><div class="dice"><header class="part-header flexrow"><span class="part-formula">1d100</span><span class="part-total">${rollHit.result}</span></header><ol class="dice-rolls"><li class="roll die d100">${rollHit.result}</li></ol></div></section></div><h4 class="dice-total">${successStateLabel}</h4></div></div></div>`
-          results_html = results_html + hitRollDisplay;
-          
-          // const cls = ChatMessage.implementation;
-          // const chatData = {
-          //   user: game.user.id,
-          //   speaker: cls.getSpeaker()
-          // };
-
-          // const rolls = [];
-          // roll = Roll.create("1d10", rollData);
-
-          // chatData.type = CONST.CHAT_MESSAGE_TYPES.ROLL;
-          // chatData.rolls = rolls;
-          // chatData.sound = CONFIG.sounds.dice;
-          // chatData.content = rolls.reduce((t, r) => t + r.total, 0);
-          // createOptions.rollMode = command;
-
-          // ChatMessage.create({
-          //   type: CONST.CHAT_MESSAGE_TYPES.ROLL,
-          //   rolls: rolls,
-          //   chatData.sound = CONFIG.sounds.dice;
-          //   chatData.content = rolls.reduce((t, r) => t + r.total, 0);
-          //   createOptions.rollMode = command;
-          // })
-
-          ChatMessage.create({
-              user: game.user._id,
-              sound: CONFIG.sounds.dice,
-              //speaker: ChatMessage.getSpeaker({token: actor}),
-              content: results_html
-          });
-      }
-
-      const form = '<form><label>Modifier: <input name="modifier" type="string" value="0"/></label>' + '</br></br>Ein positiver Modifier erleichtert den Wurf, ein negativer Modifier erschwert ihn.</br></br>' + 
-      '</form>';
-
-      new Dialog({
-          title: "Skill Check: Gib hier den Roll-Modifier vom GM ein",
-          content: form,
-          buttons: {
-              submit: {label: "Submit", callback: handleSubmit},
-              cancel: {label: "Cancel"},
-          },
-      }).render(true);
-
-    
-
-      return null;
-    }
 
   /* -------------------------------------------- */
 

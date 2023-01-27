@@ -34,36 +34,45 @@ export class AranthozItemSheet extends ItemSheet {
     console.log(context)
     EntitySheetHelper.getAttributeData(context.data);
     context.systemData = context.data.system;
-    const itemId = context.data._id;
-    const itemOwner = Actor.get(EntitySheetHelper.getItemOwnerId(itemId));
-    if (itemOwner) {
-      var itemOwnerId = itemOwner._id;
-      console.log("itemOwnerId: " + itemOwnerId);
-      var item = itemOwner.items.get(itemId);
-      context.ownerId = itemOwnerId;
-      context.isOfTypeItem = context.data.type === "item";    
-    }
+    const item = context.item;
 
+    if (item.actor) {
+      // add item specific information to hbs context
+      context.ownerId = item.actor._id;
+      context.isOfTypeItem = context.data.type === "item";
 
-    if (itemOwnerId) {
       // add an ownerAttributes property to the context object that holds an object {"value": skill, "selected": "selected" or ""} for all available attributes of the owner
-      var ownerAttributes = [];
-      var hasSkill = false
-      for (var a of EntitySheetHelper.getActorAttributes(itemOwnerId)) {
-        var selected = "";
-        if (a == context.systemData.skill) {
-          selected = " selected";
-          hasSkill = true;
-        }
-        ownerAttributes.push({"value": a, "selected": selected});
-        console.log(ownerAttributes);
-      }
-      context.ownerAttributes = ownerAttributes;
 
-      // check if item.skill has been set for an item that has been deleted. if so, remove the link.
-      if (!hasSkill) {
-        item.skill = "";
+      var ownerAttributeCollection = item.actor.system.attributes
+      var ownerAttributeList = []
+  
+      // Loop through all attribute groups
+      var attributeGroups = Object.entries(ownerAttributeCollection);    
+      for (var group of attributeGroups) {
+        var groupKey = group[0];
+        var groupAttributeCollection = group[1]
+        var attributes = Object.keys(groupAttributeCollection)
+        // Loop through the attributes
+        for (var attribute of attributes) {
+          // Append an attribute to the attribute list
+          ownerAttributeList.push({"value": groupKey + "." + attribute, "selected": ""})
+        }
       }
+      
+      var hasSkill = ownerAttributeList.filter(attribute => {
+        // check if actor has corresponding skillKey; if so, change selected property accordingly for later use in hbs
+        if (attribute.value == context.systemData.skill) {
+          attribute.selected = "selected";
+          return true;
+        } else return false;
+        
+      });
+      if (!hasSkill) {
+        // deleting the link if actor has no such skill;
+        console.log("hasnoskilllol");
+        item.update({"system.skill": ""})
+      }
+      context.ownerAttributes = ownerAttributeList;
     } 
    
     context.dtypes = ATTRIBUTE_TYPES;
@@ -72,6 +81,11 @@ export class AranthozItemSheet extends ItemSheet {
       async: true
     });
 
+    var appliesDamage = item.system.attributes.appliesDamage;
+    if (appliesDamage) {
+      context.appliesDamage = appliesDamage.value;
+    }
+    
     return context;
   }
 

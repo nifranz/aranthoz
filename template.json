@@ -18,7 +18,7 @@
       "origin":"",
       "gender":"",
       "background":"",
-      "age":0,
+      "age": "",
       "build":"",
       "actionType":""     
     },
@@ -100,34 +100,46 @@
     "quantity": 1,
     "weight": 0,
     "attributes": {
-      "damage": {
-          "crit": {
-              "value": "",
-              "label": "Kritischer Schaden",
-              "dtype": "String",
-              "group": "damage"
-          },
-          "bonus": {
-              "value": "",
-              "label": "Bonusschaden",
-              "dtype": "String",
-              "group": "damage"
-          },
-          "base": {
-              "value": "",
-              "label": "Grundschaden",
-              "dtype": "String",
-              "group": "damage"
-          }
-      },
-      "ressources": {
-        "power": {
+        "damage": {
+            "crit": {
+                "value": "",
+                "label": "Kritischer Schaden",
+                "dtype": "String",
+                "group": "damage"
+            },
+            "bonus": {
+                "value": "",
+                "label": "Bonusschaden",
+                "dtype": "String",
+                "group": "damage"
+            },
+            "base": {
+                "value": "",
+                "label": "Grundschaden",
+                "dtype": "String",
+                "group": "damage"
+            }
+        },
+        "ressources": {
+            "power": {
+                "value": "",
+                "label": "Mana / Stamina",
+                "dtype": "String",
+                "group": "ressources"
+            }
+        },
+        "rollValue": {
             "value": "",
-            "label": "Mana / Stamina",
+            "label": "",
             "dtype": "String",
-            "group": "ressources"
+            "group": ""
+        },
+        "appliesDamage": {
+            "value": true,
+            "label": "",
+            "dtype": "Boolean",
+            "group": ""
         }
-    }
     },
     "groups": {
       "damage": {

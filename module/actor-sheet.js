@@ -77,9 +77,9 @@ export class AranthozActorSheet2 extends ActorSheet {
     html.find(".groups").on("click", ".group-control", EntitySheetHelper.onClickAttributeGroupControl.bind(this));
 
     // Sheet Rolls Management
-    html.find(".skills").on("click", "a.skill-roll", EntitySheetHelper.onAranthozAttributeRoll.bind(this)); // skill roll
-    html.find(".item-list").on("click", "a.weapon-roll", EntitySheetHelper.onAranthozItemRoll.bind(this)); // weapon roll
-    html.find(".item-list").on("click", "a.action-roll", EntitySheetHelper.onAranthozItemRoll.bind(this)); // action roll
+    html.find(".skills").on("click", "a.skill-roll", EntitySheetHelper.onActorSheetRoll.bind(this)); // skill roll
+    html.find(".item-list").on("click", "a.weapon-roll", EntitySheetHelper.onActorSheetRoll.bind(this)); // weapon roll
+    html.find(".item-list").on("click", "a.action-roll", EntitySheetHelper.onActorSheetRoll.bind(this)); // action roll
 
     // Item Controls
     html.find(".item-control").click(this._onItemControl.bind(this));
