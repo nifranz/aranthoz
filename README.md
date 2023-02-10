@@ -1,3 +1,3 @@
 # Aranthoz Game System
 
-A simple game system for Foundry VTT which allows for flexible definition of Actors and Items to assist with worldbuilding or for running games which do not have a more complete system implementation available.
+A game system for Foundry VTT to facilitaty the world of Aranthoz and it's PnP playstyle in Foundry VTT. It is based on the simple world building system and therefore extending on its features tailored to the unique playing experience that the Aranthoz PnP game provides.
