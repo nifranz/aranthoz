@@ -20,7 +20,7 @@
       "background":"",
       "age": "",
       "build":"",
-      "actionType":""     
+      "ressource":"stamina"     
     },
     "attributes": {},
     "groups": {
@@ -54,8 +54,8 @@
   },
   "weapon": {
     "description": "",
-    "quantity": 1,
     "weight": 0,
+    "rolls": {},
     "attributes": {
       "damage": {
           "crit": {
@@ -97,8 +97,10 @@
   },
   "action": {
     "description": "",
-    "quantity": 1,
-    "weight": 0,
+    "power": {
+      "value": 0
+    },
+    "rolls": {},
     "attributes": {
         "damage": {
             "crit": {

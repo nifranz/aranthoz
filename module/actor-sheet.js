@@ -45,8 +45,8 @@ export class AranthozActorSheet2 extends ActorSheet {
 
     // add character-specific information to hbs-context
     // add actionType booleans
-    context.isMage = context.data.system.identityAttributes.actionType === "spell";
-    context.isFighter = context.data.system.identityAttributes.actionType === "maneuver";
+    context.isMage = context.data.system.identityAttributes.ressource === "mana";
+    context.isFighter = context.data.system.identityAttributes.ressource === "stamina";
 
     // add origin booleans
     var origin = {};
