@@ -43,7 +43,7 @@
   }
 },
 "Item": {
-  "types": ["item","weapon","action"],
+  "types": ["item","weapon","spell","consumable","skill"],
   "htmlFields": ["description"],
   "item": {
     "description": "",
