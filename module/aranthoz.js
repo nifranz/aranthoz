@@ -9,10 +9,15 @@ import { SimpleItem } from "./item.js";
 import { SimpleItemSheet } from "./item-sheet.js";
 import { SimpleActorSheet } from "./actor-sheet.js";
 import { AranthozItemSheet } from "./item-sheet.js";
+import { AranthozItemSheet2 } from "./item-sheet.js";
 import { AranthozActorSheet } from "./actor-sheet.js";
+import { AranthozActorSheet2 } from "./actor-sheet.js";
 import { preloadHandlebarsTemplates } from "./templates.js";
 import { createWorldbuildingMacro } from "./macro.js";
+import { createAranthozMacro } from "./macro.js";
 import { SimpleToken, SimpleTokenDocument } from "./token.js";
+import { skillRoll, actionRoll, weaponRoll } from "./roll.js";
+
 
 /* -------------------------------------------- */
 /*  Foundry VTT Initialization                  */
@@ -35,7 +40,11 @@ Hooks.once("init", async function() {
 
   game.aranthoz = {
     SimpleActor,
-    createWorldbuildingMacro
+    createWorldbuildingMacro,
+    createAranthozMacro,
+    skillRoll,
+    weaponRoll,
+    actionRoll
   };
 
   // Define custom Document classes
@@ -48,9 +57,11 @@ Hooks.once("init", async function() {
   Actors.unregisterSheet("core", ActorSheet);
   Actors.registerSheet("aranthoz", SimpleActorSheet );
   Actors.registerSheet("aranthoz", AranthozActorSheet, { makeDefault: true });
+  Actors.registerSheet("aranthoz", AranthozActorSheet2);
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet("aranthoz", SimpleItemSheet);
-  Items.registerSheet("aranthoz", AranthozItemSheet, { makeDefault: true });
+  Items.registerSheet("aranthoz", AranthozItemSheet2, { makeDefault: true });
+  Items.registerSheet("aranthoz", AranthozItemSheet, );
 
   // Register system settings
   game.settings.register("aranthoz", "macroShorthand", {
@@ -106,6 +117,7 @@ Hooks.once("init", async function() {
  * Macrobar hook.
  */
 Hooks.on("hotbarDrop", (bar, data, slot) => createWorldbuildingMacro(data, slot));
+Hooks.on("hotbarDrop", (bar, data, slot) => createAranthozMacro(data, slot));
 
 /**
  * Adds the actor template context menu.

@@ -22,7 +22,8 @@
   ],
   "styles": [
     "styles/fonts.css",
-    "styles/simple.css"
+    "styles/simple.css",
+    "styles/aranthoz.css"
   ],
   "languages": [
     {

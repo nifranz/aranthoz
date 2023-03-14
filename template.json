@@ -14,6 +14,14 @@
       "min": 0,
       "max": 100
     },
+    "identityAttributes": {
+      "origin":"",
+      "gender":"",
+      "background":"",
+      "age": "",
+      "build":"",
+      "ressource":"stamina"     
+    },
     "attributes": {},
     "groups": {
       "handeln": {
@@ -35,7 +43,7 @@
   }
 },
 "Item": {
-  "types": ["item","weapon","skill"],
+  "types": ["item","weapon","action"],
   "htmlFields": ["description"],
   "item": {
     "description": "",
@@ -46,8 +54,8 @@
   },
   "weapon": {
     "description": "",
-    "quantity": 1,
     "weight": 0,
+    "rolls": {},
     "attributes": {
       "damage": {
           "crit": {
@@ -87,39 +95,53 @@
     },
     "skill": ""
   },
-  "skill": {
+  "action": {
     "description": "",
-    "quantity": 1,
-    "weight": 0,
+    "power": {
+      "value": 0
+    },
+    "rolls": {},
     "attributes": {
-      "damage": {
-          "crit": {
-              "value": "",
-              "label": "Kritischer Schaden",
-              "dtype": "String",
-              "group": "damage"
-          },
-          "bonus": {
-              "value": "",
-              "label": "Bonusschaden",
-              "dtype": "String",
-              "group": "damage"
-          },
-          "base": {
-              "value": "",
-              "label": "Grundschaden",
-              "dtype": "String",
-              "group": "damage"
-          }
-      },
-      "ressources": {
-        "power": {
+        "damage": {
+            "crit": {
+                "value": "",
+                "label": "Kritischer Schaden",
+                "dtype": "String",
+                "group": "damage"
+            },
+            "bonus": {
+                "value": "",
+                "label": "Bonusschaden",
+                "dtype": "String",
+                "group": "damage"
+            },
+            "base": {
+                "value": "",
+                "label": "Grundschaden",
+                "dtype": "String",
+                "group": "damage"
+            }
+        },
+        "ressources": {
+            "power": {
+                "value": "",
+                "label": "Mana / Stamina",
+                "dtype": "String",
+                "group": "ressources"
+            }
+        },
+        "rollValue": {
             "value": "",
-            "label": "Mana / Stamina",
+            "label": "",
             "dtype": "String",
-            "group": "ressources"
+            "group": ""
+        },
+        "appliesDamage": {
+            "value": true,
+            "label": "",
+            "dtype": "Boolean",
+            "group": ""
         }
-    }
     },
     "groups": {
       "damage": {

@@ -1,0 +1,15 @@
+<form class="flexcol {{cssClass}}" autocomplete="off">
+    {{#if isOfTypeWeapon}}
+        {{> "systems/aranthoz/templates/aranthoz2/parts/weapon.html" ownerRessource=ownerRessource ownerId=ownerId ownerAttributes=ownerAttributes data=data systemData=systemData}}
+        Weapon
+    {{/if}}
+    {{#if isOfTypeAction}}
+        {{> "systems/aranthoz/templates/aranthoz2/parts/action.html" ownerRessource=ownerRessource ownerId=ownerId ownerAttributes=ownerAttributes data=data systemData=systemData}}
+        Action
+    {{/if}}
+    {{#if isOfTypeItem}}
+        {{> "systems/aranthoz/templates/aranthoz2/parts/item.html" ownerRessource=ownerRessource ownerId=ownerId ownerAttributes=ownerAttributes data=data systemData=systemData}}
+        Item
+    {{/if}}
+    sheet
+</form>

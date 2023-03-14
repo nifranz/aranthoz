@@ -1,10 +1,236 @@
 import { EntitySheetHelper } from "./helper.js";
-import {ATTRIBUTE_TYPES} from "./constants.js";
+import { ATTRIBUTE_TYPES } from "./constants.js";
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
  */
+export class AranthozActorSheet2 extends ActorSheet {
+
+  /** @inheritdoc */
+  static get defaultOptions() {
+    return foundry.utils.mergeObject(super.defaultOptions, {
+      classes: ["aranthoz", "sheet", "actor"],
+      template: "systems/aranthoz/templates/aranthoz2/aranthoz2.html",
+      width: 1000,
+      height: 600,
+      tabs: [{navSelector: ".body-nav", contentSelector: ".sheet-body", initial: "character"}],
+      // scrollY: [".character", ".attributes", ".weapons", ".actions", ".inventory"],
+      dragDrop: [{dragSelector: ".item-list .dragItem", dropSelector: null}]
+    });
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
+  async getData(options) {
+    const context = await super.getData(options);
+    EntitySheetHelper.getAttributeData(context.data);
+    context.shorthand = !!game.settings.get("aranthoz", "macroShorthand");
+    context.systemData = context.data.system;
+
+    context.dtypes = ATTRIBUTE_TYPES;
+    context.biographyHTML = await TextEditor.enrichHTML(context.systemData.biography, {
+      secrets: this.document.isOwner,
+      async: true
+    });
+
+    // add sheet-specific booleans to hbs-context
+    // add actor-sheet boolean
+    context.isActor = true;
+    for (var i of context.data.items) {
+      // add if an item is of type "item" (-> not "weapon" or "skill")
+      i.isOfTypeItem = i.type === "item";
+    }
+
+    // add character-specific information to hbs-context
+    // add actionType booleans
+    context.isMage = context.data.system.identityAttributes.ressource === "mana";
+    context.isFighter = context.data.system.identityAttributes.ressource === "stamina";
+
+    // add origin booleans
+    var origin = {};
+    origin.isMyhriad = context.data.system.identityAttributes.origin === "myhriad";
+    origin.isSalir = context.data.system.identityAttributes.origin === "salir";
+    origin.isDunvia = context.data.system.identityAttributes.origin === "dunvia";
+    origin.isDunrodia = context.data.system.identityAttributes.origin === "dunrodia";
+    origin.isThyrgrad = context.data.system.identityAttributes.origin === "thyrgrad";
+    origin.isVenicria = context.data.system.identityAttributes.origin === "venicria";
+    origin.isLorthing = context.data.system.identityAttributes.origin === "lorthing";
+    origin.isRhykva = context.data.system.identityAttributes.origin === "rhykva";
+    context.origin = origin;
+
+    return context;
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
+  activateListeners(html) {
+    super.activateListeners(html);
+
+    // Everything below here is only needed if the sheet is editable
+    if ( !this.isEditable ) return;
+
+    // Skills Management
+    html.find(".skills").on("click", ".skill-control", EntitySheetHelper.onClickAttributeControl.bind(this));
+    html.find(".groups").on("click", ".group-control", EntitySheetHelper.onClickAttributeGroupControl.bind(this));
+
+    // Sheet Rolls Management
+    html.find(".skills").on("click", "a.skill-roll", EntitySheetHelper.onActorSheetRoll.bind(this)); // skill roll
+    html.find(".item-list").on("click", "a.weapon-roll", EntitySheetHelper.onActorSheetRoll.bind(this)); // weapon roll
+    html.find(".item-list").on("click", "a.action-roll", EntitySheetHelper.onActorSheetRoll.bind(this)); // action roll
+
+    // Item Controls
+    html.find(".item-control").click(this._onItemControl.bind(this));
+    html.find(".items .rollable").on("click", this._onItemRoll.bind(this));
+
+    // Add draggable for Roll-Macro creation
+    // Skill rolls
+    html.find(".skills a.skill-roll").each((i, a) => {
+      a.setAttribute("draggable", true);
+      a.addEventListener("dragstart", ev => {
+        let dragData = ev.currentTarget.dataset;
+        console.log(ev.currentTarget)
+        console.log(dragData);
+        ev.dataTransfer.setData('text/plain', JSON.stringify(dragData));
+        console.log(ev.dataTransfer);
+      }, false);
+    });
+    // Weapon rolls
+    html.find(".weapons a.weapon-roll").each((i, a) => {
+      a.setAttribute("draggable", true);
+      a.addEventListener("dragstart", ev => {
+        let dragData = ev.currentTarget.dataset;
+        console.log(ev.currentTarget)
+        console.log(dragData);
+        ev.dataTransfer.setData('text/plain', JSON.stringify(dragData));
+        console.log(ev.dataTransfer);
+      }, false);
+    });
+    // Action rolls
+    html.find(".actions a.action-roll").each((i, a) => {
+      a.setAttribute("draggable", true);
+      a.addEventListener("dragstart", ev => {
+        let dragData = ev.currentTarget.dataset;
+        console.log(ev.currentTarget)
+        console.log(dragData);
+        ev.dataTransfer.setData('text/plain', JSON.stringify(dragData));
+        console.log(ev.dataTransfer);
+      }, false);
+    });
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Handle click events for Item control buttons within the Actor Sheet
+   * @param event
+   * @private
+   */
+  async _onItemControl(event) {
+    event.preventDefault();
+
+    // Obtain event data
+    const button = event.currentTarget;
+    const li = button.closest(".item");
+    const item = this.actor.items.get(li?.dataset.itemId);
+
+    // Handle different actions
+    switch ( button.dataset.action ) {
+      case "create":
+        const cls = getDocumentClass("Item");
+        console.log(button.getAttribute("item-type"))
+        var name = (button.getAttribute("item-type"))
+        if (name) {
+          name = "New " + name[0].toUpperCase() + name.substring(1)
+        }
+        return cls.create({name: name || game.i18n.localize("SIMPLE.ItemNew"), type: button.getAttribute("item-type")}, {parent: this.actor});
+        
+        // const types = {
+        //   // [defaultType]: game.i18n.localize("SIMPLE.NoTemplate")
+        // }
+        // for ( let t of Item.TYPES ) {
+        //   types[t] = t.charAt(0).toUpperCase() + t.slice(1); // t.charAt(0).toUpperCase() + t.slice(1); -> capitalizes string t
+        // }    
+        // // Render the document creation form
+        // const template = "templates/sidebar/document-create.html";
+        // const html = await renderTemplate(template, {
+        //   name: "New Item", //data.name || game.i18n.format("DOCUMENT.New", {type: label}),
+        //   folder: undefined, //data.folder,
+        //   folders: undefined, //folders,
+        //   hasFolders: false, //folders.length > 1,
+        //   type: "Type", //data.type || templates[0]?.id || "",
+        //   types: types,
+        //   hasTypes: true
+        // });
+    
+        // // Render the confirmation dialog window
+        // return Dialog.prompt({
+        //   title: "Create Item for " + this.actor.name,
+        //   content: html,
+        //   label: "Item Name",
+        //   callback: html => {
+    
+        //     // Get the form data
+        //     const form = html[0].querySelector("form");
+        //     const fd = new FormDataExtended(form);
+        //     let createData = fd.toObject();
+    
+        //     // Merge provided override data
+        //     const cls = getDocumentClass("Item");
+        //     return cls.create({name: createData.name || "New Item", type: createData.type}, {parent: this.actor});
+        //   },
+        //   rejectClose: false,
+        //   options: undefined
+        // });
+      case "edit":
+        return item.sheet.render(true);
+      case "delete":
+        return item.delete();
+    }
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Listen for roll buttons on items.
+   * @param {MouseEvent} event    The originating left click event
+   */
+  _onItemRoll(event) {
+    let button = $(event.currentTarget);
+    const li = button.parents(".item");
+    const item = this.actor.items.get(li.data("itemId"));
+    let r = new Roll(button.data('roll'), this.actor.getRollData());
+    return r.toMessage({
+      user: game.user.id,
+      speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+      flavor: `<h2>${item.name}</h2><h3>${button.text()}</h3>`
+    });
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
+  _getSubmitData(updateData) {
+
+  console.log("ya");
+  console.log(updateData);
+    let formData = super._getSubmitData(updateData);
+    console.log("formData, this.object");
+    console.log(formData);
+    console.log(this.object)
+    formData = EntitySheetHelper.updateAttributes(formData, this.object);
+    formData = EntitySheetHelper.updateGroups(formData, this.object);
+    return formData;
+  }
+}
+
+
+/* ////////////////////////////////////* ////////////////////////////////////* ///////////////////////////////////
+/* ////////////////////////////////////* ////////////////////////////////////* ///////////////////////////////////
+/* ////////////////////////////////////* ////////////////////////////////////* ///////////////////////////////////
+/* ////////////////////////////////////* ////////////////////////////////////* ///////////////////////////////////
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -165,7 +391,14 @@ export class AranthozActorSheet extends ActorSheet {
 
   /** @inheritdoc */
   _getSubmitData(updateData) {
+    console.log("ye");
+    console.log(updateData);
+
+
     let formData = super._getSubmitData(updateData);
+    console.log("formData, this.object");
+    console.log(formData);
+    console.log(this.object)
     formData = EntitySheetHelper.updateAttributes(formData, this.object);
     formData = EntitySheetHelper.updateGroups(formData, this.object);
     return formData;
@@ -231,7 +464,11 @@ export class SimpleActorSheet extends ActorSheet {
       a.setAttribute("draggable", true);
       a.addEventListener("dragstart", ev => {
         let dragData = ev.currentTarget.dataset;
+        console.log(ev.currentTarget)
+        console.log(dragData);
+        console.log(JSON.stringify(dragData));
         ev.dataTransfer.setData('text/plain', JSON.stringify(dragData));
+        console.log(ev.dataTransfer);
       }, false);
     });
   }

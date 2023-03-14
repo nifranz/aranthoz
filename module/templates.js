@@ -11,7 +11,12 @@ export const preloadHandlebarsTemplates = async function() {
     "systems/aranthoz/templates/simple/parts/sheet-attributes.html",
     "systems/aranthoz/templates/simple/parts/sheet-groups.html",
     "systems/aranthoz/templates/aranthoz/parts/sheet-attributes.html",
-    "systems/aranthoz/templates/aranthoz/parts/sheet-groups.html"
+    "systems/aranthoz/templates/aranthoz/parts/sheet-groups.html",
+
+    //Aranthoz2 templates
+    "systems/aranthoz/templates/aranthoz2/parts/weapon.html",
+    "systems/aranthoz/templates/aranthoz2/parts/action.html",
+     "systems/aranthoz/templates/aranthoz2/parts/item.html"
   ];
 
   // Load the template parts

@@ -1,0 +1,455 @@
+<head>
+    <link rel="stylesheet" href="item-sheet.css">
+    <!-- <link rel="stylesheet/less" type="text/css" href="item-sheet.less" />
+    <script src="https://cdn.jsdelivr.net/npm/less" ></script> -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <style>
+        .material-symbols-outlined {
+          font-variation-settings:
+          'FILL' 0,
+          'wght' 500,
+          'GRAD' 0,
+          'opsz' 70;
+          color: #52120a;
+        }
+    </style>
+</head>
+<body>
+    <form class="aranthoz flexcol" autocomplete="off">
+        <container class="main-container">
+            <div class="banner-container">
+                <aside class="sheet-banner">
+                    <div class="banner-body">
+                        <div class="banner-logo-container">
+                            <section class="banner-logo">
+                                <input type="text" id ="input" class="logo-name" onkeyup="myFunction()" value="Valentin Flamel">
+                            </section>
+                        </div>
+                        <div class="banner-tiles-container">
+                            <div class ="banner-tiles">
+                                <section class="banner-tile health">
+                                    <div class="banner-tile-content hp ">
+                                        <input class="banner-tile-content-value" value="NaN">
+                                        <div class="banner-tile-content-label">HP</div>
+                                    </div>
+                                    <div class="banner-tile-content max-hp">
+                                        <input class="banner-tile-content-value" value ="100">
+                                        <div class="banner-tile-content-label">MAX-HP</div>
+                                    </div>
+                                </section>
+                                <section class="banner-tile defenses">
+                                    <div class="banner-tile-content armor">
+                                        <input class="banner-tile-content-value" value="17.5">
+                                        <div class="banner-tile-content-label">Armor</div>
+                                    </div>
+                                    <div class="banner-tile-content shield">
+                                        <input class="banner-tile-content-value" value ="0">
+                                        <div class="banner-tile-content-label">Shield</div>
+                                    </div>
+                                </section>
+                                <section class="banner-tile ressources">
+                                    <div class="banner-tile-content mana">
+                                        <input class="banner-tile-content-value" value="90">
+                                        <div class="banner-tile-content-label">Mana</div>
+                                    </div>
+                                    <div class="banner-tile-content stamina">
+                                        <input class="banner-tile-content-value" value="-">
+                                        <div class="banner-tile-content-label">Stamina</div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+
+            <div class="sheet-body">
+                <!-- <div class="sheet-header">
+                        <div class="name"><h2></h2></div>
+                        <div class="character-flavor"></div>
+                </div> -->
+                <div class="body-nav borderimg">
+                    <a class="nav-link"content-link="character">Character</a>
+                    <a class="nav-link " content-link="skills">Skills</a>
+                    <a class="nav-link selected" content-link="weapons">Weapons</a> 
+                    <a class="nav-link" content-link="actions">Spells</a>
+                    <a class="nav-link" content-link="inventory">Inventory</a>
+                </div>
+
+                <div class="sheet-main">
+                    <section class="main-section-character inactive">
+                        <div class="content-container">
+                            <div class="content">
+                                <div class="portrait-column">
+                                    <div class ="character-portrait borderimg" ></div>
+                                </div>
+                                <div class="heritage-column">
+                                    <div class="origin">
+                                        <div class="character-label">Herkunft</div>
+                                        <input class="basic-input origin" value="Myhriad">
+                                    </div>
+                                    <div class="gender">
+                                        <div class="character-label">Geschlecht</div>
+                                        <input class="basic-input gender-value" value="Männlich">
+                                    </div>
+                                    <div class="background">
+                                        <div class="character-label">Hintergrund</div>
+                                        <input class="basic-input gender-value" value="Alchemist">
+                                    </div>
+                                </div>
+                                <div class="physical-column">
+                                    <div class="origin">
+                                        <div class="character-label">Alter</div>
+                                        <input class="basic-input origin" value="20">
+                                    </div>
+                                    <div class="gender">
+                                        <div class="character-label">Gewicht</div>
+                                        <input class="basic-input gender-value" value="70kg">
+                                    </div>
+                                    <div class="background">
+                                        <div class="character-label">Größe</div>
+                                        <input class="basic-input gender-value" value="179">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content">
+                            <div class="section-divider"></div>
+                        </div>
+                        <!-- <div class="content">
+                            <div class="description">Valentin wurde als Findelkind von Nicholas Flamel, seinem Zieh-(groß-)Vater auf einem Bauernhof außerhalb einer kleinen, bäuerlichen Siedlung in Durodia großgezogen. Über seine Eltern oder den Rest seiner leiblichen Familie weiß Valentin nur sehr wenig, nur dass sie offenbar Grund genug hatten, ihn vor 22 Jahren als Säugling auszusetzen. Auch wenn sein Ziehvater nie offen mit Valentin darüber gesprochen hatte, so glaubte er doch, dass Nicholas mehr über seine leibliche Familie wusste, als er ihn glauben ließ.
+                                Auf dem Bauernhof von Flamel wuchs Valentin neben Nicholas auch mit seinem 3 Jahre älteren stief-Bruder Rickon auf, dem Enkel von Flamel. Gemeinsam verrichteten sie über das Jahr die Ernte, hielten den Bauernhof und das Werkzeug instand und suchten für Nicholas in der hauptsächlich unberührten Natur, in der sich der Bauernhof befand, die Kräuter, der er brauchte, um seine Forschungen in der Alchemie voranzubringen. Daher hat Valentin einen großen Wissensumfang in handwerklichen und naturwissenschaftlichen Dingen erlangt. Er weiß, welche Pflanzen essbar sind, und welche sich von diesen kultivierbar sind. Außerdem kann er einfache Dinge wie zum Beispiel einen Karren oder notwendiges Werkzeug reparieren. Die Wirkungsweise und Konstruktion komplexerer Maschinen, Bauwerke oder Werkzeuge entziehen sich aber seiner Kenntnis.
+                                Von Zeit zur Zeit, meist im Frühjahr, wo die Ernte knapp und die Vorräte aufgebraucht waren, musste einer der Jungen ausziehen, um Wild zu jagen, um das Überleben der kleinen Familie zu sichern, wenn sie sich sich ihre Vorräte nicht teuer im Dorf einkaufen wollten. Meist war dies xxx, da er stärker und älter war, aber auch Valentin gab einen soliden Schützen ab und konnte in der Natur für ein paar Tage auf sich allein gestellt überleben.
+                                Da Valentin bereits in frühem Alter großes Interesse an der Natur zeigte, fing Flamel früh an, seinen zieh-Sohn in der komplexen Kunst der Alchemie zu unterweisen. Valentin erwies sich als ein äußerst eifriger und talentierter Schüler. Nach nur einigen Jahren, als Valentin das Mannesalter erreichte, konnte er ein für sein Alter schon großes Maß an Erfahrung in alchemistischen Dingen vorweisen. Dennoch empfand der ehrgeizige Valentin seine Entwicklung als zu langsam und er hatte das Gefühl, dass sein Ziehvater, welcher sehr erfahren im Umgang mit der Alchemie war und deshalb sehr waghalsige und komplexe Experimente wagte,  seinen Fortschritt absichtlich zu bremsen versuchte. Er wusste, dass die Dinge, mit denen sich Flamel beschäftigte, sehr gefährlich waren und ein Maß an Kenntnis der Alchemie erforderten, welches nur wenige Menschen je erreichten, trotzdem fühlte er sich ungerecht behandelt und forderte Nicholas oft auf, ihn in seine Experimente mit einzubeziehen.</div>
+                        </div> -->
+                        
+                    </section>
+                    <section class="main-section-skills inactive">
+                        <div class="content-container">
+                            <div class="skillgroup-tables">
+                                <div class="tables-header borderimg">
+                                    <div class="tables-header-label"">Name</div>
+                                    <div class="tables-header-label">Value</div>
+                                    <div class="tables-header-label">Key</div>
+                                </div>
+                                <div class="skillgroup-table" skillgroup="handeln">
+                                    <div class="skillgroup-table-header borderimg-ne">
+                                        <div class="table-header-controls"><a class="material-symbols-outlined">add</a></div> 
+                                        <div class="table-header-label">Handeln</div>
+                                        <div class="table-header-label"></div>
+                                    </div>
+                                    <ul class="skillgroup-table-rows">
+                                        <li class="skillgroup-table-row">
+                                            <div class="skillgroup-table-entry">
+                                                <a style="width: 22; height: 22; margin-right: 10px; display: flex; justify-content: center; align-items: center;">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-1 0 19 19" preserveAspectRatio="xMinYMin meet">
+                                                        <path fill-rule="evenodd" fill="rgb(88, 13, 4)" d="M3.826,8.060 L0.124,13.540 C0.016,13.716 0.127,13.944 0.332,13.967 L7.637,14.743 L3.826,8.060 L3.826,8.060 ZM0.341,11.589 L2.983,7.288 L0.294,5.672 C0.200,5.615 0.081,5.683 0.081,5.792 L0.081,11.515 C0.081,11.657 0.267,11.710 0.341,11.589 ZM0.722,15.391 L7.541,18.472 C7.727,18.559 7.939,18.422 7.939,18.217 L7.939,15.909 L0.799,15.125 C0.643,15.107 0.580,15.321 0.722,15.391 L0.722,15.391 ZM3.571,6.330 L6.375,1.305 C6.527,1.057 6.249,0.769 5.996,0.913 L0.706,4.380 C0.620,4.437 0.622,4.565 0.711,4.618 L3.571,6.330 L3.571,6.330 ZM8.500,6.687 L12.331,6.687 L8.978,0.769 C8.869,0.590 8.684,0.501 8.500,0.501 C8.316,0.501 8.132,0.590 8.022,0.769 L4.669,6.687 L8.500,6.687 ZM16.707,5.672 L14.018,7.288 L16.659,11.589 C16.733,11.710 16.919,11.657 16.919,11.515 L16.919,5.792 C16.919,5.683 16.800,5.615 16.707,5.672 ZM13.430,6.330 L16.290,4.618 C16.379,4.564 16.381,4.436 16.294,4.379 L11.004,0.913 C10.752,0.769 10.474,1.057 10.626,1.305 L13.430,6.330 ZM16.202,15.125 L9.062,15.908 L9.062,18.217 C9.062,18.422 9.274,18.558 9.460,18.472 L16.279,15.391 C16.420,15.321 16.358,15.107 16.202,15.125 L16.202,15.125 ZM13.175,8.060 L9.364,14.743 L16.669,13.967 C16.874,13.944 16.986,13.716 16.877,13.540 L13.175,8.060 L13.175,8.060 ZM8.500,7.812 L4.977,7.812 L8.500,13.990 L12.023,7.812 L8.500,7.812 Z"></path>
+                                                    </svg>
+                                                </a>
+                                                <input class="skillgroup-table-entry inline-input" value="Tüfteln">
+                                            </div>
+                                            <input class="skillgroup-table-entry basic-input" value="95">
+                                            <div class="skillgroup-table-entry">
+                                                <input class="skillgroup-table-entry basic-input" value="brauen">
+                                                <a class="material-symbols-outlined" style="margin-left: 10px;">delete</a>
+                                            </div>
+                                       
+                                            
+                                        </li>
+                                        <li class="skillgroup-table-row">
+                                            <div class="skillgroup-table-entry">
+                                                <a style="width: 22; height: 22; margin-right: 10px; display: flex; justify-content: center; align-items: center;">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-1 0 19 19" preserveAspectRatio="xMinYMin meet">
+                                                        <path fill-rule="evenodd" fill="rgb(88, 13, 4)" d="M3.826,8.060 L0.124,13.540 C0.016,13.716 0.127,13.944 0.332,13.967 L7.637,14.743 L3.826,8.060 L3.826,8.060 ZM0.341,11.589 L2.983,7.288 L0.294,5.672 C0.200,5.615 0.081,5.683 0.081,5.792 L0.081,11.515 C0.081,11.657 0.267,11.710 0.341,11.589 ZM0.722,15.391 L7.541,18.472 C7.727,18.559 7.939,18.422 7.939,18.217 L7.939,15.909 L0.799,15.125 C0.643,15.107 0.580,15.321 0.722,15.391 L0.722,15.391 ZM3.571,6.330 L6.375,1.305 C6.527,1.057 6.249,0.769 5.996,0.913 L0.706,4.380 C0.620,4.437 0.622,4.565 0.711,4.618 L3.571,6.330 L3.571,6.330 ZM8.500,6.687 L12.331,6.687 L8.978,0.769 C8.869,0.590 8.684,0.501 8.500,0.501 C8.316,0.501 8.132,0.590 8.022,0.769 L4.669,6.687 L8.500,6.687 ZM16.707,5.672 L14.018,7.288 L16.659,11.589 C16.733,11.710 16.919,11.657 16.919,11.515 L16.919,5.792 C16.919,5.683 16.800,5.615 16.707,5.672 ZM13.430,6.330 L16.290,4.618 C16.379,4.564 16.381,4.436 16.294,4.379 L11.004,0.913 C10.752,0.769 10.474,1.057 10.626,1.305 L13.430,6.330 ZM16.202,15.125 L9.062,15.908 L9.062,18.217 C9.062,18.422 9.274,18.558 9.460,18.472 L16.279,15.391 C16.420,15.321 16.358,15.107 16.202,15.125 L16.202,15.125 ZM13.175,8.060 L9.364,14.743 L16.669,13.967 C16.874,13.944 16.986,13.716 16.877,13.540 L13.175,8.060 L13.175,8.060 ZM8.500,7.812 L4.977,7.812 L8.500,13.990 L12.023,7.812 L8.500,7.812 Z"></path>
+                                                    </svg>
+                                                </a>
+                                                <input class="skillgroup-table-entry inline-input" value="Tüfteln">
+                                            </div>                                            
+                                            <input class="skillgroup-table-entry basic-input" value="70">
+                                            <div class="skillgroup-table-entry">
+                                                <input class="skillgroup-table-entry basic-input" value="teufteln">
+                                                <a class="material-symbols-outlined" style="margin-left: 10px;">delete</a>
+                                            </div>
+                                        </li>
+                                        <li class="skillgroup-table-row">
+                                            <div class="skillgroup-table-entry">
+                                                <a style="width: 22; height: 22; margin-right: 10px; display: flex; justify-content: center; align-items: center;">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-1 0 19 19" preserveAspectRatio="xMinYMin meet">
+                                                        <path fill-rule="evenodd" fill="rgb(88, 13, 4)" d="M3.826,8.060 L0.124,13.540 C0.016,13.716 0.127,13.944 0.332,13.967 L7.637,14.743 L3.826,8.060 L3.826,8.060 ZM0.341,11.589 L2.983,7.288 L0.294,5.672 C0.200,5.615 0.081,5.683 0.081,5.792 L0.081,11.515 C0.081,11.657 0.267,11.710 0.341,11.589 ZM0.722,15.391 L7.541,18.472 C7.727,18.559 7.939,18.422 7.939,18.217 L7.939,15.909 L0.799,15.125 C0.643,15.107 0.580,15.321 0.722,15.391 L0.722,15.391 ZM3.571,6.330 L6.375,1.305 C6.527,1.057 6.249,0.769 5.996,0.913 L0.706,4.380 C0.620,4.437 0.622,4.565 0.711,4.618 L3.571,6.330 L3.571,6.330 ZM8.500,6.687 L12.331,6.687 L8.978,0.769 C8.869,0.590 8.684,0.501 8.500,0.501 C8.316,0.501 8.132,0.590 8.022,0.769 L4.669,6.687 L8.500,6.687 ZM16.707,5.672 L14.018,7.288 L16.659,11.589 C16.733,11.710 16.919,11.657 16.919,11.515 L16.919,5.792 C16.919,5.683 16.800,5.615 16.707,5.672 ZM13.430,6.330 L16.290,4.618 C16.379,4.564 16.381,4.436 16.294,4.379 L11.004,0.913 C10.752,0.769 10.474,1.057 10.626,1.305 L13.430,6.330 ZM16.202,15.125 L9.062,15.908 L9.062,18.217 C9.062,18.422 9.274,18.558 9.460,18.472 L16.279,15.391 C16.420,15.321 16.358,15.107 16.202,15.125 L16.202,15.125 ZM13.175,8.060 L9.364,14.743 L16.669,13.967 C16.874,13.944 16.986,13.716 16.877,13.540 L13.175,8.060 L13.175,8.060 ZM8.500,7.812 L4.977,7.812 L8.500,13.990 L12.023,7.812 L8.500,7.812 Z"></path>
+                                                    </svg>
+                                                </a>
+                                                <input class="skillgroup-table-entry inline-input" value="Kochen">
+                                            </div>                                            
+                                            <input class="skillgroup-table-entry basic-input" value="56">
+                                            <div class="skillgroup-table-entry">
+                                                <input class="skillgroup-table-entry basic-input" value="kochen">
+                                                <a class="material-symbols-outlined" style="margin-left: 10px;">delete</a>
+                                            </div>
+                                        </li>
+                                        <li class="skillgroup-table-row">
+                                            <div class="skillgroup-table-entry">
+                                                <a style="width: 22; height: 22; margin-right: 10px; display: flex; justify-content: center; align-items: center;">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-1 0 19 19" preserveAspectRatio="xMinYMin meet">
+                                                        <path fill-rule="evenodd" fill="rgb(88, 13, 4)" d="M3.826,8.060 L0.124,13.540 C0.016,13.716 0.127,13.944 0.332,13.967 L7.637,14.743 L3.826,8.060 L3.826,8.060 ZM0.341,11.589 L2.983,7.288 L0.294,5.672 C0.200,5.615 0.081,5.683 0.081,5.792 L0.081,11.515 C0.081,11.657 0.267,11.710 0.341,11.589 ZM0.722,15.391 L7.541,18.472 C7.727,18.559 7.939,18.422 7.939,18.217 L7.939,15.909 L0.799,15.125 C0.643,15.107 0.580,15.321 0.722,15.391 L0.722,15.391 ZM3.571,6.330 L6.375,1.305 C6.527,1.057 6.249,0.769 5.996,0.913 L0.706,4.380 C0.620,4.437 0.622,4.565 0.711,4.618 L3.571,6.330 L3.571,6.330 ZM8.500,6.687 L12.331,6.687 L8.978,0.769 C8.869,0.590 8.684,0.501 8.500,0.501 C8.316,0.501 8.132,0.590 8.022,0.769 L4.669,6.687 L8.500,6.687 ZM16.707,5.672 L14.018,7.288 L16.659,11.589 C16.733,11.710 16.919,11.657 16.919,11.515 L16.919,5.792 C16.919,5.683 16.800,5.615 16.707,5.672 ZM13.430,6.330 L16.290,4.618 C16.379,4.564 16.381,4.436 16.294,4.379 L11.004,0.913 C10.752,0.769 10.474,1.057 10.626,1.305 L13.430,6.330 ZM16.202,15.125 L9.062,15.908 L9.062,18.217 C9.062,18.422 9.274,18.558 9.460,18.472 L16.279,15.391 C16.420,15.321 16.358,15.107 16.202,15.125 L16.202,15.125 ZM13.175,8.060 L9.364,14.743 L16.669,13.967 C16.874,13.944 16.986,13.716 16.877,13.540 L13.175,8.060 L13.175,8.060 ZM8.500,7.812 L4.977,7.812 L8.500,13.990 L12.023,7.812 L8.500,7.812 Z"></path>
+                                                    </svg>
+                                                </a>
+                                                <input class="skillgroup-table-entry inline-input" value="Alchemie">
+                                            </div>                                          
+                                            <input class="skillgroup-table-entry basic-input" value="95">
+                                            <div class="skillgroup-table-entry">
+                                                <input class="skillgroup-table-entry basic-input" value="alch">
+                                                <a class="material-symbols-outlined" style="margin-left: 10px;">delete</a>
+                                            </div>
+                                        </li>
+                                        <li class="skillgroup-table-row">
+                                            <div class="skillgroup-table-entry">
+                                                <a style="width: 22; height: 22; margin-right: 10px; display: flex; justify-content: center; align-items: center;">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-1 0 19 19" preserveAspectRatio="xMinYMin meet">
+                                                        <path fill-rule="evenodd" fill="rgb(88, 13, 4)" d="M3.826,8.060 L0.124,13.540 C0.016,13.716 0.127,13.944 0.332,13.967 L7.637,14.743 L3.826,8.060 L3.826,8.060 ZM0.341,11.589 L2.983,7.288 L0.294,5.672 C0.200,5.615 0.081,5.683 0.081,5.792 L0.081,11.515 C0.081,11.657 0.267,11.710 0.341,11.589 ZM0.722,15.391 L7.541,18.472 C7.727,18.559 7.939,18.422 7.939,18.217 L7.939,15.909 L0.799,15.125 C0.643,15.107 0.580,15.321 0.722,15.391 L0.722,15.391 ZM3.571,6.330 L6.375,1.305 C6.527,1.057 6.249,0.769 5.996,0.913 L0.706,4.380 C0.620,4.437 0.622,4.565 0.711,4.618 L3.571,6.330 L3.571,6.330 ZM8.500,6.687 L12.331,6.687 L8.978,0.769 C8.869,0.590 8.684,0.501 8.500,0.501 C8.316,0.501 8.132,0.590 8.022,0.769 L4.669,6.687 L8.500,6.687 ZM16.707,5.672 L14.018,7.288 L16.659,11.589 C16.733,11.710 16.919,11.657 16.919,11.515 L16.919,5.792 C16.919,5.683 16.800,5.615 16.707,5.672 ZM13.430,6.330 L16.290,4.618 C16.379,4.564 16.381,4.436 16.294,4.379 L11.004,0.913 C10.752,0.769 10.474,1.057 10.626,1.305 L13.430,6.330 ZM16.202,15.125 L9.062,15.908 L9.062,18.217 C9.062,18.422 9.274,18.558 9.460,18.472 L16.279,15.391 C16.420,15.321 16.358,15.107 16.202,15.125 L16.202,15.125 ZM13.175,8.060 L9.364,14.743 L16.669,13.967 C16.874,13.944 16.986,13.716 16.877,13.540 L13.175,8.060 L13.175,8.060 ZM8.500,7.812 L4.977,7.812 L8.500,13.990 L12.023,7.812 L8.500,7.812 Z"></path>
+                                                    </svg>
+                                                </a>
+                                                <input class="skillgroup-table-entry inline-input" value="Landwirtschaft">
+                                            </div>
+                                            <input class="skillgroup-table-entry basic-input" value="40">
+                                            <div class="skillgroup-table-entry">
+                                                <input class="skillgroup-table-entry basic-input" value="landw">
+                                                <a class="material-symbols-outlined" style="margin-left: 10px;">delete</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="skillgroup-table" skillgroup="wissen">
+                                    <div class="skillgroup-table-header borderimg-ne">
+                                        <div class="table-header-controls"><a class="material-symbols-outlined">add</a></div>
+                                        <div class="table-header-label" style="text-align: center;">Wissen</div>
+                                        <div class="table-header-label"></div>
+                                    </div>
+                                    <ul class="skillgroup-table-rows">
+                                        <li class="skillgroup-table-row">
+                                            <div class="skillgroup-table-entry">
+                                                <a style="width: 22; height: 22; margin-right: 10px; display: flex; justify-content: center; align-items: center;">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-1 0 19 19" preserveAspectRatio="xMinYMin meet">
+                                                        <path fill-rule="evenodd" fill="rgb(88, 13, 4)" d="M3.826,8.060 L0.124,13.540 C0.016,13.716 0.127,13.944 0.332,13.967 L7.637,14.743 L3.826,8.060 L3.826,8.060 ZM0.341,11.589 L2.983,7.288 L0.294,5.672 C0.200,5.615 0.081,5.683 0.081,5.792 L0.081,11.515 C0.081,11.657 0.267,11.710 0.341,11.589 ZM0.722,15.391 L7.541,18.472 C7.727,18.559 7.939,18.422 7.939,18.217 L7.939,15.909 L0.799,15.125 C0.643,15.107 0.580,15.321 0.722,15.391 L0.722,15.391 ZM3.571,6.330 L6.375,1.305 C6.527,1.057 6.249,0.769 5.996,0.913 L0.706,4.380 C0.620,4.437 0.622,4.565 0.711,4.618 L3.571,6.330 L3.571,6.330 ZM8.500,6.687 L12.331,6.687 L8.978,0.769 C8.869,0.590 8.684,0.501 8.500,0.501 C8.316,0.501 8.132,0.590 8.022,0.769 L4.669,6.687 L8.500,6.687 ZM16.707,5.672 L14.018,7.288 L16.659,11.589 C16.733,11.710 16.919,11.657 16.919,11.515 L16.919,5.792 C16.919,5.683 16.800,5.615 16.707,5.672 ZM13.430,6.330 L16.290,4.618 C16.379,4.564 16.381,4.436 16.294,4.379 L11.004,0.913 C10.752,0.769 10.474,1.057 10.626,1.305 L13.430,6.330 ZM16.202,15.125 L9.062,15.908 L9.062,18.217 C9.062,18.422 9.274,18.558 9.460,18.472 L16.279,15.391 C16.420,15.321 16.358,15.107 16.202,15.125 L16.202,15.125 ZM13.175,8.060 L9.364,14.743 L16.669,13.967 C16.874,13.944 16.986,13.716 16.877,13.540 L13.175,8.060 L13.175,8.060 ZM8.500,7.812 L4.977,7.812 L8.500,13.990 L12.023,7.812 L8.500,7.812 Z"></path>
+                                                    </svg>
+                                                </a>
+                                                <input class="skillgroup-table-entry inline-input" value="Naturkunde">
+                                            </div>
+                                            <input class="skillgroup-table-entry basic-input" value="85">
+                                            <div class="skillgroup-table-entry">
+                                                <input class="skillgroup-table-entry basic-input" value="naturk">
+                                                <a class="material-symbols-outlined" style="margin-left: 10px;">delete</a>
+                                            </div>
+                                        </li>
+                                        <li class="skillgroup-table-row">
+                                            <div class="skillgroup-table-entry">
+                                                <a style="width: 22; height: 22; margin-right: 10px; display: flex; justify-content: center; align-items: center;">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-1 0 19 19" preserveAspectRatio="xMinYMin meet">
+                                                        <path fill-rule="evenodd" fill="rgb(88, 13, 4)" d="M3.826,8.060 L0.124,13.540 C0.016,13.716 0.127,13.944 0.332,13.967 L7.637,14.743 L3.826,8.060 L3.826,8.060 ZM0.341,11.589 L2.983,7.288 L0.294,5.672 C0.200,5.615 0.081,5.683 0.081,5.792 L0.081,11.515 C0.081,11.657 0.267,11.710 0.341,11.589 ZM0.722,15.391 L7.541,18.472 C7.727,18.559 7.939,18.422 7.939,18.217 L7.939,15.909 L0.799,15.125 C0.643,15.107 0.580,15.321 0.722,15.391 L0.722,15.391 ZM3.571,6.330 L6.375,1.305 C6.527,1.057 6.249,0.769 5.996,0.913 L0.706,4.380 C0.620,4.437 0.622,4.565 0.711,4.618 L3.571,6.330 L3.571,6.330 ZM8.500,6.687 L12.331,6.687 L8.978,0.769 C8.869,0.590 8.684,0.501 8.500,0.501 C8.316,0.501 8.132,0.590 8.022,0.769 L4.669,6.687 L8.500,6.687 ZM16.707,5.672 L14.018,7.288 L16.659,11.589 C16.733,11.710 16.919,11.657 16.919,11.515 L16.919,5.792 C16.919,5.683 16.800,5.615 16.707,5.672 ZM13.430,6.330 L16.290,4.618 C16.379,4.564 16.381,4.436 16.294,4.379 L11.004,0.913 C10.752,0.769 10.474,1.057 10.626,1.305 L13.430,6.330 ZM16.202,15.125 L9.062,15.908 L9.062,18.217 C9.062,18.422 9.274,18.558 9.460,18.472 L16.279,15.391 C16.420,15.321 16.358,15.107 16.202,15.125 L16.202,15.125 ZM13.175,8.060 L9.364,14.743 L16.669,13.967 C16.874,13.944 16.986,13.716 16.877,13.540 L13.175,8.060 L13.175,8.060 ZM8.500,7.812 L4.977,7.812 L8.500,13.990 L12.023,7.812 L8.500,7.812 Z"></path>
+                                                    </svg>
+                                                </a>
+                                                <input class="skillgroup-table-entry inline-input" value="Allgemeinwissen">
+                                            </div>
+                                            <input class="skillgroup-table-entry basic-input" value="45">
+                                            <div class="skillgroup-table-entry">
+                                                <input class="skillgroup-table-entry basic-input" value="allgW">
+                                                <a class="material-symbols-outlined" style="margin-left: 10px;">delete</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="skillgroup-table" skillgroup="soziales">
+                                    <div class="skillgroup-table-header borderimg-ne">
+                                        <div class="table-header-controls"><a class="material-symbols-outlined">add</a></div>  
+                                        <div class="table-header-label">Soziales</div>
+                                        <div class="table-header-label"></div> 
+                                    </div>
+                                    <ul class="skillgroup-table-rows">
+                                        <li class="skillgroup-table-row">
+                                            <div class="skillgroup-table-entry">
+                                                <a style="width: 22; height: 22; margin-right: 10px; display: flex; justify-content: center; align-items: center;">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-1 0 19 19" preserveAspectRatio="xMinYMin meet">
+                                                        <path fill-rule="evenodd" fill="rgb(88, 13, 4)" d="M3.826,8.060 L0.124,13.540 C0.016,13.716 0.127,13.944 0.332,13.967 L7.637,14.743 L3.826,8.060 L3.826,8.060 ZM0.341,11.589 L2.983,7.288 L0.294,5.672 C0.200,5.615 0.081,5.683 0.081,5.792 L0.081,11.515 C0.081,11.657 0.267,11.710 0.341,11.589 ZM0.722,15.391 L7.541,18.472 C7.727,18.559 7.939,18.422 7.939,18.217 L7.939,15.909 L0.799,15.125 C0.643,15.107 0.580,15.321 0.722,15.391 L0.722,15.391 ZM3.571,6.330 L6.375,1.305 C6.527,1.057 6.249,0.769 5.996,0.913 L0.706,4.380 C0.620,4.437 0.622,4.565 0.711,4.618 L3.571,6.330 L3.571,6.330 ZM8.500,6.687 L12.331,6.687 L8.978,0.769 C8.869,0.590 8.684,0.501 8.500,0.501 C8.316,0.501 8.132,0.590 8.022,0.769 L4.669,6.687 L8.500,6.687 ZM16.707,5.672 L14.018,7.288 L16.659,11.589 C16.733,11.710 16.919,11.657 16.919,11.515 L16.919,5.792 C16.919,5.683 16.800,5.615 16.707,5.672 ZM13.430,6.330 L16.290,4.618 C16.379,4.564 16.381,4.436 16.294,4.379 L11.004,0.913 C10.752,0.769 10.474,1.057 10.626,1.305 L13.430,6.330 ZM16.202,15.125 L9.062,15.908 L9.062,18.217 C9.062,18.422 9.274,18.558 9.460,18.472 L16.279,15.391 C16.420,15.321 16.358,15.107 16.202,15.125 L16.202,15.125 ZM13.175,8.060 L9.364,14.743 L16.669,13.967 C16.874,13.944 16.986,13.716 16.877,13.540 L13.175,8.060 L13.175,8.060 ZM8.500,7.812 L4.977,7.812 L8.500,13.990 L12.023,7.812 L8.500,7.812 Z"></path>
+                                                    </svg>
+                                                </a>
+                                                <input class="skillgroup-table-entry inline-input" value="Feilschen">
+                                            </div>
+                                            <input class="skillgroup-table-entry basic-input" value="50">
+                                            <div class="skillgroup-table-entry">
+                                                <input class="skillgroup-table-entry basic-input" value="feilschen">
+                                                <a class="material-symbols-outlined" style="margin-left: 10px;">delete</a>
+                                            </div>
+                                        </li>
+                                        <li class="skillgroup-table-row">
+                                            <div class="skillgroup-table-entry">
+                                                <a style="width: 22; height: 22; margin-right: 10px; display: flex; justify-content: center; align-items: center;">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-1 0 19 19" preserveAspectRatio="xMinYMin meet">
+                                                        <path fill-rule="evenodd" fill="rgb(88, 13, 4)" d="M3.826,8.060 L0.124,13.540 C0.016,13.716 0.127,13.944 0.332,13.967 L7.637,14.743 L3.826,8.060 L3.826,8.060 ZM0.341,11.589 L2.983,7.288 L0.294,5.672 C0.200,5.615 0.081,5.683 0.081,5.792 L0.081,11.515 C0.081,11.657 0.267,11.710 0.341,11.589 ZM0.722,15.391 L7.541,18.472 C7.727,18.559 7.939,18.422 7.939,18.217 L7.939,15.909 L0.799,15.125 C0.643,15.107 0.580,15.321 0.722,15.391 L0.722,15.391 ZM3.571,6.330 L6.375,1.305 C6.527,1.057 6.249,0.769 5.996,0.913 L0.706,4.380 C0.620,4.437 0.622,4.565 0.711,4.618 L3.571,6.330 L3.571,6.330 ZM8.500,6.687 L12.331,6.687 L8.978,0.769 C8.869,0.590 8.684,0.501 8.500,0.501 C8.316,0.501 8.132,0.590 8.022,0.769 L4.669,6.687 L8.500,6.687 ZM16.707,5.672 L14.018,7.288 L16.659,11.589 C16.733,11.710 16.919,11.657 16.919,11.515 L16.919,5.792 C16.919,5.683 16.800,5.615 16.707,5.672 ZM13.430,6.330 L16.290,4.618 C16.379,4.564 16.381,4.436 16.294,4.379 L11.004,0.913 C10.752,0.769 10.474,1.057 10.626,1.305 L13.430,6.330 ZM16.202,15.125 L9.062,15.908 L9.062,18.217 C9.062,18.422 9.274,18.558 9.460,18.472 L16.279,15.391 C16.420,15.321 16.358,15.107 16.202,15.125 L16.202,15.125 ZM13.175,8.060 L9.364,14.743 L16.669,13.967 C16.874,13.944 16.986,13.716 16.877,13.540 L13.175,8.060 L13.175,8.060 ZM8.500,7.812 L4.977,7.812 L8.500,13.990 L12.023,7.812 L8.500,7.812 Z"></path>
+                                                    </svg>
+                                                </a>
+                                                <input class="skillgroup-table-entry inline-input" value="Helfen">
+                                            </div>
+                                            <input class="skillgroup-table-entry basic-input" value="40">
+                                            <div class="skillgroup-table-entry">
+                                                <input class="skillgroup-table-entry basic-input" value="helfen">
+                                                <a class="material-symbols-outlined" style="margin-left: 10px;">delete</a>
+                                        </li>                                        
+                                        <li class="skillgroup-table-row">
+                                            <div class="skillgroup-table-entry">
+                                                <a style="width: 22; height: 22; margin-right: 10px; display: flex; justify-content: center; align-items: center;">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-1 0 19 19" preserveAspectRatio="xMinYMin meet">
+                                                        <path fill-rule="evenodd" fill="rgb(88, 13, 4)" d="M3.826,8.060 L0.124,13.540 C0.016,13.716 0.127,13.944 0.332,13.967 L7.637,14.743 L3.826,8.060 L3.826,8.060 ZM0.341,11.589 L2.983,7.288 L0.294,5.672 C0.200,5.615 0.081,5.683 0.081,5.792 L0.081,11.515 C0.081,11.657 0.267,11.710 0.341,11.589 ZM0.722,15.391 L7.541,18.472 C7.727,18.559 7.939,18.422 7.939,18.217 L7.939,15.909 L0.799,15.125 C0.643,15.107 0.580,15.321 0.722,15.391 L0.722,15.391 ZM3.571,6.330 L6.375,1.305 C6.527,1.057 6.249,0.769 5.996,0.913 L0.706,4.380 C0.620,4.437 0.622,4.565 0.711,4.618 L3.571,6.330 L3.571,6.330 ZM8.500,6.687 L12.331,6.687 L8.978,0.769 C8.869,0.590 8.684,0.501 8.500,0.501 C8.316,0.501 8.132,0.590 8.022,0.769 L4.669,6.687 L8.500,6.687 ZM16.707,5.672 L14.018,7.288 L16.659,11.589 C16.733,11.710 16.919,11.657 16.919,11.515 L16.919,5.792 C16.919,5.683 16.800,5.615 16.707,5.672 ZM13.430,6.330 L16.290,4.618 C16.379,4.564 16.381,4.436 16.294,4.379 L11.004,0.913 C10.752,0.769 10.474,1.057 10.626,1.305 L13.430,6.330 ZM16.202,15.125 L9.062,15.908 L9.062,18.217 C9.062,18.422 9.274,18.558 9.460,18.472 L16.279,15.391 C16.420,15.321 16.358,15.107 16.202,15.125 L16.202,15.125 ZM13.175,8.060 L9.364,14.743 L16.669,13.967 C16.874,13.944 16.986,13.716 16.877,13.540 L13.175,8.060 L13.175,8.060 ZM8.500,7.812 L4.977,7.812 L8.500,13.990 L12.023,7.812 L8.500,7.812 Z"></path>
+                                                    </svg>
+                                                </a>
+                                                <input class="skillgroup-table-entry inline-input" value="Überzeugen">
+                                            </div>
+                                            <input class="skillgroup-table-entry basic-input" value="50">
+                                            <div class="skillgroup-table-entry">
+                                                <input class="skillgroup-table-entry basic-input" value="ueberzeugen">
+                                                <a class="material-symbols-outlined" style="margin-left: 10px;">delete</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="main-section-weapons active">
+                        <div class="content-container">
+                            <ul class="weapon-list">
+                                <li class ="weapon-element">
+                                    <a style="width: 22; height: 22; margin-right: 10px; display: flex; justify-content: center; align-items: center;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-1 0 19 19" preserveAspectRatio="xMinYMin meet">
+                                            <path fill-rule="evenodd" fill="rgb(88, 13, 4)" d="M3.826,8.060 L0.124,13.540 C0.016,13.716 0.127,13.944 0.332,13.967 L7.637,14.743 L3.826,8.060 L3.826,8.060 ZM0.341,11.589 L2.983,7.288 L0.294,5.672 C0.200,5.615 0.081,5.683 0.081,5.792 L0.081,11.515 C0.081,11.657 0.267,11.710 0.341,11.589 ZM0.722,15.391 L7.541,18.472 C7.727,18.559 7.939,18.422 7.939,18.217 L7.939,15.909 L0.799,15.125 C0.643,15.107 0.580,15.321 0.722,15.391 L0.722,15.391 ZM3.571,6.330 L6.375,1.305 C6.527,1.057 6.249,0.769 5.996,0.913 L0.706,4.380 C0.620,4.437 0.622,4.565 0.711,4.618 L3.571,6.330 L3.571,6.330 ZM8.500,6.687 L12.331,6.687 L8.978,0.769 C8.869,0.590 8.684,0.501 8.500,0.501 C8.316,0.501 8.132,0.590 8.022,0.769 L4.669,6.687 L8.500,6.687 ZM16.707,5.672 L14.018,7.288 L16.659,11.589 C16.733,11.710 16.919,11.657 16.919,11.515 L16.919,5.792 C16.919,5.683 16.800,5.615 16.707,5.672 ZM13.430,6.330 L16.290,4.618 C16.379,4.564 16.381,4.436 16.294,4.379 L11.004,0.913 C10.752,0.769 10.474,1.057 10.626,1.305 L13.430,6.330 ZM16.202,15.125 L9.062,15.908 L9.062,18.217 C9.062,18.422 9.274,18.558 9.460,18.472 L16.279,15.391 C16.420,15.321 16.358,15.107 16.202,15.125 L16.202,15.125 ZM13.175,8.060 L9.364,14.743 L16.669,13.967 C16.874,13.944 16.986,13.716 16.877,13.540 L13.175,8.060 L13.175,8.060 ZM8.500,7.812 L4.977,7.812 L8.500,13.990 L12.023,7.812 L8.500,7.812 Z"></path>
+                                        </svg>
+                                    </a>
+                                    <a class="material-symbols-outlined" style="margin-right: 10px;">create</a>
+                                    <input class="weapon-info" value="Jon's Bogen">
+                                    <a class="material-symbols-outlined" style="margin-left: 10px;">delete</a>
+                                </li>
+                                <li class ="weapon-element">
+                                    <a style="width: 22; height: 22; margin-right: 10px; display: flex; justify-content: center; align-items: center;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-1 0 19 19" preserveAspectRatio="xMinYMin meet">
+                                            <path fill-rule="evenodd" fill="rgb(88, 13, 4)" d="M3.826,8.060 L0.124,13.540 C0.016,13.716 0.127,13.944 0.332,13.967 L7.637,14.743 L3.826,8.060 L3.826,8.060 ZM0.341,11.589 L2.983,7.288 L0.294,5.672 C0.200,5.615 0.081,5.683 0.081,5.792 L0.081,11.515 C0.081,11.657 0.267,11.710 0.341,11.589 ZM0.722,15.391 L7.541,18.472 C7.727,18.559 7.939,18.422 7.939,18.217 L7.939,15.909 L0.799,15.125 C0.643,15.107 0.580,15.321 0.722,15.391 L0.722,15.391 ZM3.571,6.330 L6.375,1.305 C6.527,1.057 6.249,0.769 5.996,0.913 L0.706,4.380 C0.620,4.437 0.622,4.565 0.711,4.618 L3.571,6.330 L3.571,6.330 ZM8.500,6.687 L12.331,6.687 L8.978,0.769 C8.869,0.590 8.684,0.501 8.500,0.501 C8.316,0.501 8.132,0.590 8.022,0.769 L4.669,6.687 L8.500,6.687 ZM16.707,5.672 L14.018,7.288 L16.659,11.589 C16.733,11.710 16.919,11.657 16.919,11.515 L16.919,5.792 C16.919,5.683 16.800,5.615 16.707,5.672 ZM13.430,6.330 L16.290,4.618 C16.379,4.564 16.381,4.436 16.294,4.379 L11.004,0.913 C10.752,0.769 10.474,1.057 10.626,1.305 L13.430,6.330 ZM16.202,15.125 L9.062,15.908 L9.062,18.217 C9.062,18.422 9.274,18.558 9.460,18.472 L16.279,15.391 C16.420,15.321 16.358,15.107 16.202,15.125 L16.202,15.125 ZM13.175,8.060 L9.364,14.743 L16.669,13.967 C16.874,13.944 16.986,13.716 16.877,13.540 L13.175,8.060 L13.175,8.060 ZM8.500,7.812 L4.977,7.812 L8.500,13.990 L12.023,7.812 L8.500,7.812 Z"></path>
+                                        </svg>
+                                    </a>
+                                    <a class="material-symbols-outlined" style="margin-right: 10px;">create</a>
+                                    <input class="weapon-info" value="Speer">
+                                    <a class="material-symbols-outlined" style="margin-left: 10px;">delete</a>
+                                </li>
+                            </ul>
+                            <a class="itemAddButton borderimg-ne"><span class="material-symbols-outlined">add</span></a>
+                        </div>
+                    </section>
+                    <section class="main-section-actions inactive">
+                        <div class="content-container">
+                            <ul class="weapon-list">
+                                <li class ="weapon-element">
+                                    <a style="width: 22; height: 22; margin-right: 10px; display: flex; justify-content: center; align-items: center;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-1 0 19 19" preserveAspectRatio="xMinYMin meet">
+                                            <path fill-rule="evenodd" fill="rgb(88, 13, 4)" d="M3.826,8.060 L0.124,13.540 C0.016,13.716 0.127,13.944 0.332,13.967 L7.637,14.743 L3.826,8.060 L3.826,8.060 ZM0.341,11.589 L2.983,7.288 L0.294,5.672 C0.200,5.615 0.081,5.683 0.081,5.792 L0.081,11.515 C0.081,11.657 0.267,11.710 0.341,11.589 ZM0.722,15.391 L7.541,18.472 C7.727,18.559 7.939,18.422 7.939,18.217 L7.939,15.909 L0.799,15.125 C0.643,15.107 0.580,15.321 0.722,15.391 L0.722,15.391 ZM3.571,6.330 L6.375,1.305 C6.527,1.057 6.249,0.769 5.996,0.913 L0.706,4.380 C0.620,4.437 0.622,4.565 0.711,4.618 L3.571,6.330 L3.571,6.330 ZM8.500,6.687 L12.331,6.687 L8.978,0.769 C8.869,0.590 8.684,0.501 8.500,0.501 C8.316,0.501 8.132,0.590 8.022,0.769 L4.669,6.687 L8.500,6.687 ZM16.707,5.672 L14.018,7.288 L16.659,11.589 C16.733,11.710 16.919,11.657 16.919,11.515 L16.919,5.792 C16.919,5.683 16.800,5.615 16.707,5.672 ZM13.430,6.330 L16.290,4.618 C16.379,4.564 16.381,4.436 16.294,4.379 L11.004,0.913 C10.752,0.769 10.474,1.057 10.626,1.305 L13.430,6.330 ZM16.202,15.125 L9.062,15.908 L9.062,18.217 C9.062,18.422 9.274,18.558 9.460,18.472 L16.279,15.391 C16.420,15.321 16.358,15.107 16.202,15.125 L16.202,15.125 ZM13.175,8.060 L9.364,14.743 L16.669,13.967 C16.874,13.944 16.986,13.716 16.877,13.540 L13.175,8.060 L13.175,8.060 ZM8.500,7.812 L4.977,7.812 L8.500,13.990 L12.023,7.812 L8.500,7.812 Z"></path>
+                                        </svg>
+                                    </a>
+                                    <a class="material-symbols-outlined" style="margin-right: 10px;">create</a>
+                                    <input class="weapon-info" value="Blutmagie">
+                                    <a class="material-symbols-outlined" style="margin-left: 10px;">delete</a>
+                                </li>
+                                <li class ="weapon-element">
+                                    <a style="width: 22; height: 22; margin-right: 10px; display: flex; justify-content: center; align-items: center;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-1 0 19 19" preserveAspectRatio="xMinYMin meet">
+                                            <path fill-rule="evenodd" fill="rgb(88, 13, 4)" d="M3.826,8.060 L0.124,13.540 C0.016,13.716 0.127,13.944 0.332,13.967 L7.637,14.743 L3.826,8.060 L3.826,8.060 ZM0.341,11.589 L2.983,7.288 L0.294,5.672 C0.200,5.615 0.081,5.683 0.081,5.792 L0.081,11.515 C0.081,11.657 0.267,11.710 0.341,11.589 ZM0.722,15.391 L7.541,18.472 C7.727,18.559 7.939,18.422 7.939,18.217 L7.939,15.909 L0.799,15.125 C0.643,15.107 0.580,15.321 0.722,15.391 L0.722,15.391 ZM3.571,6.330 L6.375,1.305 C6.527,1.057 6.249,0.769 5.996,0.913 L0.706,4.380 C0.620,4.437 0.622,4.565 0.711,4.618 L3.571,6.330 L3.571,6.330 ZM8.500,6.687 L12.331,6.687 L8.978,0.769 C8.869,0.590 8.684,0.501 8.500,0.501 C8.316,0.501 8.132,0.590 8.022,0.769 L4.669,6.687 L8.500,6.687 ZM16.707,5.672 L14.018,7.288 L16.659,11.589 C16.733,11.710 16.919,11.657 16.919,11.515 L16.919,5.792 C16.919,5.683 16.800,5.615 16.707,5.672 ZM13.430,6.330 L16.290,4.618 C16.379,4.564 16.381,4.436 16.294,4.379 L11.004,0.913 C10.752,0.769 10.474,1.057 10.626,1.305 L13.430,6.330 ZM16.202,15.125 L9.062,15.908 L9.062,18.217 C9.062,18.422 9.274,18.558 9.460,18.472 L16.279,15.391 C16.420,15.321 16.358,15.107 16.202,15.125 L16.202,15.125 ZM13.175,8.060 L9.364,14.743 L16.669,13.967 C16.874,13.944 16.986,13.716 16.877,13.540 L13.175,8.060 L13.175,8.060 ZM8.500,7.812 L4.977,7.812 L8.500,13.990 L12.023,7.812 L8.500,7.812 Z"></path>
+                                        </svg>
+                                    </a>
+                                    <a class="material-symbols-outlined" style="margin-right: 10px;">create</a>
+                                    <input class="weapon-info" value="Gegner ablenken (Geist)">
+                                    
+                                    <a class="material-symbols-outlined" style="margin-left: 10px;">delete</a>
+                                </li>
+                            </ul>
+                            <a class="itemAddButton borderimg-ne"><span class="material-symbols-outlined">add</span></a>                       
+                        </div>
+                    </section>
+                    <section class="main-section-inventory inactive">
+                        <div class="content-container">
+                            <ul class="weapon-list">
+                                <li class ="weapon-element">
+                                    <a class="material-symbols-outlined" style="margin-right: 10px;">create</a>
+                                    <input class="weapon-info" value="Almanach der Alchemie">                                  
+                                    <a class="material-symbols-outlined" style="margin-left: 10px;">delete</a>
+                                </li>
+                                <li class ="weapon-element">                                    
+                                    <a class="material-symbols-outlined" style="margin-right: 10px;">create</a>
+                                    <div class="item-count">
+                                        <a class="item-count-update" type="decr">-</a>
+                                        <input class="item-count-value" value="123">
+                                        <a class="item-count-update" type="incr">+</a>
+                                    </div>                                    
+                                    <input class="weapon-info" value="Phiolen">
+                                    <a class="material-symbols-outlined" style="margin-left: 10px;">delete</a>
+                                </li>
+                                <li class ="weapon-element">                                    
+                                    <a class="material-symbols-outlined" style="margin-right: 10px;">create</a>
+                                    <div class="item-count">
+                                        <a class="item-count-update" type="decr">-</a>
+                                        <input class="item-count-value" value="2">
+                                        <a class="item-count-update" type="incr">+</a>
+                                    </div>                                    
+                                    <input class="weapon-info" value="Pfeile">
+                                    <a class="material-symbols-outlined" style="margin-left: 10px;">delete</a>
+                                </li>  
+                            </ul>        
+                            <a class="itemAddButton borderimg-ne"><span class="material-symbols-outlined">add</span></a>   
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </container>
+    </form>
+    <script type="text/javascript">
+        // content nav 
+
+        var navLinks=document.getElementsByClassName("nav-link");
+        for (el of navLinks) {
+            console.log(el)
+            el.addEventListener("click", e => {
+                // relocate class .selected for links
+                document.getElementsByClassName("selected")[0].classList.remove("selected");
+                e.target.classList.add("selected");
+
+                // relocate class .active for content panes
+                var activeEl=document.getElementsByClassName("active")[0];
+                activeEl.classList.remove("active");;
+                activeEl.classList.add("inactive")
+                var contentEl=document.getElementsByClassName("main-section-" + e.target.getAttribute("content-link"))[0];
+                contentEl.classList.add("active");
+                contentEl.classList.remove("inactive");
+            });
+            console.log(el);
+        }
+
+        var charLink=document.getElementsByClassName("banner-tile-content-label")[0];
+        charLink.addEventListener("click", function() {
+            console.log("hi");
+            var banner=document.getElementsByClassName("banner-container")[0]
+            if (banner.style.height > "260px") {
+                banner.style.height="260px"
+            } else {
+                banner.style.height="620px" 
+            }
+        });
+
+        var x=document.getElementById("input");
+        if (!x.value.length <= 12) {
+            x.style.fontSize=43 - x.value.length;
+        }       
+        function myFunction(){
+            var x=document.getElementById("input");
+            if (x.value.length <= 12) {
+                x.style.fontSize="34px"
+                return
+            }
+            var initialSize=43-x.value.length;
+            initialSize=initialSize<=10?10:initialSize;
+            x.style.fontSize=initialSize + "px";
+        }
+    </script>
+</body>
