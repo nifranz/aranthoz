@@ -2,7 +2,7 @@
   "id": "aranthoz",
   "version": "0.1.0",
   "title": "Aranthoz Game System",
-  "url": "https://gitlab.com/foundrynet/worldbuilding/",
+  "url": "https://github.com/nifranz/aranthoz",
   "description": "A game system extending the simple worldbuilding-system v0.7.2 to facilitate the world of Aranthoz and it's PnP playstyle in Foundry.",
   "license": "LICENSE.txt",
   "authors": [
@@ -13,7 +13,7 @@
     },
     {
       "name": "Niklas Franz",
-      "url": "",
+      "url": "https://github.com/nifranz/",
       "flags": {}
     }
   ],
@@ -42,6 +42,6 @@
   "gridUnits": "ft",
   "primaryTokenAttribute": "health",
   "secondaryTokenAttribute": "power",
-  "manifest": "https://raw.githubusercontent.com/foundryvtt/worldbuilding/master/system.json",
-  "download": "https://github.com/foundryvtt/worldbuilding/archive/refs/tags/release-072.zip"
+  "manifest": "",
+  "download":"" 
 }
