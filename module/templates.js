@@ -15,8 +15,9 @@ export const preloadHandlebarsTemplates = async function() {
 
     //Aranthoz2 templates
     "systems/aranthoz/templates/aranthoz2/parts/weapon.html",
-    "systems/aranthoz/templates/aranthoz2/parts/action.html",
-     "systems/aranthoz/templates/aranthoz2/parts/item.html"
+    "systems/aranthoz/templates/aranthoz2/parts/skill.html",
+    "systems/aranthoz/templates/aranthoz2/parts/consumable.html",
+    "systems/aranthoz/templates/aranthoz2/parts/misc.html",
   ];
 
   // Load the template parts

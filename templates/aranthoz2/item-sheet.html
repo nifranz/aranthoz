@@ -3,13 +3,17 @@
         {{> "systems/aranthoz/templates/aranthoz2/parts/weapon.html" ownerRessource=ownerRessource ownerId=ownerId ownerAttributes=ownerAttributes data=data systemData=systemData}}
         Weapon
     {{/if}}
-    {{#if isOfTypeAction}}
-        {{> "systems/aranthoz/templates/aranthoz2/parts/action.html" ownerRessource=ownerRessource ownerId=ownerId ownerAttributes=ownerAttributes data=data systemData=systemData}}
-        Action
+    {{#if isOfTypeSkill}}
+        {{> "systems/aranthoz/templates/aranthoz2/parts/skill.html" ownerRessource=ownerRessource ownerId=ownerId ownerAttributes=ownerAttributes data=data systemData=systemData}}
+        Skill 
     {{/if}}
-    {{#if isOfTypeItem}}
-        {{> "systems/aranthoz/templates/aranthoz2/parts/item.html" ownerRessource=ownerRessource ownerId=ownerId ownerAttributes=ownerAttributes data=data systemData=systemData}}
-        Item
+    {{#if isOfTypeMisc}}
+        {{> "systems/aranthoz/templates/aranthoz2/parts/misc.html" ownerRessource=ownerRessource ownerId=ownerId ownerAttributes=ownerAttributes data=data systemData=systemData}}
+        Misc
+    {{/if}}
+    {{#if isOfTypeConsumable}}
+        {{> "systems/aranthoz/templates/aranthoz2/parts/consumable.html" ownerRessource=ownerRessource ownerId=ownerId ownerAttributes=ownerAttributes data=data systemData=systemData}}
+        Misc
     {{/if}}
     sheet
 </form>

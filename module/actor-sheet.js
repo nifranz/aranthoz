@@ -1,6 +1,6 @@
 import { EntitySheetHelper } from "./helper.js";
 import { ATTRIBUTE_TYPES } from "./constants.js";
-
+import { ITEM_CLASSES } from "./constants.js";
 /**
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
@@ -14,7 +14,10 @@ export class AranthozActorSheet2 extends ActorSheet {
       template: "systems/aranthoz/templates/aranthoz2/aranthoz2.html",
       width: 1000,
       height: 600,
-      tabs: [{navSelector: ".body-nav", contentSelector: ".sheet-body", initial: "character"}],
+      tabs: [
+        {navSelector: ".body-nav", contentSelector: ".sheet-body", initial: "character"},
+        {navSelector: ".misc-nav", contentSelector: ".misc-content", initial: "documents"},
+      ],
       // scrollY: [".character", ".attributes", ".weapons", ".actions", ".inventory"],
       dragDrop: [{dragSelector: ".item-list .dragItem", dropSelector: null}]
     });
@@ -25,6 +28,7 @@ export class AranthozActorSheet2 extends ActorSheet {
   /** @inheritdoc */
   async getData(options) {
     const context = await super.getData(options);
+    context.itemClasses = ITEM_CLASSES;
     EntitySheetHelper.getAttributeData(context.data);
     context.shorthand = !!game.settings.get("aranthoz", "macroShorthand");
     context.systemData = context.data.system;
@@ -134,60 +138,36 @@ export class AranthozActorSheet2 extends ActorSheet {
     // Obtain event data
     const button = event.currentTarget;
     const li = button.closest(".item");
-    const item = this.actor.items.get(li?.dataset.itemId);
 
     // Handle different actions
     switch ( button.dataset.action ) {
-      case "create":
+      case "create": 
+      {
         const cls = getDocumentClass("Item");
-        console.log(button.getAttribute("item-type"))
-        var name = (button.getAttribute("item-type"))
-        if (name) {
-          name = "New " + name[0].toUpperCase() + name.substring(1)
+        const itemType = button.getAttribute("item-type");
+        if (itemType) {
+          var name = "New " + itemType[0].toUpperCase() + itemType.substring(1) + " Item"
         }
-        return cls.create({name: name || game.i18n.localize("SIMPLE.ItemNew"), type: button.getAttribute("item-type")}, {parent: this.actor});
-        
-        // const types = {
-        //   // [defaultType]: game.i18n.localize("SIMPLE.NoTemplate")
-        // }
-        // for ( let t of Item.TYPES ) {
-        //   types[t] = t.charAt(0).toUpperCase() + t.slice(1); // t.charAt(0).toUpperCase() + t.slice(1); -> capitalizes string t
-        // }    
-        // // Render the document creation form
-        // const template = "templates/sidebar/document-create.html";
-        // const html = await renderTemplate(template, {
-        //   name: "New Item", //data.name || game.i18n.format("DOCUMENT.New", {type: label}),
-        //   folder: undefined, //data.folder,
-        //   folders: undefined, //folders,
-        //   hasFolders: false, //folders.length > 1,
-        //   type: "Type", //data.type || templates[0]?.id || "",
-        //   types: types,
-        //   hasTypes: true
-        // });
-    
-        // // Render the confirmation dialog window
-        // return Dialog.prompt({
-        //   title: "Create Item for " + this.actor.name,
-        //   content: html,
-        //   label: "Item Name",
-        //   callback: html => {
-    
-        //     // Get the form data
-        //     const form = html[0].querySelector("form");
-        //     const fd = new FormDataExtended(form);
-        //     let createData = fd.toObject();
-    
-        //     // Merge provided override data
-        //     const cls = getDocumentClass("Item");
-        //     return cls.create({name: createData.name || "New Item", type: createData.type}, {parent: this.actor});
-        //   },
-        //   rejectClose: false,
-        //   options: undefined
-        // });
+        const item = await cls.create({name: name || game.i18n.localize("SIMPLE.ItemNew"), type: button.getAttribute("item-type")}, {parent: this.actor});
+        console.log(item);
+        if (itemType == "misc") { // if item type is misc, add the misc-specific itemClass to the newly created item
+          const miscItemClass = button.getAttribute("misc-item-class")
+          item.update({"system.itemClass": miscItemClass});
+        }
+        return item;
+      }
+
       case "edit":
+      {
+        const item = this.actor.items.get(li?.dataset.itemId);
         return item.sheet.render(true);
+      }
+
       case "delete":
+      {
+        const item = this.actor.items.get(li?.dataset.itemId);
         return item.delete();
+      }
     }
   }
 
@@ -492,8 +472,8 @@ export class SimpleActorSheet extends ActorSheet {
     switch ( button.dataset.action ) {
       case "create":
         const cls = getDocumentClass("Item");
-
-        return cls.create({name: game.i18n.localize("SIMPLE.ItemNew"), type: "item"}, {parent: this.actor});
+        const item = cls.create({name: game.i18n.localize("SIMPLE.ItemNew"), type: "item"}, {parent: this.actor});
+        return item
       case "edit":
         return item.sheet.render(true);
       case "delete":

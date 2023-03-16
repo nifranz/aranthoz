@@ -1,4 +1,5 @@
 import { skillRoll, weaponRoll, actionRoll } from "./roll.js";
+import { ITEM_CLASSES } from "./constants.js";
 
 export class EntitySheetHelper {
 
@@ -73,15 +74,25 @@ export class EntitySheetHelper {
     // Determine item type
     console.log("item log");
     console.log(data.items);
-    if (data.items) {
+    if (data.items) { // if data is actor document (only actor documents has the item property)
       for ( let item of Object.values(data.items) ) {
         console.log("Check item types");
         if ( item.type ) {
-          console.log("item type" + item.type)
-          item.isItem = item.type === "item";
-          item.isWeapon = item.type === "weapon";
-          item.isAction = item.type === "action";
-          item.isArmor = item.type === "armor";
+          for (const type of Item.TYPES) {
+            // add "isType" property to the item for handlebars
+            const typeUpper = type.charAt(0).toUpperCase() + type.slice(1);
+            item[`is${typeUpper}`] = item.type === type;
+          }
+
+          if ( item.type == 'misc' ) {
+            item['isOfClass'] = {}
+            for ( const itemClassObject of ITEM_CLASSES ) {
+              const itemClass = itemClassObject.key;
+              const classUpper = itemClass.charAt(0).toUpperCase() + itemClass.slice(1);
+              item[`isOfClass${classUpper}`] = item.system.itemClass === itemClass;
+              item['isOfClass'][classUpper] = true
+            } 
+          }
         }
       }
     }

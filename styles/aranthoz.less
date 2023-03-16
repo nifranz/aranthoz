@@ -194,6 +194,32 @@
     /* - */
 
 
+    .misc-nav {
+        flex: 0 0 20px;
+        background-image: url(../assets/banner/banner-body.png);
+        background-size: 1000px;
+        min-width: 400px;
+        background-position: center;
+        box-shadow: inset 0px 0px 20px #000000cb;
+        box-shadow: 0px 3px 8px #000000cb;
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .nav-link {
+            text-align: center;
+            margin-left:18px;
+            margin-right: 18px;
+            color: rgb(255, 248, 232);
+            font-size: 18px;
+            text-shadow: 0px 2px 3px rgba(0, 0, 0, 0.8);
+
+        }
+        .active {
+            text-decoration: underline;
+        }
+    }   
     .body-nav {
         margin-top: 20px;
         flex: 0 0 60px;
@@ -412,7 +438,7 @@
         align-items: center;
         height: 100%;
 
-        .skill-control {
+        .add {
             height: 100%;
             display: flex;
             align-items: center;

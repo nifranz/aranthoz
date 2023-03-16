@@ -154,10 +154,15 @@ export class AranthozItemSheet2 extends ItemSheet {
     EntitySheetHelper.getAttributeData(context.data);
     context.systemData = context.data.system;
     const item = context.item;
+    for (const type of Item.TYPES) {
+      // add "isType" property to the item for handlebars
+      const typeUpper = type.charAt(0).toUpperCase() + type.slice(1);
+      context[`isOfType${typeUpper}`] = context.data.type === type;
+    }
 
-    context.isOfTypeItem = context.data.type === "item";
-    context.isOfTypeWeapon = context.data.type === "weapon";
-    context.isOfTypeAction = context.data.type === "action";
+    // context.isOfTypeItem = context.data.type === "item";
+    // context.isOfTypeWeapon = context.data.type === "weapon";
+    // context.isOfTypeAction = context.data.type === "action";
 
     if (item.actor) {
       // add item specific information to hbs context

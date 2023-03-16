@@ -5,15 +5,29 @@
                 <input name="name" type="text" value="{{data.name}}" placeholder="Name" />
             </h1>
             <div class="resource">
-                <label>{{ ownerRessource }}</label>
-                <input type="number" name="system.power.value" value="{{systemData.power.value}}"/>
+                <label>Weight</label>
+                <input type="number" name="system.weight" value="{{systemData.weight}}"/>
+            </div>
+            <div class="resource skill">
+                <label>Skill</label>
+                {{#if ownerId }}
+                <select class="skill-select attribute-dtype">
+                    <option value=undefined>Kein Link</option>
+                    {{#each ownerAttributes}}
+                        <option value="{{this.value}}"{{this.selected}}>{{this.value}}</option>
+                    {{/each}}
+                </select>
+                {{ else }}
+                <input type="text" name="system.skill" value="{{systemData.skill}}"/>
+                {{/if}}
             </div>
         </div>
-    </div>
+    </header>
 
     {{!-- Sheet Tab Navigation --}}
     <nav class="sheet-tabs tabs" data-group="primary">
         <a class="item" data-tab="description">Description</a>
+        <a class="item" data-tab="rolls">Actions</a>
         <a class="item" data-tab="attributes">Attributes</a>
     </nav>
 
@@ -22,7 +36,6 @@
         {{!-- Description Tab --}}
         <div class="tab" data-group="primary" data-tab="description">
             {{editor descriptionHTML target="system.description" button=true editable=editable engine="prosemirror"}}
-           
         </div>
 
         {{!-- Attributes Tab --}}
@@ -36,7 +49,7 @@
             </header>
 
             {{!-- Render the attribute list partial. --}}
-            {{> "systems/aranthoz/templates/aranthoz/parts/sheet-attributes.html" attributes=systemData.ungroupedAttributes dtypes=dtypes isActor=isActor}}
+        {{> "systems/aranthoz/templates/aranthoz/parts/sheet-attributes.html" attributes=systemData.ungroupedAttributes dtypes=dtypes isActor=isActor}}
 
             {{!-- Render the grouped attributes partial and control. --}}
             <div class="groups">
@@ -47,4 +60,18 @@
                 </div>
             </div>
         </div>
+
+    
+        {{!-- Rolls Tab --}}
+        <div class="tab rolls" data-group="primary" data-tab="rolls">
+            <div class="group-controls flexrow">
+                {{#each rolls as |roll key|}}
+                <div class="resource">
+                    <label>RollDamage</label>
+                    <input type="text" name="system.rolls.{{key}}.damage" value="{{roll.damage}}"/>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+
     </section>
