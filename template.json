@@ -1,166 +1,96 @@
 {
-"Actor": {
-  "types": ["character"],
-  "htmlFields": ["biography"],
-  "character": {
-    "biography": "",
-    "health": {
-      "value": 100,
-      "min": 0,
-      "max": 100
-    },
-    "power": {
-      "value": 100,
-      "min": 0,
-      "max": 100
-    },
-    "identityAttributes": {
-      "origin":"",
-      "gender":"",
-      "background":"",
-      "age": "",
-      "build":"",
-      "ressource":"stamina"     
-    },
-    "attributes": {},
-    "groups": {
-      "handeln": {
+  "Actor": {
+    "types": [
+      "character"
+    ],
+    "htmlFields": [
+      "biography"
+      FF
+    ],
+    "character": {
+      "biography": "",
+      "health": {
+        "value": 100,
+        "min": 0,
+        "max": 100
+      },
+      "power": {
+        "value": 100,
+        "min": 0,
+        "max": 100
+      },
+      "identityAttributes": {
+        "origin": "",
+        "gender": "",
+        "background": "",
+        "age": "",
+        "build": "",
+        "ressource": "stamina"
+      },
+      "attributes": {},
+      "groups": {
+        "handeln": {
           "key": "handeln",
           "label": "Handeln",
           "dtype": "String"
-      },
-      "wissen": {
+        },
+        "wissen": {
           "key": "wissen",
           "label": "Wissen",
           "dtype": "String"
-      },
-      "sozial": {
+        },
+        "sozial": {
           "key": "sozial",
           "label": "Sozial",
           "dtype": "String"
-      }
-  }
-  }
-},
-"Item": {
-  "types": ["item","weapon","spell","consumable","skill"],
-  "htmlFields": ["description"],
-  "item": {
-    "description": "",
-    "quantity": 1,
-    "weight": 0,
-    "attributes": {},
-    "groups": {}
-  },
-  "weapon": {
-    "description": "",
-    "weight": 0,
-    "rolls": {},
-    "attributes": {
-      "damage": {
-          "crit": {
-              "value": "",
-              "label": "Kritischer Schaden",
-              "dtype": "String",
-              "group": "damage",
-              "readonly": "True"
-          },
-          "bonus": {
-              "value": "",
-              "label": "Bonusschaden",
-              "dtype": "String",
-              "group": "damage",
-              "readonly": "True"
-          },
-          "base": {
-              "value": "",
-              "label": "Grundschaden",
-              "dtype": "String",
-              "group": "damage",
-              "readonly": "True"
-          }
-      }
-    },
-    "groups": {
-      "damage": {
-          "key": "damage",
-          "label": "Schadenswerte",
-          "dtype": "String",
-          "readonly": "True"
-      },
-      "other": {
-          "key": "other",
-          "label": ""
-      }
-    },
-    "skill": ""
-  },
-  "action": {
-    "description": "",
-    "power": {
-      "value": 0
-    },
-    "rolls": {},
-    "attributes": {
-        "damage": {
-            "crit": {
-                "value": "",
-                "label": "Kritischer Schaden",
-                "dtype": "String",
-                "group": "damage"
-            },
-            "bonus": {
-                "value": "",
-                "label": "Bonusschaden",
-                "dtype": "String",
-                "group": "damage"
-            },
-            "base": {
-                "value": "",
-                "label": "Grundschaden",
-                "dtype": "String",
-                "group": "damage"
-            }
-        },
-        "ressources": {
-            "power": {
-                "value": "",
-                "label": "Mana / Stamina",
-                "dtype": "String",
-                "group": "ressources"
-            }
-        },
-        "rollValue": {
-            "value": "",
-            "label": "",
-            "dtype": "String",
-            "group": ""
-        },
-        "appliesDamage": {
-            "value": true,
-            "label": "",
-            "dtype": "Boolean",
-            "group": ""
         }
-    },
-    "groups": {
-      "damage": {
-          "key": "damage",
-          "label": "Schadenswerte",
-          "dtype": "String"
-      },
-      "ressources": {
-        "key": "ressources",
-        "label": "Ressourcen",
-        "dtype": "String"
-      },
-      "other": {
-          "key": "other",
-          "label": "Andere",
-          "dtype": "String"
       }
+    }
+  },
+  "Item": {
+    "types": [
+      "item",
+      "weapon",
+      "spell",
+      "consumable"
+    ],
+    "htmlFields": [
+      "description"
+    ],
+    "item": {
+      "description": "",
+      "quantity": 1,
+      "attributes": {},
+      "journalEntry": ""
     },
-    "skill": ""
+    "weapon": {
+      "description": "",
+      "skill": "handeln",
+      "actions": [
+        {
+          "name": "Slash attack",
+          "rolls": [
+            {
+              "key": "damage",
+              "formula": "4d10"
+            }
+          ],
+          "actions": [
+            {
+              "key": "Attack",
+              "targets": "targets",
+              "label": "Slash attack",
+              "animation": "",
+              "roll": "damage",
+              "type": "attack"
+            }
+          ]
+        }
+      ]
+    },
+    "spell": {
+    },
+    "consumable": {
+    }
   }
-}
 }
