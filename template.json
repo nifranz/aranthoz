@@ -88,72 +88,9 @@
         }
       ]
     },
-    "action": {
-      "description": "",
-      "power": {
-        "value": 0
-      },
-      "rolls": {},
-      "attributes": {
-        "damage": {
-          "crit": {
-            "value": "",
-            "label": "Kritischer Schaden",
-            "dtype": "String",
-            "group": "damage"
-          },
-          "bonus": {
-            "value": "",
-            "label": "Bonusschaden",
-            "dtype": "String",
-            "group": "damage"
-          },
-          "base": {
-            "value": "",
-            "label": "Grundschaden",
-            "dtype": "String",
-            "group": "damage"
-          }
-        },
-        "ressources": {
-          "power": {
-            "value": "",
-            "label": "Mana / Stamina",
-            "dtype": "String",
-            "group": "ressources"
-          }
-        },
-        "rollValue": {
-          "value": "",
-          "label": "",
-          "dtype": "String",
-          "group": ""
-        },
-        "appliesDamage": {
-          "value": true,
-          "label": "",
-          "dtype": "Boolean",
-          "group": ""
-        }
-      },
-      "groups": {
-        "damage": {
-          "key": "damage",
-          "label": "Schadenswerte",
-          "dtype": "String"
-        },
-        "ressources": {
-          "key": "ressources",
-          "label": "Ressourcen",
-          "dtype": "String"
-        },
-        "other": {
-          "key": "other",
-          "label": "Andere",
-          "dtype": "String"
-        }
-      },
-      "skill": ""
+    "spell": {
+    },
+    "consumable": {
     }
   }
 }
