@@ -17,7 +17,7 @@ import { createWorldbuildingMacro } from "./macro.js";
 import { createAranthozMacro } from "./macro.js";
 import { SimpleToken, SimpleTokenDocument } from "./token.js";
 import { skillRoll, actionRoll, weaponRoll } from "./roll.js";
-
+import { updateTokens, executeTokenAction, startWorkflow } from "./actions.js";
 
 /* -------------------------------------------- */
 /*  Foundry VTT Initialization                  */
@@ -44,7 +44,9 @@ Hooks.once("init", async function() {
     createAranthozMacro,
     skillRoll,
     weaponRoll,
-    actionRoll
+    actionRoll,
+    updateTokens,
+    startWorkflow
   };
 
   // Define custom Document classes
@@ -152,6 +154,28 @@ Hooks.on("getActorDirectoryEntryContext", (html, options) => {
     }
   });
 });
+
+/**
+ * Enables Chat Message function calls in buttons
+ */
+
+Hooks.on("renderChatMessage", (message, html) => {
+  html.find('button[data-tokenids]').click(event => {
+    let tokenIds = event.currentTarget.dataset.tokenids;
+    const value = event.currentTarget.dataset.value;
+
+    console.log(tokenIds);
+    tokenIds = tokenIds.split(",");
+    console.log(value);
+  
+    if (value) {
+      for (let tokenId of tokenIds) { // for every tokenId in tokenIds execute a tokenAction Call
+        executeTokenAction(tokenId, value);
+      }
+    }
+  });
+});
+
 
 /**
  * Adds the item template context menu.
