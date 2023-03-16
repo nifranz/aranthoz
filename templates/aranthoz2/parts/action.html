@@ -1,4 +1,3 @@
-
     <header class="sheet-header">
         <img class="profile-img" src="{{data.img}}" data-edit="img" title="{{data.name}}" />
         <div class="header-fields">
@@ -36,7 +35,7 @@
             </header>
 
             {{!-- Render the attribute list partial. --}}
-        {{> "systems/aranthoz/templates/aranthoz/parts/sheet-attributes.html" attributes=systemData.ungroupedAttributes dtypes=dtypes isActor=isActor}}
+            {{> "systems/aranthoz/templates/aranthoz/parts/sheet-attributes.html" attributes=systemData.ungroupedAttributes dtypes=dtypes isActor=isActor}}
 
             {{!-- Render the grouped attributes partial and control. --}}
             <div class="groups">
@@ -47,5 +46,4 @@
                 </div>
             </div>
         </div>
-
     </section>
