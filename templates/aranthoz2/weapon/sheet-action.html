@@ -1,0 +1,23 @@
+<section class="attributes-group">
+  <header class="tables-header">
+    <span class="tables-header-label">Actions</span>
+  </header>
+  <ol class="attributes-list">
+    <div class="skillgroup-table-header borderimg-ne">
+      <div class="table-header-controls"><a class="add item-control" data-action="create"><i class="material-symbols-outlined">add</i></a></div>
+      <div class="table-header-label">Key</div>
+      <div class="table-header-label">Roll</div>
+      <div class="table-header-label">Target</div>
+      <div class="table-header-label">Animation</div>
+    </div>
+    {{#each actions as |action index|}}
+    <li class="attribute flexrow" data-attribute="{{action}}">
+      <input class="attribute-key" type="text" name="system.actions.[{{index}}].key" value="{{key}}"/>
+      <input class="attribute-key" type="text" name="system.actions.[{{index}}].roll" value="{{roll}}"/>
+      <input class="attribute-key" type="text" name="system.actions.[{{index}}].target" value="{{target}}"/>
+      <input class="attribute-key" type="text" name="system.actions.[{{index}}].animation" value="{{animation}}"/>
+      <a class="attribute-control" data-action="delete"><i class="fas fa-trash"></i></a>
+    </li>
+    {{/each}}
+  </ol>
+</section>
