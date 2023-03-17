@@ -245,7 +245,6 @@
                     
                     <div class="content-container">
                         <ul class="item-list">
-
                             {{!-- Render all Armor --}}
                             {{#each data.items as |item id|}}
                             {{#if item.isArmor}}
@@ -256,30 +255,49 @@
                             </li>
                             {{/if}}
                             {{/each}}
-                            
                         </ul>
                     </div>
-                </section>
 
-                {{!-- Inventory Tab --}}
-                <section class="tab inventory" data-group="primary" data-tab="inventory">
-                    {{!-- Render All Misc Items --}}
-                    {{#each itemClasses as |itemClass key|}}
+                    {{!-- Render Wearables--}}
                     <div class="skillgroup-table-header borderimg-ne">
-                        <div class="table-header-controls"><a class="add item-control" data-action="create" item-type="misc" misc-item-class="{{itemClass.key}}"><i class="material-symbols-outlined">add</i></a></div>
-                        <div class="table-header-label">{{itemClass.tabName}}</div>
+                        <div class="table-header-controls"><a class="add item-control" data-action="create" item-type="wearable" misc-item-class=""><i class="material-symbols-outlined">add</i></a></div>
+                        <div class="table-header-label">Wearables</div>
                         <div class="table-header-label"></div>
                     </div>
-                    
                     <div class="content-container">
                         <ul class="item-list">
-                            {{#each ../data.items as |item id|}}
-                            {{#if item.isMisc}}
-                            {{#if (lookup item.isOfClass itemClass.key) }}
-
+                            {{#each data.items as |item id|}}
+                            {{#if item.isWearable}}
                             <li class ="item" data-item-id="{{item._id}}">
                                 <a class="item-control material-symbols-outlined" data-action="edit" style="margin-right: 10px;">create</a>
-                                {{#if (lookup item.isOfClass 'ingredient')}}
+                                {{#if item.isStackable}}
+                                <div class="item-count">
+                                    <a class="item-count-update" type="decr">-</a>
+                                    <input class="item-count-value" value="2">
+                                    <a class="item-count-update" type="incr">+</a>
+                                </div>
+                                {{/if}}
+                                <p class="weapon-info dragItem" data-item-id="{{item._id}}">{{item.name}}</p>
+                                <a class="item-control material-symbols-outlined" data-action="delete" style="margin-left: 10px;">delete</a>
+                            </li>
+                            {{/if}}
+                            {{/each}}
+                        </ul>
+                    </div>
+
+                    {{!-- Render Ammunition --}}
+                    <div class="skillgroup-table-header borderimg-ne">
+                        <div class="table-header-controls"><a class="add item-control" data-action="create" item-type="ammunition" misc-item-class=""><i class="material-symbols-outlined">add</i></a></div>
+                        <div class="table-header-label">Ammunition</div>
+                        <div class="table-header-label"></div>
+                    </div>
+                    <div class="content-container">
+                        <ul class="item-list">
+                            {{#each data.items as |item id|}}
+                            {{#if item.isAmmunition}}
+                            <li class ="item" data-item-id="{{item._id}}">
+                                <a class="item-control material-symbols-outlined" data-action="edit" style="margin-right: 10px;">create</a>
+                                {{#if item.isStackable}}
                                 <div class="item-count">
                                     <a class="item-count-update" type="decr">-</a>
                                     <input class="item-count-value" value="2">
@@ -290,10 +308,19 @@
                                 <a class="item-control material-symbols-outlined" data-action="delete" style="margin-left: 10px;">delete</a>
                             </li>
                             {{/if}}
-                            {{/if}}
                             {{/each}}
                         </ul>
                     </div>
+                </section>
+
+                {{!-- Inventory Tab --}}
+                <section class="tab inventory" data-group="primary" data-tab="inventory">
+                    {{!--  Render Consumable Items --}}
+                    {{> "systems/aranthoz/templates/aranthoz2/parts/actor-sheet/item-table.html" items=(lookup data.itemCollection 'consumable') headerName='Consumables' itemType="consumable" itemClass="" isRollable="true" actorId=data._id }}
+
+                    {{!-- Render All Misc Item Class Items --}}
+                    {{#each itemClasses as |itemClass key|}}
+                    {{> "systems/aranthoz/templates/aranthoz2/parts/actor-sheet/item-table.html" items=(lookup ( lookup ../data.itemCollection 'misc') itemClass.key) headerName=itemClass.tabName itemType='misc' itemClass=itemClass.key isRollable=false actorId=../data._id }}                    
                     {{/each}}
                 </section>
             </section>

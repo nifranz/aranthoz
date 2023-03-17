@@ -14,6 +14,8 @@ export const preloadHandlebarsTemplates = async function () {
         "systems/aranthoz/templates/aranthoz/parts/sheet-groups.html",
 
         //Aranthoz2 templates
+        // Actor Sheet
+        "systems/aranthoz/templates/aranthoz2/parts/actor-sheet/item-table.html",
         "systems/aranthoz/templates/aranthoz2/parts/weapon.html",
         "systems/aranthoz/templates/aranthoz2/parts/action.html",
         "systems/aranthoz/templates/aranthoz2/weapon/sheet-roll.html",
