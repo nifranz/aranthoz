@@ -76,7 +76,6 @@ export class EntitySheetHelper {
     console.log(data.items);
     if (data.items) { // if data is actor document (only actor documents has the item property)
       for ( let item of Object.values(data.items) ) {
-        console.log("Check item types");
         if ( item.type ) {
           for (const type of Item.TYPES) {
             // add "isType" property to the item for handlebars
@@ -90,8 +89,8 @@ export class EntitySheetHelper {
               const itemClass = itemClassObject.key;
               const classUpper = itemClass.charAt(0).toUpperCase() + itemClass.slice(1);
               item[`isOfClass${classUpper}`] = item.system.itemClass === itemClass;
-              item['isOfClass'][classUpper] = true
-            } 
+              item['isOfClass'][itemClass] = item.system.itemClass === itemClass;
+            }
           }
         }
       }

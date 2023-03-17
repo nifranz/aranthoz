@@ -417,6 +417,7 @@ body {
   flex-direction: column;
   width: 100%;
   gap: 15px;
+  margin-bottom: 30px;
 }
 .aranthoz .item {
   height: 30px;

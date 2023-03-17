@@ -263,93 +263,38 @@
 
                 {{!-- Inventory Tab --}}
                 <section class="tab inventory" data-group="primary" data-tab="inventory">
+                    {{!-- Render All Misc Items --}}
+                    {{#each itemClasses as |itemClass key|}}
+                    <div class="skillgroup-table-header borderimg-ne">
+                        <div class="table-header-controls"><a class="add item-control" data-action="create" item-type="misc" misc-item-class="{{itemClass.key}}"><i class="material-symbols-outlined">add</i></a></div>
+                        <div class="table-header-label">{{itemClass.tabName}}</div>
+                        <div class="table-header-label"></div>
+                    </div>
+                    
                     <div class="content-container">
-                        {{#each itemClasses as |itemClass key|}}
-                            {{itemClass.tabName}}
-                        {{/each}}
                         <ul class="item-list">
-                            {{!-- Render all inventory items --}}
-                            {{#each data.items as |item id|}}
+                            {{#each ../data.items as |item id|}}
                             {{#if item.isMisc}}
+                            {{#if (lookup item.isOfClass itemClass.key) }}
+
                             <li class ="item" data-item-id="{{item._id}}">
                                 <a class="item-control material-symbols-outlined" data-action="edit" style="margin-right: 10px;">create</a>
-                                <p class="weapon-info dragItem" data-item-id="{{item._id}}">{{item.name}}{{item.isOfClassDocument}}{{item.isOfClassIngredient}}</p>
-                                <a class="item-control material-symbols-outlined" data-action="delete" style="margin-left: 10px;">delete</a>
-                            </li>
-                            {{/if}}
-                            {{/each}}
-                            {{!-- Sample Stackable Item --}}                       
-                            <!-- <li class ="item">                                    
-                                <a class="material-symbols-outlined" style="margin-right: 10px;">create</a>
+                                {{#if (lookup item.isOfClass 'ingredient')}}
                                 <div class="item-count">
                                     <a class="item-count-update" type="decr">-</a>
                                     <input class="item-count-value" value="2">
                                     <a class="item-count-update" type="incr">+</a>
-                                </div>                                    
-                                <input class="weapon-info" value="Pfeile">
-                                <a class="material-symbols-outlined" style="margin-left: 10px;">delete</a>
-                            </li> -->
-                        </ul>        
-                        <nav class="misc-nav tabs borderimg-ne" data-group="misc">
-
-                        {{#each itemClasses as |itemClass key|}}
-                            <a class="nav-link" data-tab="{{itemClass.key}}">{{itemClass.tabName}}</a>
-                        {{/each}}
-                        </nav>
-                        <section class = "misc-content">
-
-                            {{#each itemClasses as |itemClass key|}}
-                            <section class="tab {{itemClass.key}}s" data-group="misc" data-tab="{{itemClass.key}}s">
-                                hello
-                                {{#each data.items as |item id|}}
-                                {{#if item.isMisc}}
-                                {{#if item.isOfClass.[key]}}
-                                <li class ="item" data-item-id="{{item._id}}">
-                                    <a class="item-control material-symbols-outlined" data-action="edit" style="margin-right: 10px;">create</a>
-                                    <p class="weapon-info dragItem" data-item-id="{{item._id}}">{{item.name}}</p>
-                                    <a class="item-control material-symbols-outlined" data-action="delete" style="margin-left: 10px;">delete</a>
-                                </li>
+                                </div>    
                                 {{/if}}
-                                {{/if}}
-                                {{/each}}
-                            </section>
+                                <p class="weapon-info dragItem" data-item-id="{{item._id}}">{{item.name}}</p>
+                                <a class="item-control material-symbols-outlined" data-action="delete" style="margin-left: 10px;">delete</a>
+                            </li>
+                            {{/if}}
+                            {{/if}}
                             {{/each}}
-                            <!-- <section class ="tab ingredients" data-group="misc" data-tab="ingredients">
-                                <div class="content-container">
-                                <h3>ingredients</h3>
-                                {{#each data.items as |item id|}}
-                                {{#if item.isMisc}}
-                                {{#if item.isOfClassIngredient}}
-                                <li class ="item" data-item-id="{{item._id}}">
-                                    <a class="item-control material-symbols-outlined" data-action="edit" style="margin-right: 10px;">create</a>
-                                    <p class="weapon-info dragItem" data-item-id="{{item._id}}">{{item.name}}</p>
-                                    <a class="item-control material-symbols-outlined" data-action="delete" style="margin-left: 10px;">delete</a>
-                                </li>
-                                {{/if}}
-                                {{/if}}
-                                {{/each}}
-
-                                <a class="itemAddButton item-control borderimg-ne" data-action="create" item-type="misc" misc-item-class="ingredient"><span class="material-symbols-outlined">add</span></a>   
-                                </div>
-                            </section>
-                            <section class ="tab documents" data-group="misc" data-tab="documents">
-                                <h3>Documents Tab</h3>
-                                {{#each data.items as |item id|}}
-                                {{#if item.isMisc}}
-                                {{#if item.isOfClassDocument}}
-                                <li class ="item" data-item-id="{{item._id}}">
-                                    <a class="item-control material-symbols-outlined" data-action="edit" style="margin-right: 10px;">create</a>
-                                    <p class="weapon-info dragItem" data-item-id="{{item._id}}">{{item.name}}</p>
-                                    <a class="item-control material-symbols-outlined" data-action="delete" style="margin-left: 10px;">delete</a>
-                                </li>
-                                {{/if}}
-                                {{/if}}
-                                {{/each}}
-
-                                <a class="itemAddButton item-control borderimg-ne" data-action="create" item-type="misc" misc-item-class="document"><span class="material-symbols-outlined">add</span></a>   
-                            </section> -->
-                        </section>
+                        </ul>
                     </div>
+                    {{/each}}
                 </section>
             </section>
         </div>
