@@ -3,6 +3,23 @@ import { ITEM_CLASSES } from "./constants.js";
 
 export class EntitySheetHelper {
 
+  static getItemTypeBooleans(itemData) {
+    // create an object containing a boolean for each existing item type resulting whether the item is of that type
+    itemData.isOfType = {};
+    for ( const type of Item.TYPES ) {
+      itemData.isOfType[type] = itemData.type === type;
+    }
+    if (itemData.type == 'misc') {
+      itemData.isOfClass = {};
+      for ( const itemClassObject of ITEM_CLASSES) {
+        const itemClass = itemClassObject.key;
+        itemData.isOfClass[itemClass] = itemData.system.itemClass === itemClass;
+      }
+    }
+    console.log("Get Item Type Booleans Resulting Data");
+    console.log(itemData);
+  }
+
   static createRollMessage() {
 
   }
@@ -80,19 +97,12 @@ export class EntitySheetHelper {
     console.log(data.items);
     
     if (data.items) { // if data is actor document (only actor documents has the item property)
-      // build miscCollection object for later use
-      let miscCollection = {}
-      for (const itemClassObject of ITEM_CLASSES) {
-        const itemClass = itemClassObject.key;
-        miscCollection[itemClass] = [];
-      }
-
       // build an itemCollection object that groups the item by types (and in case for the misc type also by itemClass) for easier access in handlebars
       data.itemCollection = {}
       for (const type of Item.TYPES) {
         // first insert an array into itemCollection for every type item type  
-        if (type === 'misc') { // insert the miscCollection for the 'misc' item instead since its items also need to be grouped by their itemClass (which is unique to 'misc'-items)
-          data.itemCollection[type] = miscCollection;
+        if (type === 'misc') { // insert an object for the 'misc' item instead since its items also need to be grouped by their itemClass (which is unique to 'misc'-items)
+          data.itemCollection[type] = {};
         } else {
           data.itemCollection[type] = [];
         }
@@ -101,6 +111,8 @@ export class EntitySheetHelper {
         for ( const item of Object.values(data.items) ) {
           if (item.type === type) {
             if ( type == 'misc' ) {
+              // if itemClass of item is not yet existant in itemCollection['misc] object initialize it with an empty array
+              data.itemCollection[type][item.system.itemClass] = data.itemCollection[type][item.system.itemClass] || []
               // if the item is of type misc sort it into the miscCollection of the itemClass
               data.itemCollection[type][item.system.itemClass].push(item); 
             } else {
@@ -383,6 +395,9 @@ export class EntitySheetHelper {
       case "action":
         // call actionRoll() function to evaluate action roll
         actionRoll(rollData.actorid, rollData.itemid);
+        break;
+      default:
+        ui.notifications.error(`Item of type '${rollData.rolltype}' cannot be rolled (yet)!`)     
         break;
     }
   }

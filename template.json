@@ -52,7 +52,10 @@
       "weapon",
       "skill",
       "consumable",
-      "armor"
+      "armor",
+      "wearable",
+      "ammunition",
+      "ingredient"
     ],
     "htmlFields": [
       "description"
@@ -62,11 +65,15 @@
       "quantity": 1,
       "attributes": {},
       "journalEntry": "",
-      "itemClass": ""
+      "itemClass": "",
+      "isRollable": false,
+      "isStackable": false
     },
     "weapon": {
       "description": "",
       "skill": "handeln",
+      "isRollable": true,
+      "isStackable": false,
       "actions": {
         "slashAttack": "Slash Attack"
       },
@@ -90,10 +97,36 @@
       ]
     },
     "skill": {
+      "isRollable": true,
+      "isStackable": false, 
+      "resource": "",
+      "cost": {
+        "onSuccess": "",
+        "onFailure": ""
+      },
+      "formula": ""
     },
     "consumable": {
+      "isRollable": true,
+      "isStackable": true
     },
     "armor": {
+      "isRollable": false,
+      "isStackable": false,
+      "isWorn": false
+    },
+    "wearable": {
+      "isRollable": false,
+      "isStackable": false,
+      "isWorn": false
+    },
+    "ammunition": {
+      "isRollable": false,
+      "isStackable": true
+    },
+    "ingredient": {
+      "isRollable": false,
+      "isStackable": true
     }
   }
 }

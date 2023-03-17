@@ -11,7 +11,7 @@ export class AranthozActorSheet2 extends ActorSheet {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["aranthoz", "sheet", "actor"],
-      template: "systems/aranthoz/templates/aranthoz2/aranthoz2.html",
+      template: "systems/aranthoz/templates/aranthoz2/actor-sheet.html",
       width: 1000,
       height: 600,
       tabs: [
@@ -76,53 +76,29 @@ export class AranthozActorSheet2 extends ActorSheet {
     // Everything below here is only needed if the sheet is editable
     if ( !this.isEditable ) return;
 
-    // Skills Management
-    html.find(".skills").on("click", ".skill-control", EntitySheetHelper.onClickAttributeControl.bind(this));
+    // Attribute Control Button Listeners
+    html.find(".attribute-control").on("click", EntitySheetHelper.onClickAttributeControl.bind(this));
     html.find(".groups").on("click", ".group-control", EntitySheetHelper.onClickAttributeGroupControl.bind(this));
-
-    // Sheet Rolls Management
+    
+    // Item Control Button Listeners
+    html.find(".item-control").click(this._onItemControl.bind(this));
+    html.find(".items .rollable").on("click", this._onItemRoll.bind(this));
+    
+    // Roll Button Listeners 
+    html.find(".roll-button").on('click', EntitySheetHelper.onActorSheetRoll.bind(this));
     html.find(".skills").on("click", "a.skill-roll", EntitySheetHelper.onActorSheetRoll.bind(this)); // skill roll
     html.find(".item-list").on("click", "a.weapon-roll", EntitySheetHelper.onActorSheetRoll.bind(this)); // weapon roll
     html.find(".item-list").on("click", "a.action-roll", EntitySheetHelper.onActorSheetRoll.bind(this)); // action roll
 
-    // Item Controls
-    html.find(".item-control").click(this._onItemControl.bind(this));
-    html.find(".items .rollable").on("click", this._onItemRoll.bind(this));
-
-    // Add draggable for Roll-Macro creation
-    // Skill rolls
-    html.find(".skills a.skill-roll").each((i, a) => {
+    // Roll Button Drag&Drop Listeners
+    html.find(".roll-button").each((i, a) => {
       a.setAttribute("draggable", true);
-      a.addEventListener("dragstart", ev => {
-        let dragData = ev.currentTarget.dataset;
-        console.log(ev.currentTarget)
-        console.log(dragData);
-        ev.dataTransfer.setData('text/plain', JSON.stringify(dragData));
-        console.log(ev.dataTransfer);
-      }, false);
-    });
-    // Weapon rolls
-    html.find(".weapons a.weapon-roll").each((i, a) => {
-      a.setAttribute("draggable", true);
-      a.addEventListener("dragstart", ev => {
-        let dragData = ev.currentTarget.dataset;
-        console.log(ev.currentTarget)
-        console.log(dragData);
-        ev.dataTransfer.setData('text/plain', JSON.stringify(dragData));
-        console.log(ev.dataTransfer);
-      }, false);
-    });
-    // Action rolls
-    html.find(".actions a.action-roll").each((i, a) => {
-      a.setAttribute("draggable", true);
-      a.addEventListener("dragstart", ev => {
-        let dragData = ev.currentTarget.dataset;
-        console.log(ev.currentTarget)
-        console.log(dragData);
-        ev.dataTransfer.setData('text/plain', JSON.stringify(dragData));
-        console.log(ev.dataTransfer);
-      }, false);
-    });
+      a.addEventListener("dragstart", e => {
+        let dragData = e.currentTarget.dataset;
+        console.log(dragData)
+        e.dataTransfer.setData('text/plain', JSON.stringify(dragData))
+      }, false)
+    })
   }
 
   /* -------------------------------------------- */

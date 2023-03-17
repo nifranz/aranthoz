@@ -6,10 +6,6 @@ export const ITEM_CLASSES = [
         tabName: 'Documents'
     },
     {
-        key: 'ingredient',
-        tabName: 'Ingredients',  
-    },
-    {
         key: 'other',
         tabName: 'Other'
     }

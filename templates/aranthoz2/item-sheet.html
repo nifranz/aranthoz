@@ -1,19 +1,27 @@
 <form class="flexcol {{cssClass}}" autocomplete="off">
-    {{#if isOfTypeWeapon}}
+    {{#if data.isOfType.weapon}}
         {{> "systems/aranthoz/templates/aranthoz2/parts/weapon.html" ownerRessource=ownerRessource ownerId=ownerId ownerAttributes=ownerAttributes data=data systemData=systemData}}
         Weapon
     {{/if}}
-    {{#if isOfTypeSkill}}
+    {{#if data.isOfType.skill}}
         {{> "systems/aranthoz/templates/aranthoz2/parts/skill.html" ownerRessource=ownerRessource ownerId=ownerId ownerAttributes=ownerAttributes data=data systemData=systemData}}
         Skill 
     {{/if}}
-    {{#if isOfTypeMisc}}
+    {{#if data.isOfType.armor }}
+        Armor 
+    {{/if}}
+    {{#if data.isOfType.wearable}}
+        Wearable 
+    {{/if}}
+    {{#if data.isOfType.ammunition}}
+       Ammunition 
+    {{/if}}
+    {{#if data.isOfType.consumable  }}
+        Consumable
+    {{/if}}
+    {{#if data.isOfType.misc}}
         {{> "systems/aranthoz/templates/aranthoz2/parts/misc.html" ownerRessource=ownerRessource ownerId=ownerId ownerAttributes=ownerAttributes data=data systemData=systemData}}
         Misc
     {{/if}}
-    {{#if isOfTypeConsumable}}
-        {{> "systems/aranthoz/templates/aranthoz2/parts/consumable.html" ownerRessource=ownerRessource ownerId=ownerId ownerAttributes=ownerAttributes data=data systemData=systemData}}
-        Misc
-    {{/if}}
-    sheet
+    Sheet
 </form>

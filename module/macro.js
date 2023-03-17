@@ -28,6 +28,7 @@ export async function createAranthozMacro(data, slot) {
   console.log(data)
   console.log(data.rolltype);
   if (!data.rolltype) return;
+  // after major changes broken legacy code for reference
   switch (data.rolltype) {
     case "skill":
       var command = `game.aranthoz.skillRoll("${data.actorid}", "${data.group}", "${data.key}")`

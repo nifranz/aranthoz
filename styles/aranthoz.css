@@ -28,7 +28,7 @@ body {
 .aranthoz .window-content {
   padding: 0px;
 }
-.aranthoz .main-container {
+.aranthoz .form-container {
   transform: translate(-15px);
   display: block;
   height: 100%;
@@ -402,10 +402,11 @@ body {
   display: flex;
   align-items: center;
 }
-.aranthoz .skill-control {
+.aranthoz .attribute-control .delete {
   height: 100%;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 .aranthoz .skillgroup-table-rows {
   width: 96%;
