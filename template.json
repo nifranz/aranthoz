@@ -67,25 +67,25 @@
     "weapon": {
       "description": "",
       "skill": "handeln",
-      "actions": [
+      "actions": {
+        "slashAttack": "Slash Attack"
+      },
+      "rolls": [
         {
-          "name": "Slash attack",
-          "rolls": [
-            {
-              "key": "damage",
-              "formula": "4d10"
-            }
-          ],
-          "actions": [
-            {
-              "key": "Attack",
-              "targets": "targets",
-              "label": "Slash attack",
-              "animation": "",
-              "roll": "damage",
-              "type": "attack"
-            }
-          ]
+          "name": "damage",
+          "formula": "4d10",
+          "action": "slashAttack"
+        }
+      ],
+      "actionElements": [
+        {
+          "name": "attack",
+          "targets": "targets",
+          "label": "Slash attack",
+          "animation": "",
+          "roll": "damage",
+          "type": "attack",
+          "action": "slashAttack"
         }
       ]
     },
