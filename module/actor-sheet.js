@@ -84,11 +84,8 @@ export class AranthozActorSheet extends ActorSheet {
     html.find(".item-control").click(this._onItemControl.bind(this));
     html.find(".items .rollable").on("click", this._onItemRoll.bind(this));
     
-    // Roll Button Listeners 
+    // Roll Button Listener 
     html.find(".roll-button").on('click', EntitySheetHelper.onActorSheetRoll.bind(this));
-    html.find(".skills").on("click", "a.skill-roll", EntitySheetHelper.onActorSheetRoll.bind(this)); // skill roll
-    html.find(".item-list").on("click", "a.weapon-roll", EntitySheetHelper.onActorSheetRoll.bind(this)); // weapon roll
-    html.find(".item-list").on("click", "a.action-roll", EntitySheetHelper.onActorSheetRoll.bind(this)); // action roll
 
     // Roll Button Drag&Drop Listeners
     html.find(".roll-button").each((i, a) => {

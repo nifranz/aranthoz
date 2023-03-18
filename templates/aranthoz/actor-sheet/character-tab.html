@@ -1,0 +1,56 @@
+<div class="content-container">
+    <div class="content">
+        <div class="portrait-column">
+            <img class="profile-img character-portait" src="{{data.img}}" data-edit="img" title="{{data.name}}" height="210" width="210"/>
+        </div>
+        <div class="heritage-column">
+            <div class="background">
+                <div class="character-label">Background</div>
+                <input class="basic-input gender-value" name="system.identityAttributes.background"  value="{{data.system.identityAttributes.background}}">
+            </div>
+            <div class="class">
+                <div class="character-label">Class</div>
+                <select class="basic-select" name="system.identityAttributes.ressource">
+                    <option value="mana"{{#if isMage}} selected {{/if}}>Mage</option>
+                    <option value="stamina"{{#if isFighter}} selected {{/if}}>Fighter</option>
+                </select>
+            </div>
+            <div class="origin">                                    
+                <div class="character-label">Origin</div>
+                <select class="basic-select" name="system.identityAttributes.origin">
+                    <option value="myhriad"{{#if origin.isMyhriad}} selected {{/if}}>Myhriad</option>
+                    <option value="dunvia"{{#if origin.isDunvia}} selected {{/if}}>Dunvia</option>
+                    <option value="dunrodia"{{#if origin.isDunrodia}} selected {{/if}}>Dunrodia</option>
+                    <option value="venicria"{{#if origin.isVenicria}} selected {{/if}}>Venicria</option>
+                    <option value="thyrgrad"{{#if origin.isThyrgrad}} selected {{/if}}>Thyrgrad</option>
+                    <option value="salir"{{#if origin.isSalir}} selected {{/if}}>Sali'R</option>
+                    <option value="lorthing"{{#if origin.isLorthing}} selected {{/if}}>Lorthing</option>
+                    <option value="rhykva"{{#if origin.isRhykva}} selected {{/if}}>Rhykva</option>
+                </select>
+            </div>
+        </div>
+        <div class="physical-column">
+            <div class="gender">
+                <div class="character-label">Gender</div>
+                <input class="basic-input gender-value" name="system.identityAttributes.gender"  value="{{data.system.identityAttributes.gender}}">
+            </div>
+            <div class="origin">
+                <div class="character-label">Age</div>
+                <input class="basic-input" name="system.identityAttributes.age"  value="{{data.system.identityAttributes.age}}">
+            </div>
+            <div class="gender">
+                <div class="character-label">Bodytype</div>
+                <input class="basic-input" name="system.identityAttributes.build"  value="{{data.system.identityAttributes.build}}">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content">
+    <div class="div-divider"></div>
+</div>
+<div class="content">
+    <div class="description">
+        <h2>Character Description</h2>
+        {{editor biographyHTML target="system.biography" button=true editable=editable engine="prosemirror"}}
+    </div>
+</div>                
