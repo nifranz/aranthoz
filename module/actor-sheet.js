@@ -5,13 +5,13 @@ import { ITEM_CLASSES } from "./constants.js";
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
  */
-export class AranthozActorSheet2 extends ActorSheet {
+export class AranthozActorSheet extends ActorSheet {
 
   /** @inheritdoc */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["aranthoz", "sheet", "actor"],
-      template: "systems/aranthoz/templates/aranthoz2/actor-sheet.html",
+      template: "systems/aranthoz/templates/aranthoz/actor-sheet/actor-sheet.html",
       width: 1000,
       height: 600,
       tabs: [
@@ -192,13 +192,13 @@ export class AranthozActorSheet2 extends ActorSheet {
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
  */
-export class AranthozActorSheet extends ActorSheet {
+export class AranthozActorSheet_old extends ActorSheet {
 
   /** @inheritdoc */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["worldbuilding", "sheet", "actor"],
-      template: "systems/aranthoz/templates/aranthoz/actor-sheet.html",
+      template: "systems/aranthoz/templates/aranthoz_old/actor-sheet.html",
       width: 600,
       height: 600,
       tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description"}],

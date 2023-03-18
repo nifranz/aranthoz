@@ -5,13 +5,13 @@ import { ATTRIBUTE_TYPES } from "./constants.js";
  * Extend the basic ItemSheet with some very simple modifications
  * @extends {ItemSheet}
  */
-export class AranthozItemSheet extends ItemSheet {
+export class AranthozItemSheet_old extends ItemSheet {
 
   /** @inheritdoc */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["worldbuilding", "sheet", "item"],
-      template: "systems/aranthoz/templates/aranthoz/item-sheet.html",
+      template: "systems/aranthoz/templates/aranthoz_old/item-sheet.html",
       width: 520,
       height: 480,
       tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description"}],
@@ -124,13 +124,13 @@ export class AranthozItemSheet extends ItemSheet {
     return formData;
   }
 }
-export class AranthozItemSheet2 extends ItemSheet {
+export class AranthozItemSheet extends ItemSheet {
 
   /** @inheritdoc */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["worldbuilding", "sheet", "item"],
-      template: "systems/aranthoz/templates/aranthoz2/item-sheet.html",
+      template: "systems/aranthoz/templates/aranthoz/item-sheet/item-sheet.html",
       width: 520,
       height: 480,
       tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description"}],

@@ -48,14 +48,14 @@
   },
   "Item": {
     "types": [
-      "misc",
       "weapon",
       "skill",
-      "consumable",
       "armor",
       "wearable",
+      "consumable",
+      "ingredient",
       "ammunition",
-      "ingredient"
+      "misc"
     ],
     "htmlFields": [
       "description"

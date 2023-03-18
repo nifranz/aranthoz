@@ -548,7 +548,7 @@ export class EntitySheetHelper {
    */
   static async deleteAttribute(event, app) {
     const a = event.currentTarget;
-    const li = a.closest("li"); //changed ".attribute" to "li" for compatibility with aranthoz2 sheet
+    const li = a.closest("li"); //changed ".attribute" to "li" for compatibility with aranthoz sheet
     if ( li ) {
       li.parentElement.removeChild(li);
       await app._onSubmit(event);
