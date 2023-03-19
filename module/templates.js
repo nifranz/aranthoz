@@ -19,10 +19,10 @@ export const preloadHandlebarsTemplates = async function () {
       "systems/aranthoz/templates/aranthoz/actor-sheet/sheet-banner.html",
       "systems/aranthoz/templates/aranthoz/actor-sheet/sheet-navigation.html",
       "systems/aranthoz/templates/aranthoz/actor-sheet/sheet-body.html",
-      "systems/aranthoz/templates/aranthoz/actor-sheet/item-table.html",
-      "systems/aranthoz/templates/aranthoz/actor-sheet/item-table.html",
       "systems/aranthoz/templates/aranthoz/actor-sheet/character-tab.html",
       "systems/aranthoz/templates/aranthoz/actor-sheet/attributes-tab.html",
+      "systems/aranthoz/templates/aranthoz/actor-sheet/item-table.html",
+      "systems/aranthoz/templates/aranthoz/actor-sheet/item.html",
 
 
       // Item Sheet

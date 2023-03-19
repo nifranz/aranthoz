@@ -416,7 +416,7 @@
     .item-table{
         .header {
             width: 100%;
-            height: 35px;
+            height: 38px;
 
             /* background-image: url(./assets/banner_vertical_stacked2.png);
             background-size: 130%;
@@ -442,7 +442,7 @@
                 align-items: center;
                 border-radius: 3px;
                 
-                .itemMain {
+                .item-info {
                     align-items: center;
                     flex: 1;
                     display: flex;
@@ -467,8 +467,15 @@
                 }
                 .roll-svg {
                     fill:#63160c
-                }:hover {
-
+                }
+                .roll-svg:hover{
+                    animation: rollingDice .8s infinite ease-in-out;
+                    animation-timing-function: linear;
+                    animation-fill-mode: backwards;
+                }
+                @keyframes rollingDice {
+                    from {tranform: rotate(0deg)}
+                    to {transform: rotate(360deg)}
                 }
                 .item-button {
                     border-top-right-radius: 3px;
@@ -492,15 +499,6 @@
                     align-items: center;
                     margin-right:5px;
                 
-                    svg:hover{
-                        animation: rollingDice .8s infinite ease-in-out;
-                        animation-timing-function: linear;
-                        animation-fill-mode: backwards;
-                    }
-                    @keyframes rollingDice {
-                        from {tranform: rotate(0deg)}
-                        to {transform: rotate(360deg)}
-                    }
                 }
 
                 .item-count {
@@ -519,7 +517,7 @@
                     height: 100%;
                     display:flex;
                     .value {
-                    width:50px;
+                    width:54px;
                     }
                 }
             }

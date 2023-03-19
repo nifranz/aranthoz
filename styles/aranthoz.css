@@ -350,7 +350,7 @@ body {
 }
 .aranthoz .item-table .header {
   width: 100%;
-  height: 35px;
+  height: 38px;
   /* background-image: url(./assets/banner_vertical_stacked2.png);
             background-size: 130%;
             background-position: center; */
@@ -374,19 +374,19 @@ body {
   align-items: center;
   border-radius: 3px;
 }
-.aranthoz .item-table .item-list .item .itemMain {
+.aranthoz .item-table .item-list .item .item-info {
   align-items: center;
   flex: 1;
   display: flex;
 }
-.aranthoz .item-table .item-list .item .itemMain img {
+.aranthoz .item-table .item-list .item .item-info img {
   border: none;
   border-radius: 3px;
   border-bottom-right-radius: 0px;
   border-top-right-radius: 0px;
   height: 100%;
 }
-.aranthoz .item-table .item-list .item .itemMain .item-name {
+.aranthoz .item-table .item-list .item .item-info .item-name {
   height: 100%;
   margin: 0;
   flex: 1;
@@ -398,6 +398,19 @@ body {
 }
 .aranthoz .item-table .item-list .item .roll-svg {
   fill: #63160c;
+}
+.aranthoz .item-table .item-list .item .roll-svg:hover {
+  animation: rollingDice 0.8s infinite ease-in-out;
+  animation-timing-function: linear;
+  animation-fill-mode: backwards;
+}
+@keyframes rollingDice {
+  from {
+    tranform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 .aranthoz .item-table .item-list .item .item-button {
   border-top-right-radius: 3px;
@@ -421,19 +434,6 @@ body {
   align-items: center;
   margin-right: 5px;
 }
-.aranthoz .item-table .item-list .item .roll-button svg:hover {
-  animation: rollingDice 0.8s infinite ease-in-out;
-  animation-timing-function: linear;
-  animation-fill-mode: backwards;
-}
-@keyframes rollingDice {
-  from {
-    tranform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
 .aranthoz .item-table .item-list .item .item-count {
   height: 100%;
   display: flex;
@@ -451,7 +451,7 @@ body {
   color: #fdfbf4;
 }
 .aranthoz .item-table .item-list .item .item-count .value {
-  width: 50px;
+  width: 54px;
 }
 .aranthoz .item-table .item-list .item:last-child:hover {
   border-bottom-right-radius: 3px;
