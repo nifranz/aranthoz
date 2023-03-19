@@ -359,6 +359,52 @@ body {
   justify-content: center;
   align-items: center;
 }
+.aranthoz .item-table .header .header-label {
+  color: #353535;
+  font-size: 20px;
+  flex: 1;
+  text-align: center;
+}
+.aranthoz .item-table .header .header-controls {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  overflow: visible;
+}
+.aranthoz .item-table .header .header-controls .add {
+  height: 32px;
+  width: 32px;
+  transform: translateX(-7px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.aranthoz .item-table .header .header-controls .add i {
+  transition: 0.1s;
+}
+.aranthoz .item-table .header .header-controls .add .bg {
+  z-index: -1;
+  height: 100%;
+  width: 32px;
+  position: absolute;
+  transition: 0.2s ease-out;
+  transform: translateX(-32px);
+}
+.aranthoz .item-table .header .header-controls .add .bg::before {
+  content: " ";
+  display: block;
+  height: 100%;
+  width: 100%;
+  background-color: #63160cd8;
+}
+.aranthoz .item-table .header .header-controls .add:hover .bg {
+  transform: translateX(0px);
+}
+.aranthoz .item-table .header .header-controls .add:hover i {
+  color: #fdfbf4;
+}
 .aranthoz .item-table .item-list {
   display: flex;
   flex-direction: column;
@@ -368,7 +414,7 @@ body {
 }
 .aranthoz .item-table .item-list .item {
   background-color: rgba(161, 144, 124, 0.215);
-  box-shadow: 0px 2px 0px rgba(88, 13, 4, 0.426);
+  box-shadow: 0px 2px 0px #9a7774;
   height: 37px;
   display: flex;
   align-items: center;
@@ -440,7 +486,6 @@ body {
 }
 .aranthoz .item-table .item-list .item .item-count .count {
   background-color: rgba(161, 144, 124, 0.215);
-  height: 100%;
   color: #282828;
   text-align: center;
   font-size: 20px;
@@ -457,7 +502,7 @@ body {
   border-bottom-right-radius: 3px;
 }
 .aranthoz .item-table .item-list .item:hover {
-  box-shadow: 0px 2px 0px rgba(107, 20, 10, 0.756);
+  box-shadow: 0px 2px 0px #882115;
 }
 .aranthoz .item-table .content-container {
   width: 100%;
