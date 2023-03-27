@@ -81,14 +81,14 @@ export class AranthozActorSheet extends ActorSheet {
     html.find(".groups").on("click", ".group-control", EntitySheetHelper.onClickAttributeGroupControl.bind(this));
     
     // Item Control Button Listeners
-    html.find(".item-control").click(this._onItemControl.bind(this));
+    html.find("._item-control").click(this._onItemControl.bind(this));
     html.find(".items .rollable").on("click", this._onItemRoll.bind(this));
     
     // Roll Button Listener 
-    html.find(".roll-button").on('click', EntitySheetHelper.onActorSheetRoll.bind(this));
+    html.find("._roll-button").on('click', EntitySheetHelper.onActorSheetRoll.bind(this));
 
     // Roll Button Drag&Drop Listeners
-    html.find(".roll-button").each((i, a) => {
+    html.find("._roll-button").each((i, a) => {
       a.setAttribute("draggable", true);
       a.addEventListener("dragstart", e => {
         let dragData = e.currentTarget.dataset;
@@ -243,7 +243,7 @@ export class AranthozActorSheet_old extends ActorSheet {
     html.find(".items").on("click", "a.item-roll", EntitySheetHelper.onAranthozItemRoll.bind(this));
 
     // Item Controls
-    html.find(".item-control").click(this._onItemControl.bind(this));
+    html.find("._item-control").click(this._onItemControl.bind(this));
     html.find(".items .rollable").on("click", this._onItemRoll.bind(this));
 
     // Add draggable for Macro creation
@@ -409,7 +409,7 @@ export class SimpleActorSheet extends ActorSheet {
     html.find(".attributes").on("click", "a.attribute-roll", EntitySheetHelper.onAttributeRoll.bind(this));
 
     // Item Controls
-    html.find(".item-control").click(this._onItemControl.bind(this));
+    html.find("._item-control").click(this._onItemControl.bind(this));
     html.find(".items .rollable").on("click", this._onItemRoll.bind(this));
 
     // Add draggable for Macro creation

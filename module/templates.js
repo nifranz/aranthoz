@@ -26,6 +26,10 @@ export const preloadHandlebarsTemplates = async function () {
 
 
       // Item Sheet
+      "systems/aranthoz/templates/aranthoz/item-sheet/item-header.html",
+      "systems/aranthoz/templates/aranthoz/item-sheet/general-tab.html",
+      "systems/aranthoz/templates/aranthoz/item-sheet/attributes-tab.html",
+      "systems/aranthoz/templates/aranthoz/item-sheet/actions-tab.html",
       // Item Type Sheets and Parts
       // Weapon
       "systems/aranthoz/templates/aranthoz/item-sheet/item-types/weapon/weapon.html",

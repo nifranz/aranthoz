@@ -1,28 +1,26 @@
-<form class="flexcol {{cssClass}}" autocomplete="off">
-    {{#if data.isOfType.weapon}}
-        {{> "systems/aranthoz/templates/aranthoz/item-sheet/item-types/weapon/weapon.html" ownerRessource=ownerRessource ownerId=ownerId ownerAttributes=ownerAttributes data=data systemData=systemData}}
-        Weapon
-    {{/if}}
-    {{#if data.isOfType.skill}}
-        {{> "systems/aranthoz/templates/aranthoz/item-sheet/item-types/skill/skill.html" ownerRessource=ownerRessource ownerId=ownerId ownerAttributes=ownerAttributes data=data systemData=systemData}}
-        Skill 
-    {{/if}}
-    {{#if data.isOfType.armor }}
-        Armor 
-    {{/if}}
-    {{#if data.isOfType.wearable}}
-        Wearable 
-    {{/if}}
-    {{#if data.isOfType.ammunition}}
-        Ammunition 
-    {{/if}}
-    {{#if data.isOfType.consumable  }}
-        {{> "systems/aranthoz/templates/aranthoz/item-sheet/item-types/consumable/consumable.html" ownerRessource=ownerRessource ownerId=ownerId ownerAttributes=ownerAttributes data=data systemData=systemData}}
-        Consumable
-    {{/if}}
-    {{#if data.isOfType.misc}}
-        {{> "systems/aranthoz/templates/aranthoz/item-sheet/item-types/misc/misc.html" ownerRessource=ownerRessource ownerId=ownerId ownerAttributes=ownerAttributes data=data systemData=systemData}}
-        Misc
-    {{/if}}
-    Sheet
+<form class=" {{cssClass}} item-sheet" autocomplete="off">
+    {{> "systems/aranthoz/templates/aranthoz/item-sheet/item-header.html" data=data}}
+
+    <div class="divider"></div>
+    {{!-- Sheet Tab Navigation --}}
+    <nav class="item-nav tabs borderimg-ne" data-group="primary">
+        <a class="nav-link" data-tab="general">General</a>
+        <a class="nav-link" data-tab="attributes">Attributes</a>
+        {{#if systemData.implementsActions}}<a class="nav-link" data-tab="actions">Actions</a>{{/if}}
+    </nav>
+    <div class="sheet-body">
+        {{!-- General Tab --}}
+        {{> "systems/aranthoz/templates/aranthoz/item-sheet/general-tab.html"}}
+
+        {{!-- Attributes Tab --}}
+        {{> "systems/aranthoz/templates/aranthoz/item-sheet/attributes-tab.html"}}
+
+        {{!-- Actions Tab --}}
+        {{#if systemData.implementsActions}}
+        {{> "systems/aranthoz/templates/aranthoz/item-sheet/actions-tab.html"}}
+        {{/if}}
+            
+        {{data.type}} Sheet
+        <input type="checkbox" name="system.isStackable" {{#if systemData.isStackable}}checked{{/if}}>
+    </div>
 </form>

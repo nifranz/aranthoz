@@ -1,31 +1,3 @@
-<header class="sheet-header">
-    <img class="profile-img" src="{{data.img}}" data-edit="img" title="{{data.name}}"/>
-    <div class="header-fields">
-        <h1 class="charname">
-            <input name="name" type="text" value="{{data.name}}" placeholder="Name"/>
-        </h1>
-        <div class="resource skill">
-            <label>Skill</label>
-            {{#if ownerId }}
-            <select class="skill-select attribute-dtype">
-                <option value=undefined>Kein Link</option>
-                {{#each ownerAttributes}}
-                <option value="{{this.value}}" {{this.selected}}>{{this.value}}</option>
-                {{/each}}
-            </select>
-            {{ else }}
-            <input type="text" name="system.skill" value="{{systemData.skill}}"/>
-            {{/if}}
-        </div>
-    </div>
-</header>
-
-{{!-- Sheet Tab Navigation --}}
-<nav class="sheet-tabs tabs" data-group="primary">
-    <a class="item" data-tab="description">Description</a>
-    <a class="item" data-tab="Actions">Actions</a>
-</nav>
-
 {{!-- Sheet Body --}}
 {{!-- Description Tab --}}
 <section class="sheet-body">
@@ -34,7 +6,7 @@
     </div>
 
     {{!-- Actions Tab --}}
-    <div class="tab attributes" data-group="primary" data-tab="attributes">
+    <div class="tab actions" data-group="primary" data-tab="actions">
         {{!-- Render the rolls --}}
         {{> "systems/aranthoz/templates/aranthoz/item-sheet/item-types/weapon/sheet-roll.html" rolls=systemData.rolls}}
 
