@@ -1,0 +1,7 @@
+<nav class="item-nav  tabs borderimg-ne _item-nav" data-group="primary">
+    <a class="nav-link" data-tab="general">General</a>
+    <a class="nav-link" data-tab="attributes">Attributes</a>
+    {{#if systemData.implementsActions}}
+    <a class="nav-link {{#unless systemData.actionsEnabled}}isDisabled{{/unless}}" {{#if systemData.actionsEnabled}}data-tab="actions"{{/if}}>Actions</a>
+    {{/if}}
+</nav>

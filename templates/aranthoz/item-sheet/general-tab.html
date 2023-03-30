@@ -1,3 +1,22 @@
 <section class="tab general" data-group="primary" data-tab="general">
-    General Tab
+    {{!-- Item Description Editor --}}
+    <h2>Item Description</h2>
+    <div class="description">
+        {{editor descriptionHTML target="system.description" button=true editable=editable engine="prosemirror"}}
+    </div>
+    <h2>Item Options</h2>
+    <div class="options">
+        {{#if systmData.implementsQuantity}}
+        <div class="option">
+            <input type="checkbox" name="system.isStackable" {{#if systemData.isStackable}}checked{{/if}}>
+            <label>Show item quantity controls in the Actor Sheet</label>
+        </div>
+        {{/if}}
+        {{#if systemData.implementsActions}}
+        <div class="option">
+            <input type="checkbox" name="system.actionsEnabled" {{#if systemData.actionsEnabled}}checked{{/if}}>
+            <label>Enable rollable actions for this item</label>
+        </div>
+        {{/if}}
+    </div>
 </section>

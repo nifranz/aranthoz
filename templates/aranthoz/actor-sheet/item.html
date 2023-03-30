@@ -11,7 +11,7 @@
     </div>
 
     {{!-- Item Roll Button --}}
-    {{#if item.system.isRollable}}
+    {{#if item.system.actionsEnabled}}
     <div class="roll-button button _roll-button" data-rolltype="{{item.type}}" data-name="{{item.name}}" data-itemid="{{item._id}}" data-type="{{item.type}}" data-actorid="{{actorId}}">
         <svg class="roll-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 320" width="27" height="27">
         <g transform="translate(-246.69456,-375.66745)">

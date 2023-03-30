@@ -1,14 +1,15 @@
-<form class=" {{cssClass}} item-sheet" autocomplete="off">
+<form class=" {{cssClass}} item-sheet _item-sheet" autocomplete="off">
+
+    {{!-- Sheet Header --}}
     {{> "systems/aranthoz/templates/aranthoz/item-sheet/item-header.html" data=data}}
 
-    <div class="divider"></div>
-    {{!-- Sheet Tab Navigation --}}
-    <nav class="item-nav tabs borderimg-ne" data-group="primary">
-        <a class="nav-link" data-tab="general">General</a>
-        <a class="nav-link" data-tab="attributes">Attributes</a>
-        {{#if systemData.implementsActions}}<a class="nav-link" data-tab="actions">Actions</a>{{/if}}
-    </nav>
-    <div class="sheet-body">
+    <!-- <div class="divider"></div> -->
+
+    {{!-- Sheet Navigation --}}
+    {{> "systems/aranthoz/templates/aranthoz/item-sheet/item-navigation.html" systemData=systemData}}
+
+    {{!-- Sheet Body --}}
+    <div class="item-body _sheet-body">
         {{!-- General Tab --}}
         {{> "systems/aranthoz/templates/aranthoz/item-sheet/general-tab.html"}}
 
@@ -19,8 +20,5 @@
         {{#if systemData.implementsActions}}
         {{> "systems/aranthoz/templates/aranthoz/item-sheet/actions-tab.html"}}
         {{/if}}
-            
-        {{data.type}} Sheet
-        <input type="checkbox" name="system.isStackable" {{#if systemData.isStackable}}checked{{/if}}>
     </div>
 </form>

@@ -11,8 +11,8 @@ export class AranthozItemSheet extends ItemSheet {
       template: "systems/aranthoz/templates/aranthoz/item-sheet/item-sheet.html",
       width: 520,
       height: 480,
-      tabs: [{navSelector: ".item-nav", contentSelector: ".sheet-body", initial: "general"}],
-      scrollY: [".attributes"],
+      tabs: [{navSelector: "._item-nav", contentSelector: "._sheet-body", initial: "general"}],
+      scrollY: ["._attributes"],
     });
   }
 
