@@ -1,24 +1,27 @@
 <form class=" {{cssClass}} item-sheet _item-sheet" autocomplete="off">
+    <div class="content-container">
+        {{!-- Profile Img --}}
+        <div class="img-container borderimg">
+            <img class="profile-img hvr" src="{{data.img}}" data-edit="img" title="{{data.name}}"/>
+        </div>
+    
+        {{!-- Sheet Header --}}
+        {{> "systems/aranthoz/templates/aranthoz/item-sheet/item-header.html" data=data systemData=systemData}}
 
-    {{!-- Sheet Header --}}
-    {{> "systems/aranthoz/templates/aranthoz/item-sheet/item-header.html" data=data}}
-
-    <!-- <div class="divider"></div> -->
-
-    {{!-- Sheet Navigation --}}
-    {{> "systems/aranthoz/templates/aranthoz/item-sheet/item-navigation.html" systemData=systemData}}
-
-    {{!-- Sheet Body --}}
-    <div class="item-body _sheet-body">
-        {{!-- General Tab --}}
-        {{> "systems/aranthoz/templates/aranthoz/item-sheet/general-tab.html"}}
-
-        {{!-- Attributes Tab --}}
-        {{> "systems/aranthoz/templates/aranthoz/item-sheet/attributes-tab.html"}}
-
-        {{!-- Actions Tab --}}
-        {{#if systemData.implementsActions}}
-        {{> "systems/aranthoz/templates/aranthoz/item-sheet/actions-tab.html"}}
-        {{/if}}
+        {{!-- Aside Properties --}}
+    
+        {{!-- Sheet Body --}}
+        <div class="item-body _sheet-body">
+            {{!-- General Tab --}}
+            {{> "systems/aranthoz/templates/aranthoz/item-sheet/general-tab.html"}}
+    
+            {{!-- Attributes Tab --}}
+            {{> "systems/aranthoz/templates/aranthoz/item-sheet/attributes-tab.html"}}
+    
+            {{!-- Actions Tab --}}
+            {{#if systemData.implementsActions}}
+            {{> "systems/aranthoz/templates/aranthoz/item-sheet/actions-tab.html"}}
+            {{/if}}
+        </div>
     </div>
 </form>

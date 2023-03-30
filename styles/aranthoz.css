@@ -531,12 +531,47 @@ body {
   padding: 5px;
   min-width: 400px;
 }
-.aranthoz .item-sheet .item-nav {
-  flex: 0;
+.aranthoz .item-sheet .content-container .img-container {
+  height: 120px;
+  width: 120px;
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #27272728;
+  position: relative;
+  z-index: 1;
+}
+.aranthoz .item-sheet .content-container .profile-img {
+  width: 114px;
+  height: 114px;
+  border-style: none;
+  position: absolute;
+  max-width: unset;
+  z-index: -1;
+}
+.aranthoz .item-sheet .item-header {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  margin-bottom: 10px;
+  gap: 10px;
+  flex-direction: column;
+}
+.aranthoz .item-sheet .item-header .charname {
+  width: 100%;
+  height: 65px;
+  background-color: #ffffff85;
+  font-family: "Eczar", serif;
+}
+.aranthoz .item-sheet .item-header .charname input {
+  width: 100%;
+  height: 100%;
+  font-size: 30px;
+}
+.aranthoz .item-sheet .item-header .item-nav {
+  width: 100%;
   height: 45px;
-  width: 400px;
-  margin-left: auto;
-  margin-right: auto;
   background-image: url(../assets/banner/banner-body.png);
   background-size: 1000px;
   background-position: center;
@@ -546,7 +581,7 @@ body {
   align-items: center;
   overflow: visible;
 }
-.aranthoz .item-sheet .item-nav .nav-link {
+.aranthoz .item-sheet .item-header .item-nav .nav-link {
   text-align: center;
   margin-left: 18px;
   margin-right: 18px;
@@ -554,66 +589,11 @@ body {
   font-size: 16px;
   text-shadow: 0px 2px 3px rgba(0, 0, 0, 0.8);
 }
-.aranthoz .item-sheet .item-nav .active {
+.aranthoz .item-sheet .item-header .item-nav .active {
   color: #fefaef;
   text-decoration: underline;
 }
-.aranthoz .item-sheet .item-header {
-  flex: 0 0 100px;
-  overflow: visible;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  margin-bottom: 10px;
-  gap: 10px;
-  position: relative;
-}
-.aranthoz .item-sheet .item-header .img-container {
-  height: 100px;
-  width: 100px;
-  overflow: visible;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #27272728;
-  position: relative;
-  z-index: 1;
-}
-.aranthoz .item-sheet .item-header .profile-img {
-  width: 94px;
-  height: 94px;
-  border-style: none;
-  position: absolute;
-  max-width: unset;
-  z-index: -1;
-}
-.aranthoz .item-sheet .item-header .header-fields {
-  flex: 1;
-  height: 100px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.aranthoz .item-sheet .item-header .header-fields .charname {
-  flex: 1;
-  background-color: #ffffff85;
-  height: 59px;
-  font-family: "Eczar", serif;
-}
-.aranthoz .item-sheet .item-header .header-fields .charname input {
-  width: 100%;
-  height: 100%;
-  font-size: 30px;
-}
-.aranthoz .item-sheet .item-header .header-fields .item-properties {
-  flex: 1;
-  display: flex;
-  flex-direction: row;
-  font-size: 16px;
-  gap: 10px;
-}
-.aranthoz .item-sheet .item-header .header-fields .item-properties .item-type {
+.aranthoz .item-sheet .aside-properties .item-type {
   height: 31px;
   text-align: center;
   padding-left: 5px;
@@ -626,34 +606,34 @@ body {
   justify-content: center;
   align-items: center;
 }
-.aranthoz .item-sheet .item-header .header-fields .item-properties .weapon {
+.aranthoz .item-sheet .aside-properties .weapon {
   background-color: #9d000051;
 }
-.aranthoz .item-sheet .item-header .header-fields .item-properties .skill {
+.aranthoz .item-sheet .aside-properties .skill {
   background-color: #c5310051;
 }
-.aranthoz .item-sheet .item-header .header-fields .item-properties .armor {
+.aranthoz .item-sheet .aside-properties .armor {
   background-color: #9b9b9b51;
 }
-.aranthoz .item-sheet .item-header .header-fields .item-properties .wearable {
+.aranthoz .item-sheet .aside-properties .wearable {
   background-color: #009d8d51;
 }
-.aranthoz .item-sheet .item-header .header-fields .item-properties .ammunition {
+.aranthoz .item-sheet .aside-properties .ammunition {
   background-color: #9d510051;
 }
-.aranthoz .item-sheet .item-header .header-fields .item-properties .consumable {
+.aranthoz .item-sheet .aside-properties .consumable {
   background-color: #129d0051;
 }
-.aranthoz .item-sheet .item-header .header-fields .item-properties .ingredient {
+.aranthoz .item-sheet .aside-properties .ingredient {
   background-color: #59009d51;
 }
-.aranthoz .item-sheet .item-header .header-fields .item-properties .document {
+.aranthoz .item-sheet .aside-properties .document {
   background-color: #9d004151;
 }
-.aranthoz .item-sheet .item-header .header-fields .item-properties .misc {
+.aranthoz .item-sheet .aside-properties .misc {
   background-color: #9a9d0051;
 }
-.aranthoz .item-sheet .item-header .header-fields .item-properties .item-rarity {
+.aranthoz .item-sheet .aside-properties .item-rarity {
   height: 31px;
   padding-left: 5px;
   padding-right: 5px;
@@ -663,7 +643,7 @@ body {
   text-shadow: 0.5px 0.5px 0.5px #1e1e1e6d;
   border: none;
 }
-.aranthoz .item-sheet .item-header .header-fields .item-properties .legendary {
+.aranthoz .item-sheet .aside-properties .legendary {
   background-color: #b4660080;
 }
 .aranthoz .item-sheet .item-body {

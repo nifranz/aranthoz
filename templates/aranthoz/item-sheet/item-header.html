@@ -1,19 +1,15 @@
-<header class="item-header">
-    <div class="img-container borderimg">
-        <img class="profile-img hvr" src="{{data.img}}" data-edit="img" title="{{data.name}}"/>
+<div class="item-header">
+    <div class="charname borderimg">
+        <input name="name" type="text" value="{{data.name}}" placeholder="Name"/>
     </div>
-    <div class="header-fields">
-        <div class="charname borderimg">
-            <input name="name" type="text" value="{{data.name}}" placeholder="Name"/>
-        </div>
-        <div class="item-properties">
-            <select class="item-rarity legendary">
-                <option selected>Legendary</option>
-                <option >Epic</option>
-                <option >Rare</option>
-                <option >Common</option>
-            </select>
-            <div class="item-type {{data.type}}">{{data.type}}</span></div>
-        </div>
-    </div>
-</header>
+    {{> "systems/aranthoz/templates/aranthoz/item-sheet/item-navigation.html" systemData=systemData}}
+    <!-- <div class="item-properties">
+        <select class="item-rarity legendary">
+            <option selected>Legendary</option>
+            <option >Epic</option>
+            <option >Rare</option>
+            <option >Common</option>
+        </select>
+        <div class="item-type {{data.type}}">{{data.type}}</span></div>
+    </div> -->
+</div>

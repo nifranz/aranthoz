@@ -599,49 +599,10 @@
         padding: 5px;
         min-width: 400px;
 
-        .item-nav {
-            flex: 0;
-            height:45px;
-            width: 400px;
-            margin-left: auto;
-            margin-right: auto;
-            background-image: url(../assets/banner/banner-body.png);
-            background-size: 1000px;
-            background-position: center;
-            box-shadow: 0px 0px 2px #000000cb;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: visible;
-    
-            .nav-link {
-                text-align: center;
-                margin-left:18px;
-                margin-right: 18px;
-                color: rgb(255, 248, 232);
-                font-size: 16px;
-                text-shadow: 0px 2px 3px rgba(0, 0, 0, 0.8);    
-            }
-            .active {
-                color: rgb(254, 250, 239);
-                text-decoration: underline;
-            }
-        } 
-        
-        .item-header {
-            flex: 0 0 100px;
-            overflow: visible;
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            justify-content: flex-start;
-            margin-bottom: 10px;
-            gap:10px;
-            position: relative;
-            
+        .content-container {
             .img-container {
-                height: 100px;
-                width: 100px;
+                height: 120px;
+                width: 120px;
                 overflow:visible;
                 display: flex;
                 align-items: center;
@@ -651,103 +612,125 @@
                 z-index: 1;
             }
             .profile-img {
-                width: 94px;
-                height: 94px;
+                width: 114px;
+                height: 114px;
                 border-style: none;
                 position: absolute;
                 max-width: unset;
                 z-index: -1;
             }
-        
-            .header-fields {
-                flex: 1;
-                height: 100px;
-                display: flex;
-                flex-direction: column;
-                gap:10px;
+
+        }
+
+        .item-header {
+            width: 100%;
+            height: 100px;
+            display: flex;
+            margin-bottom: 10px;
+            gap:10px;
+            flex-direction: column;
+            
+            .charname {
+                width: 100%;
+                height: 65px;
+                background-color: #ffffff85;
+                font-family: "Eczar", serif;
                 
-                .charname {
-                    flex: 1;
-                    background-color: #ffffff85;
-                    height: 59px;
-                    font-family: "Eczar", serif;
-
-                    input {
-                        width: 100%;
-                        height: 100%;
-                        font-size: 30px;
-                    }
+                input {
+                    width: 100%;
+                    height: 100%;
+                    font-size: 30px;
                 }
-
-                .item-properties {
-                    flex:1;
-                    display: flex;
-                    flex-direction:row;
+            }
+            
+            .item-nav {
+                width: 100%;
+                height:45px;
+                background-image: url(../assets/banner/banner-body.png);
+                background-size: 1000px;
+                background-position: center;
+                box-shadow: 0px 0px 2px #000000cb;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                overflow: visible;
+        
+                .nav-link {
+                    text-align: center;
+                    margin-left:18px;
+                    margin-right: 18px;
+                    color: rgb(255, 248, 232);
                     font-size: 16px;
-                    gap:10px;
-
-                    .item-type {
-                        // padding-top: 3px;
-                        // padding-bottom: 3px;
-                        height: 31px;
-                        text-align: center;
-                        padding-left: 5px;
-                        padding-right: 5px;
-                        border-radius: 3px;
-                        color: aliceblue;
-                        box-shadow: 0px 0px 3px -1px #1e1e1e6d;
-                        text-shadow: 0.5px 0.5px 0.5px #1e1e1e6d;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-
-                    }
-                    .weapon {
-                        background-color:#9d000051;
-                    }
-                    .skill {
-                        background-color:#c5310051;
-                    }
-                    .armor{
-                        background-color:#9b9b9b51;
-                    }
-                    .wearable {
-                        background-color:#009d8d51;
-                    }
-                    .ammunition {
-                        background-color:#9d510051;
-                    }
-                    .consumable {
-                        background-color:#129d0051;
-                    }
-                    .ingredient {
-                        background-color:#59009d51;
-                    }
-                    .document {
-                        background-color:#9d004151;
-                    }
-                    .misc {
-                        background-color:#9a9d0051;
-                    }
-
-                    .item-rarity {
-                        // padding-top: 3px;
-                        // padding-bottom: 3px;
-                        height: 31px;
-                        padding-left: 5px;
-                        padding-right: 5px;
-                        border-radius: 3px;
-                        color: aliceblue;
-                        box-shadow: 0px 0px 3px -1px #1e1e1e6d;
-                        text-shadow: 0.5px 0.5px 0.5px #1e1e1e6d;
-                        border: none;
-
-                    }
-                    .legendary {
-                        background-color:#b4660080;
-
-                    }
+                    text-shadow: 0px 2px 3px rgba(0, 0, 0, 0.8);    
                 }
+                .active {
+                    color: rgb(254, 250, 239);
+                    text-decoration: underline;
+                }
+            }
+        }
+
+        .aside-properties {
+            .item-type {
+                // padding-top: 3px;
+                // padding-bottom: 3px;
+                height: 31px;
+                text-align: center;
+                padding-left: 5px;
+                padding-right: 5px;
+                border-radius: 3px;
+                color: aliceblue;
+                box-shadow: 0px 0px 3px -1px #1e1e1e6d;
+                text-shadow: 0.5px 0.5px 0.5px #1e1e1e6d;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                
+            }
+            .weapon {
+                background-color:#9d000051;
+            }
+            .skill {
+                background-color:#c5310051;
+            }
+            .armor{
+                background-color:#9b9b9b51;
+            }
+            .wearable {
+                background-color:#009d8d51;
+            }
+            .ammunition {
+                background-color:#9d510051;
+            }
+            .consumable {
+                background-color:#129d0051;
+            }
+            .ingredient {
+                background-color:#59009d51;
+            }
+            .document {
+                background-color:#9d004151;
+            }
+            .misc {
+                background-color:#9a9d0051;
+            }
+
+            .item-rarity {
+                // padding-top: 3px;
+                // padding-bottom: 3px;
+                height: 31px;
+                padding-left: 5px;
+                padding-right: 5px;
+                border-radius: 3px;
+                color: aliceblue;
+                box-shadow: 0px 0px 3px -1px #1e1e1e6d;
+                text-shadow: 0.5px 0.5px 0.5px #1e1e1e6d;
+                border: none;
+
+            }
+            .legendary {
+                background-color:#b4660080;
+
             }
         }
 
