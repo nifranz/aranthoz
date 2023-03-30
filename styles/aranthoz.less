@@ -598,9 +598,27 @@
     .item-sheet {
         padding: 5px;
         min-width: 400px;
+        overflow: hidden;
 
+        
         .content-container {
+            .aside-divider {
+                position: absolute;
+                top:35px;
+                left: 129px;
+                height: 91%;
+                border-left-color: #63160ce4;
+                border-left-width: 1px;
+                border-left-style: solid;
+            }
+            display: grid;
+            grid-template-columns: [aside] 120px [content] auto;
+            grid-template-rows: [header] 120px [content] auto;
+
+
             .img-container {
+                grid-column: aside / span 1;
+                grid-row: header / span 1;
                 height: 120px;
                 width: 120px;
                 overflow:visible;
@@ -610,20 +628,27 @@
                 background-color: #27272728;
                 position: relative;
                 z-index: 1;
-            }
-            .profile-img {
-                width: 114px;
-                height: 114px;
-                border-style: none;
-                position: absolute;
-                max-width: unset;
-                z-index: -1;
+
+                .profile-img {
+                    width: 114px;
+                    height: 114px;
+                    border-style: none;
+                    position: absolute;
+                    max-width: unset;
+                    z-index: -1;
+                }
             }
 
         }
 
         .item-header {
-            width: 100%;
+
+            grid-column: content / span 1;
+            grid-row: header / span 1;
+
+            margin-left: 10px;
+
+            width: 100% -10px;
             height: 100px;
             display: flex;
             margin-bottom: 10px;
@@ -671,70 +696,87 @@
         }
 
         .aside-properties {
-            .item-type {
-                // padding-top: 3px;
-                // padding-bottom: 3px;
-                height: 31px;
-                text-align: center;
-                padding-left: 5px;
-                padding-right: 5px;
-                border-radius: 3px;
-                color: aliceblue;
-                box-shadow: 0px 0px 3px -1px #1e1e1e6d;
-                text-shadow: 0.5px 0.5px 0.5px #1e1e1e6d;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                
-            }
-            .weapon {
-                background-color:#9d000051;
-            }
-            .skill {
-                background-color:#c5310051;
-            }
-            .armor{
-                background-color:#9b9b9b51;
-            }
-            .wearable {
-                background-color:#009d8d51;
-            }
-            .ammunition {
-                background-color:#9d510051;
-            }
-            .consumable {
-                background-color:#129d0051;
-            }
-            .ingredient {
-                background-color:#59009d51;
-            }
-            .document {
-                background-color:#9d004151;
-            }
-            .misc {
-                background-color:#9a9d0051;
-            }
+            margin-top: 10px;
+            grid-column: aside / span 1;
+            grid-row: content / span 1;
+            .properties-container {
+                width: 100%;
+                overflow: hidden;
+                display:flex;
+                flex-wrap: wrap;
+                gap: 10px;
 
-            .item-rarity {
-                // padding-top: 3px;
-                // padding-bottom: 3px;
-                height: 31px;
-                padding-left: 5px;
-                padding-right: 5px;
-                border-radius: 3px;
-                color: aliceblue;
-                box-shadow: 0px 0px 3px -1px #1e1e1e6d;
-                text-shadow: 0.5px 0.5px 0.5px #1e1e1e6d;
-                border: none;
+                .property {
+                    width: 100%;
 
-            }
-            .legendary {
-                background-color:#b4660080;
-
+                    .item-type {
+                        // padding-top: 3px;
+                        // padding-bottom: 3px;
+                        height: 31px;
+                        text-align: center;
+                        margin-right: auto;
+                        padding-left: 5px;
+                        padding-right: 5px;
+                        border-radius: 3px;
+                        color: aliceblue;
+                        box-shadow: 0px 0px 3px -1px #1e1e1e6d;
+                        text-shadow: 0.5px 0.5px 0.5px #1e1e1e6d;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                    .weapon {
+                        background-color:#9d000051;
+                    }
+                    .skill {
+                        background-color:#c5310051;
+                    }
+                    .armor{
+                        background-color:#9b9b9b51;
+                    }
+                    .wearable {
+                        background-color:#009d8d51;
+                    }
+                    .ammunition {
+                        background-color:#9d510051;
+                    }
+                    .consumable {
+                        background-color:#129d0051;
+                    }
+                    .ingredient {
+                        background-color:#59009d51;
+                    }
+                    .document {
+                        background-color:#9d004151;
+                    }
+                    .misc {
+                        background-color:#9a9d0051;
+                    }
+                }
+    
+    
+                .item-rarity {
+                    // padding-top: 3px;
+                    // padding-bottom: 3px;
+                    height: 31px;
+                    padding-left: 5px;
+                    padding-right: 5px;
+                    border-radius: 3px;
+                    color: aliceblue;
+                    box-shadow: 0px 0px 3px -1px #1e1e1e6d;
+                    text-shadow: 0.5px 0.5px 0.5px #1e1e1e6d;
+                    border: none;
+                }
+                .legendary {
+                    background-color:#b4660080;
+    
+                }
             }
         }
 
         .item-body {
+            grid-column: content / span 1;
+            grid-row: content / span 1;
             padding: 10px;
             width: 100%;
             margin-top: 10px;

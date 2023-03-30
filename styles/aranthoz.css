@@ -530,8 +530,25 @@ body {
 .aranthoz .item-sheet {
   padding: 5px;
   min-width: 400px;
+  overflow: hidden;
+}
+.aranthoz .item-sheet .content-container {
+  display: grid;
+  grid-template-columns: [aside] 120px [content] auto;
+  grid-template-rows: [header] 120px [content] auto;
+}
+.aranthoz .item-sheet .content-container .aside-divider {
+  position: absolute;
+  top: 35px;
+  left: 129px;
+  height: 91%;
+  border-left-color: #63160ce4;
+  border-left-width: 1px;
+  border-left-style: solid;
 }
 .aranthoz .item-sheet .content-container .img-container {
+  grid-column: aside / span 1;
+  grid-row: header / span 1;
   height: 120px;
   width: 120px;
   overflow: visible;
@@ -542,7 +559,7 @@ body {
   position: relative;
   z-index: 1;
 }
-.aranthoz .item-sheet .content-container .profile-img {
+.aranthoz .item-sheet .content-container .img-container .profile-img {
   width: 114px;
   height: 114px;
   border-style: none;
@@ -551,7 +568,10 @@ body {
   z-index: -1;
 }
 .aranthoz .item-sheet .item-header {
-  width: 100%;
+  grid-column: content / span 1;
+  grid-row: header / span 1;
+  margin-left: 10px;
+  width: 100% -10px;
   height: 100px;
   display: flex;
   margin-bottom: 10px;
@@ -593,9 +613,25 @@ body {
   color: #fefaef;
   text-decoration: underline;
 }
-.aranthoz .item-sheet .aside-properties .item-type {
+.aranthoz .item-sheet .aside-properties {
+  margin-top: 10px;
+  grid-column: aside / span 1;
+  grid-row: content / span 1;
+}
+.aranthoz .item-sheet .aside-properties .properties-container {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.aranthoz .item-sheet .aside-properties .properties-container .property {
+  width: 100%;
+}
+.aranthoz .item-sheet .aside-properties .properties-container .property .item-type {
   height: 31px;
   text-align: center;
+  margin-right: auto;
   padding-left: 5px;
   padding-right: 5px;
   border-radius: 3px;
@@ -606,34 +642,34 @@ body {
   justify-content: center;
   align-items: center;
 }
-.aranthoz .item-sheet .aside-properties .weapon {
+.aranthoz .item-sheet .aside-properties .properties-container .property .weapon {
   background-color: #9d000051;
 }
-.aranthoz .item-sheet .aside-properties .skill {
+.aranthoz .item-sheet .aside-properties .properties-container .property .skill {
   background-color: #c5310051;
 }
-.aranthoz .item-sheet .aside-properties .armor {
+.aranthoz .item-sheet .aside-properties .properties-container .property .armor {
   background-color: #9b9b9b51;
 }
-.aranthoz .item-sheet .aside-properties .wearable {
+.aranthoz .item-sheet .aside-properties .properties-container .property .wearable {
   background-color: #009d8d51;
 }
-.aranthoz .item-sheet .aside-properties .ammunition {
+.aranthoz .item-sheet .aside-properties .properties-container .property .ammunition {
   background-color: #9d510051;
 }
-.aranthoz .item-sheet .aside-properties .consumable {
+.aranthoz .item-sheet .aside-properties .properties-container .property .consumable {
   background-color: #129d0051;
 }
-.aranthoz .item-sheet .aside-properties .ingredient {
+.aranthoz .item-sheet .aside-properties .properties-container .property .ingredient {
   background-color: #59009d51;
 }
-.aranthoz .item-sheet .aside-properties .document {
+.aranthoz .item-sheet .aside-properties .properties-container .property .document {
   background-color: #9d004151;
 }
-.aranthoz .item-sheet .aside-properties .misc {
+.aranthoz .item-sheet .aside-properties .properties-container .property .misc {
   background-color: #9a9d0051;
 }
-.aranthoz .item-sheet .aside-properties .item-rarity {
+.aranthoz .item-sheet .aside-properties .properties-container .item-rarity {
   height: 31px;
   padding-left: 5px;
   padding-right: 5px;
@@ -643,10 +679,12 @@ body {
   text-shadow: 0.5px 0.5px 0.5px #1e1e1e6d;
   border: none;
 }
-.aranthoz .item-sheet .aside-properties .legendary {
+.aranthoz .item-sheet .aside-properties .properties-container .legendary {
   background-color: #b4660080;
 }
 .aranthoz .item-sheet .item-body {
+  grid-column: content / span 1;
+  grid-row: content / span 1;
   padding: 10px;
   width: 100%;
   margin-top: 10px;
