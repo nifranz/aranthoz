@@ -13,9 +13,9 @@
     {{/unless}}
 
     {{!-- Item List --}}
-    <ul class="item-list">
+    <div class="item-list">
         {{#each items as |item id|}}
         {{> "systems/aranthoz/templates/aranthoz/actor-sheet/item.html" item=item actorId=../actorId}}
         {{/each}}
-    </ul>
+    </div>
 </div>
