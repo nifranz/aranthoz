@@ -1,6 +1,5 @@
 import { EntitySheetHelper } from "./helper.js";
 import { ATTRIBUTE_TYPES } from "./constants.js";
-import { ITEM_CLASSES } from "./constants.js";
 /**
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
@@ -28,7 +27,6 @@ export class AranthozActorSheet extends ActorSheet {
   /** @inheritdoc */
   async getData(options) {
     const context = await super.getData(options);
-    context.itemClasses = ITEM_CLASSES;
     EntitySheetHelper.getAttributeData(context.data);
     context.shorthand = !!game.settings.get("aranthoz", "macroShorthand");
     context.systemData = context.data.system;
@@ -123,10 +121,6 @@ export class AranthozActorSheet extends ActorSheet {
         }
         const item = await cls.create({name: name || game.i18n.localize("SIMPLE.ItemNew"), type: button.getAttribute("item-type")}, {parent: this.actor});
         console.log(item);
-        if (itemType == "misc") { // if item type is misc, add the misc-specific itemClass to the newly created item
-          const miscItemClass = button.getAttribute("misc-item-class")
-          item.update({"system.itemClass": miscItemClass});
-        }
         return item;
       }
 

@@ -56,7 +56,7 @@
       "ingredient",
       "ammunition",
       "documents",
-      "other"
+      "misc"
     ],
     "templates": {
       "base": {
@@ -69,7 +69,7 @@
     "htmlFields": [
       "description"
     ],
-    "other": {
+    "misc": {
       "templates": ["base"],
       "quantity": 1,
       "implementsQuantity": true,

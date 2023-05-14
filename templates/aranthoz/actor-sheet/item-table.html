@@ -1,9 +1,9 @@
-<!-- HB Props: items, itemType, itemClass, headerName, actorId -->
+<!-- HB Props: items, itemType, headerName, actorId -->
 <div class="item-table content-container">
     {{!-- Item Table Header --}}
     {{#if headerName}} <!-- If a header name is given, render a header with an "add item" for the table. If no header name is given, render a single "add item" button at the bottom of the table-->
     <div class="header borderimg-ne">
-        <div class="header-controls"><span class="button add _item-control" data-action="create" item-type="{{itemType}}" misc-item-class="{{itemClass}}"><div class="bg"></div><i class="material-symbols-outlined">add</i></span></div>
+        <div class="header-controls"><span class="button add _item-control" data-action="create" item-type="{{itemType}}" ><div class="bg"></div><i class="material-symbols-outlined">add</i></span></div>
         <div class="header-label">{{headerName}}</div>
         <div class="header-label"></div>
     </div>

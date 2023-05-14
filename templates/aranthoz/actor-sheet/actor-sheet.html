@@ -49,15 +49,13 @@
                 {{!-- Inventory Tab --}}
                 <section class="tab inventory" data-group="primary" data-tab="inventory">
                     {{!--  Render Consumable Item Table --}}
-                    {{> "systems/aranthoz/templates/aranthoz/actor-sheet/item-table.html" items=(lookup data.itemCollection 'consumable') headerName='Consumables' itemType="consumable" itemClass="" actorId=data._id }}
+                    {{> "systems/aranthoz/templates/aranthoz/actor-sheet/item-table.html" items=(lookup data.itemCollection 'consumable') headerName='Consumables' itemType="consumable" actorId=data._id }}
 
                     {{!-- Render Document Items Table --}}
-                    {{> "systems/aranthoz/templates/aranthoz/actor-sheet/item-table.html" items=(lookup data.itemCollection 'ingredient') headerName='Ingredients' itemType="ingredient" itemClass="" actorId=data._id }}
+                    {{> "systems/aranthoz/templates/aranthoz/actor-sheet/item-table.html" items=(lookup data.itemCollection 'ingredient') headerName='Ingredients' itemType="ingredient" actorId=data._id }}
 
-                    {{!-- Render Misc Item Tables --}}
-                    {{#each itemClasses as |itemClass key|}}
-                    {{> "systems/aranthoz/templates/aranthoz/actor-sheet/item-table.html" items=(lookup ( lookup ../data.itemCollection 'misc') itemClass.key) headerName=itemClass.tabName itemType='misc' itemClass=itemClass.key actorId=../data._id }}                    
-                    {{/each}}
+                    {{!-- Render Misc Item Table --}}
+                    {{> "systems/aranthoz/templates/aranthoz/actor-sheet/item-table.html" items=(lookup data.itemCollection 'misc') headerName='Miscellaneous' itemType='misc' actorId=../data._id }}                    
                 </section>
             </section>
         </div>

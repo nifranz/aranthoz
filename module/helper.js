@@ -1,5 +1,4 @@
 import { skillRoll, weaponRoll, actionRoll } from "./roll.js";
-import { ITEM_CLASSES } from "./constants.js";
 
 export class EntitySheetHelper {
 
@@ -8,13 +7,6 @@ export class EntitySheetHelper {
     itemData.isOfType = {};
     for ( const type of Item.TYPES ) {
       itemData.isOfType[type] = itemData.type === type;
-    }
-    if (itemData.type == 'misc') {
-      itemData.isOfClass = {};
-      for ( const itemClassObject of ITEM_CLASSES) {
-        const itemClass = itemClassObject.key;
-        itemData.isOfClass[itemClass] = itemData.system.itemClass === itemClass;
-      }
     }
     console.log("Get Item Type Booleans Resulting Data");
     console.log(itemData);
@@ -97,28 +89,17 @@ export class EntitySheetHelper {
     console.log(data.items);
     
     if (data.items) { // if data is actor document (only actor documents has the item property)
-      // build an itemCollection object that groups the item by types (and in case for the misc type also by itemClass) for easier access in handlebars
+      // build an itemCollection object that groups the item by types for easier access in handlebars
       data.itemCollection = {}
       for (const type of Item.TYPES) {
         // first insert an array into itemCollection for every type item type  
-        if (type === 'misc') { // insert an object for the 'misc' item instead since its items also need to be grouped by their itemClass (which is unique to 'misc'-items)
-          data.itemCollection[type] = {};
-        } else {
-          data.itemCollection[type] = [];
-        }
+        data.itemCollection[type] = [];
 
         // then add the items into the correct type groups
         for ( const item of Object.values(data.items) ) {
           if (item.type === type) {
-            if ( type == 'misc' ) {
-              // if itemClass of item is not yet existant in itemCollection['misc] object initialize it with an empty array
-              data.itemCollection[type][item.system.itemClass] = data.itemCollection[type][item.system.itemClass] || []
-              // if the item is of type misc sort it into the miscCollection of the itemClass
-              data.itemCollection[type][item.system.itemClass].push(item); 
-            } else {
-              // if the item is not of type misc sort it into the item type array
-              data.itemCollection[type].push(item);
-            }
+            // if the item is not of type misc sort it into the item type array
+            data.itemCollection[type].push(item);
           }
         }
       }
@@ -132,16 +113,6 @@ export class EntitySheetHelper {
             const typeUpper = type.charAt(0).toUpperCase() + type.slice(1);
             item[`is${typeUpper}`] = item.type === type;
             item['isOfType'][type] = item.type === type;
-          }
-
-          if ( item.type == 'misc' ) { // if item is of type misc add misc item classes object to item for handling in handlebars
-            item['isOfClass'] = {}
-            for ( const itemClassObject of ITEM_CLASSES ) {
-              const itemClass = itemClassObject.key;
-              const classUpper = itemClass.charAt(0).toUpperCase() + itemClass.slice(1);
-              item[`isOfClass${classUpper}`] = item.system.itemClass === itemClass;
-              item['isOfClass'][itemClass] = item.system.itemClass === itemClass;
-            }
           }
         }
       }
