@@ -255,7 +255,8 @@
             border-radius: 1px;
             text-align: left;
             font-size: 18px;
-        }:focus {
+        }
+        .basic-input:focus {
             box-shadow: 0px 2px 0px rgba(88, 12, 4, 0.79);
     
         }
@@ -267,7 +268,8 @@
             text-align: left;
             font-size: 18px;
             font-weight: bolder;
-        }:focus {
+        }
+        .inline-input:focus {
             box-shadow: 0px 2px 0px rgba(88, 12, 4, 0.79);
     
         }
@@ -424,6 +426,40 @@
                     display: flex;
                     align-items: center;
                     border-radius: 3px;
+
+                    .attribute-info {
+                        align-items: center;
+                        flex: 1;
+                        display: flex;
+                        gap: 10px;
+
+                        .name-input,
+                        .value-input,
+                        .key-input {
+                            height: 100%;
+                            color: rgb(40, 40, 40);
+                            font-size: 20px; 
+                        }
+                        .name-input {
+                            width: 53%;
+                            text-align: left;
+                            padding-left: 10px;
+                        }
+                        .value-input,
+                        .key-input {
+                            width: 20%;
+                            background-color: rgba(161, 144, 124, 0.215);
+                            text-align: center;
+                            border-top-right-radius: 3px;
+                            border-top-left-radius: 3px;
+                        }
+                        // input:hover {
+                        //     transition: 0.2s;
+                        //     background-color: rgba(107, 20, 10, 0.586);
+                        //     background-color: rgba(107, 96, 82, 0.288);
+                        //     // color: rgb(253, 251, 244);
+                        // }
+                    }
                     
                     .item-info {
                         align-items: center;
@@ -584,13 +620,15 @@
             }
         }
     
-        .itemAddButton {
+        .item-add-button {
             width: 60px;
             height: 30px;
             background-color: #ffffff85;
             display:flex;
             justify-content: center;
             align-items: center;
+        }
+        .item-add-button:hover {
         }
     }
 

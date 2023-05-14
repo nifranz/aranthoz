@@ -77,8 +77,8 @@ export class AranthozActorSheet extends ActorSheet {
     if ( !this.isEditable ) return;
 
     // Attribute Control Button Listeners
-    html.find(".attribute-control").on("click", EntitySheetHelper.onClickAttributeControl.bind(this));
-    html.find(".groups").on("click", ".group-control", EntitySheetHelper.onClickAttributeGroupControl.bind(this));
+    html.find("._attribute-control").on("click", EntitySheetHelper.onClickAttributeControl.bind(this));
+    if (0) html.find(".groups").on("click", ".group-control", EntitySheetHelper.onClickAttributeGroupControl.bind(this));
     
     // Item Control Button Listeners
     html.find("._item-control").click(this._onItemControl.bind(this));

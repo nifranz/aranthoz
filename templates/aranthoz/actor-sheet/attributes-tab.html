@@ -1,53 +1,48 @@
-<div class="content-container">
-    {{!-- Attributes Tables --}}
-    <div class="skillgroup-tables">
-        {{!-- Attributes Tables Header --}}
-        <div class="tables-header borderimg">
-            <div class="tables-header-label">Name</div>
-            <div class="tables-header-label">Value</div>
-            <div class="tables-header-label">Key</div>
-        </div>
+{{!-- Attribute Group Tables --}}
 
-        {{!-- Attributes groups --}}
-        {{#each groups as |group groupKey|}}                            
-        <div class="skillgroup-table" skillgroup="{{groupKey}}">                               
+{{#each groups as |group groupKey|}}                            
+<div class="item-table content-container" skillgroup="{{groupKey}}">                               
 
-            {{!-- Attribute Group Table Header --}}
-            <div class="skillgroup-table-header borderimg-ne">
-                <div class="table-header-controls"><a class="attribute-control add" data-action="create" data-group="{{groupKey}}"><i class="material-symbols-outlined">add</i></a></div>
-                <div class="table-header-label" name="system.groups.{{groupKey}}.label" value="{{group.label}}">{{group.label}}</div>
-                <div class="table-header-label"></div>
+    {{!-- Attribute Group Table Header --}}
+    <div class="header borderimg-ne">
+        <div class="header-controls"><span class="button add _attribute-control" data-action="create" data-group="{{groupKey}}"><div class="bg"></div><i class="material-symbols-outlined">add</i></span></div>
+        <div class="header-label" name="system.groups.{{groupKey}}.label" value="{{group.label}}">{{group.label}}</div>
+        <div class="header-label"></div>
+    </div>
+
+    {{!-- Attributes --}}
+    <ul class="item-list">                                    
+        {{#each attributes as |attr key|}}
+        <li class="item" data-attribute="{{attr.group}}.{{key}}">
+            {{!-- Attribute Info --}}
+            <div class="attribute-info">
+                
+                {{!-- Attribute Label --}}
+                <input class="name-input" placeholder="Attribute-Name" name="system.attributes.{{attr.group}}.{{key}}.label" value="{{attr.label}}">
+
+                {{!-- Attribute Value --}}
+                <input class="value-input" type="number" placeholder="Value" name="system.attributes.{{attr.group}}.{{key}}.value" value="{{attr.value}}">
+
+                {{!-- Attribute Key --}}
+                <input class="key-input" placeholder="Key" name="system.attributes.{{attr.group}}.{{key}}.key" value="{{key}}">
             </div>
 
-            {{!-- Attributes --}}
-            <ul class="skillgroup-table-rows">                                    
-                {{#each attributes as |attr key|}}
-                <li class="skillgroup-table-row" data-attribute="{{attr.group}}.{{key}}">
-                    <div class="skillgroup-table-entry">
-                        <!-- <a class="attribute-roll" data-key="{{key}}" data-group="{{attr.group}}" data-label="{{attr.label}}" data-value="{{attr.value}}"><i class="fas fa-dice-d20"></i></a> -->
-                        <!-- <a>hi</a> -->
-                        <!-- <a> -->
-                        <a class="roll-button _roll-button" data-rolltype="attribute" data-actorid="{{data._id}}" data-key="{{key}}" data-group="{{attr.group}}" data-label="{{attr.label}}" data-value="{{attr.value}}" style="width: 22px; height: 22px; margin-right: 10px; display: flex; justify-content: center; align-items: center;">
-                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 19 19">
-                                <path fill-rule="evenodd" fill="rgb(88, 13, 4)" d="M3.826,8.060 L0.124,13.540 C0.016,13.716 0.127,13.944 0.332,13.967 L7.637,14.743 L3.826,8.060 L3.826,8.060 ZM0.341,11.589 L2.983,7.288 L0.294,5.672 C0.200,5.615 0.081,5.683 0.081,5.792 L0.081,11.515 C0.081,11.657 0.267,11.710 0.341,11.589 ZM0.722,15.391 L7.541,18.472 C7.727,18.559 7.939,18.422 7.939,18.217 L7.939,15.909 L0.799,15.125 C0.643,15.107 0.580,15.321 0.722,15.391 L0.722,15.391 ZM3.571,6.330 L6.375,1.305 C6.527,1.057 6.249,0.769 5.996,0.913 L0.706,4.380 C0.620,4.437 0.622,4.565 0.711,4.618 L3.571,6.330 L3.571,6.330 ZM8.500,6.687 L12.331,6.687 L8.978,0.769 C8.869,0.590 8.684,0.501 8.500,0.501 C8.316,0.501 8.132,0.590 8.022,0.769 L4.669,6.687 L8.500,6.687 ZM16.707,5.672 L14.018,7.288 L16.659,11.589 C16.733,11.710 16.919,11.657 16.919,11.515 L16.919,5.792 C16.919,5.683 16.800,5.615 16.707,5.672 ZM13.430,6.330 L16.290,4.618 C16.379,4.564 16.381,4.436 16.294,4.379 L11.004,0.913 C10.752,0.769 10.474,1.057 10.626,1.305 L13.430,6.330 ZM16.202,15.125 L9.062,15.908 L9.062,18.217 C9.062,18.422 9.274,18.558 9.460,18.472 L16.279,15.391 C16.420,15.321 16.358,15.107 16.202,15.125 L16.202,15.125 ZM13.175,8.060 L9.364,14.743 L16.669,13.967 C16.874,13.944 16.986,13.716 16.877,13.540 L13.175,8.060 L13.175,8.060 ZM8.500,7.812 L4.977,7.812 L8.500,13.990 L12.023,7.812 L8.500,7.812 Z"></path>
-                            </svg>
-                        </a>
-                        <input class="skillgroup-table-entry inline-input" name="system.attributes.{{attr.group}}.{{key}}.label" value="{{attr.label}}">
-                    </div>
-                    <input class="skillgroup-table-entry basic-input" name="system.attributes.{{attr.group}}.{{key}}.value" value="{{attr.value}}">
-                    <div class="skillgroup-table-entry">
-                        <input class="skillgroup-table-entry basic-input" name="system.attributes.{{attr.group}}.{{key}}.key" value="{{key}}">
-                        <a class="attribute-control delete" data-action="delete"><i class="material-symbols-outlined" style="margin-left: 10px;">delete</i></a>
-                    </div>
-                    <input type="hidden" name="system.attributes.{{#if attr.group}}{{attr.group}}.{{/if}}{{key}}.group" value="{{attr.group}}" />
-                    <input type="hidden" name="system.attributes.{{#if attr.group}}{{attr.group}}.{{/if}}{{key}}.dtype" value="{{attr.dtype}}" />                               
-                </li>
-                {{/each}}
-            </ul>
+            {{!-- Attribute Roll Button --}}            
+            <div class="roll-button button _roll-button" data-rolltype="attribute" data-actorid="{{data._id}}" data-key="{{key}}" data-group="{{attr.group}}" data-label="{{attr.label}}" data-value="{{attr.value}}">
+                <svg class="roll-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 320" width="27" height="27">
+                <g transform="translate(-246.69456,-375.66745)">
+                <path d="M379.93,375.668c-0.57,0.019-1.226,0.228-1.585,0.731l-80.673,96.527   c-1.342,1.681-1.433,2.056,0.366,2.073l161.59-0.427c2.221-0.182,2.23-0.07,0.792-1.951l-79.27-96.527   C380.986,375.84,380.501,375.654,379.93,375.668L379.93,375.668z M395.419,384.266l72.746,88.478   c0.974,1.182,1.212,1.249,2.927,0.427l38.354-17.562c2.513-1.134,2.165-1.366,0.487-2.5L395.419,384.266z M361.454,387.498   c-0.034-0.072-0.625,0.37-1.952,1.281L253.89,458.292l33.05,15.001c1.724,0.568,2.239,0.599,3.354-0.793l69.698-83.234   C360.973,388.129,361.487,387.57,361.454,387.498L361.454,387.498z M515.056,459.756c-0.328,0.023-0.846,0.212-1.646,0.548   l-39.392,17.989c-1.398,0.635-1.311,1.49-0.792,2.561l45.793,116.162l-3.292-135.309   C515.626,460.228,515.604,459.717,515.056,459.756L515.056,459.756z M250.902,463.354l-4.208,131.651l38.782-113.907   c0.573-1.682,0.559-1.767-0.61-2.317L250.902,463.354L250.902,463.354z M461.761,480.427l-165.249,0.427   c-2.361-0.035-2.264-0.033-1.098,1.89l83.905,141.529c1.417,2.159,1.265,2.092,2.744-0.121l80.612-141.772   C463.383,481.253,463.887,480.466,461.761,480.427L461.761,480.427z M468.347,484.147c-0.152,0.064-0.318,0.639-0.793,1.524   l-81.16,142.809c-0.887,1.508-1.097,2.048,1.036,1.708l128.845-17.744c2.044-0.467,1.982-1.197,1.281-3.232l-48.6-123.479   C468.635,484.55,468.5,484.083,468.347,484.147L468.347,484.147z M290.171,485.489c-0.158,0.113-0.3,0.715-0.609,1.585   l-41.16,121.162c-0.701,2.573-0.78,3.541,1.829,4.024l123.113,17.805c2.328,0.351,2.03-0.822,1.463-1.951l-83.783-141.345   C290.498,485.702,290.329,485.375,290.171,485.489L290.171,485.489z M258.158,619.334l120.796,68.538   c1.564,0.949,1.929,0.604,1.707-1.036l-2.561-48.05c-0.07-1.551-0.28-2.183-1.89-2.439L258.158,619.334L258.158,619.334z    M507.922,619.455l-122.625,16.952c-1.618,0.238-1.326,1.032-1.342,2.195l2.622,48.903c0.135,1.483,0.091,2.017,1.89,1.098   L507.922,619.455z"/></g></svg>
+            </div>
 
-            <input type="hidden" name="system.groups.{{groupKey}}.key" value="{{groupKey}}" />
-            <input type="hidden" name="system.groups.{{groupKey}}.label" value="{{group.label}}" />
-        </div>
+            {{!-- Attribute Delete Button --}}
+            <div class="button _attribute-control item-button material-symbols-outlined" data-action="delete">delete</div>
+            <input type="hidden" name="system.attributes.{{#if attr.group}}{{attr.group}}.{{/if}}{{key}}.group" value="{{attr.group}}" />
+            <input type="hidden" name="system.attributes.{{#if attr.group}}{{attr.group}}.{{/if}}{{key}}.dtype" value="{{attr.dtype}}" />                               
+        </li>
         {{/each}}
-    </div>
+    </ul>
+
+    <input type="hidden" name="system.groups.{{groupKey}}.key" value="{{groupKey}}" />
+    <input type="hidden" name="system.groups.{{groupKey}}.label" value="{{group.label}}" />
 </div>
+{{/each}}

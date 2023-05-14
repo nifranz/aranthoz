@@ -223,7 +223,7 @@ body {
   text-align: left;
   font-size: 18px;
 }
-.aranthoz .actor-sheet :focus {
+.aranthoz .actor-sheet .basic-input:focus {
   box-shadow: 0px 2px 0px rgba(88, 12, 4, 0.79);
 }
 .aranthoz .actor-sheet .inline-input {
@@ -235,7 +235,7 @@ body {
   font-size: 18px;
   font-weight: bolder;
 }
-.aranthoz .actor-sheet :focus {
+.aranthoz .actor-sheet .inline-input:focus {
   box-shadow: 0px 2px 0px rgba(88, 12, 4, 0.79);
 }
 .aranthoz .actor-sheet .basic-select {
@@ -369,6 +369,32 @@ body {
   display: flex;
   align-items: center;
   border-radius: 3px;
+}
+.aranthoz .actor-sheet .item-table .item-list .item .attribute-info {
+  align-items: center;
+  flex: 1;
+  display: flex;
+  gap: 10px;
+}
+.aranthoz .actor-sheet .item-table .item-list .item .attribute-info .name-input,
+.aranthoz .actor-sheet .item-table .item-list .item .attribute-info .value-input,
+.aranthoz .actor-sheet .item-table .item-list .item .attribute-info .key-input {
+  height: 100%;
+  color: #282828;
+  font-size: 20px;
+}
+.aranthoz .actor-sheet .item-table .item-list .item .attribute-info .name-input {
+  width: 53%;
+  text-align: left;
+  padding-left: 10px;
+}
+.aranthoz .actor-sheet .item-table .item-list .item .attribute-info .value-input,
+.aranthoz .actor-sheet .item-table .item-list .item .attribute-info .key-input {
+  width: 20%;
+  background-color: rgba(161, 144, 124, 0.215);
+  text-align: center;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
 }
 .aranthoz .actor-sheet .item-table .item-list .item .item-info {
   align-items: center;
@@ -519,7 +545,7 @@ body {
   display: flex;
   align-items: center;
 }
-.aranthoz .actor-sheet .itemAddButton {
+.aranthoz .actor-sheet .item-add-button {
   width: 60px;
   height: 30px;
   background-color: #ffffff85;
