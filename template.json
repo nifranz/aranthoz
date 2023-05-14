@@ -55,23 +55,29 @@
       "consumable",
       "ingredient",
       "ammunition",
-      "misc"
+      "documents",
+      "other"
     ],
+    "templates": {
+      "base": {
+        "description": "",
+        "journalEntry": "",
+        "attributes": {},
+        "groups": {} 
+      }
+    },
     "htmlFields": [
       "description"
     ],
-    "misc": {
-      "description": "",
+    "other": {
+      "templates": ["base"],
       "quantity": 1,
-      "attributes": {},
-      "journalEntry": "",
-      "itemClass": "",
-      "implementsActions": false,
       "implementsQuantity": true,
       "implementsActions": false,
       "isStackable": false
     },
     "weapon": {
+      "templates": ["base"],
       "description": "",
       "skill": "handeln",
       "implementsActions": true,
@@ -99,6 +105,7 @@
       ]
     },
     "skill": {
+      "templates": ["base"],
       "implementsActions": true,
       "isStackable": false, 
       "resource": "",
@@ -109,24 +116,29 @@
       "formula": ""
     },
     "consumable": {
+      "templates": ["base"],
       "implementsActions": true,
       "isStackable": true
     },
     "armor": {
+      "templates": ["base"],
       "implementsActions": false,
       "isStackable": false,
       "isWorn": false
     },
     "wearable": {
+      "templates": ["base"],
       "implementsActions": false,
       "isStackable": false,
       "isWorn": false
     },
     "ammunition": {
+      "templates": ["base"],
       "implementsActions": false,
       "isStackable": true
     },
     "ingredient": {
+      "templates": ["base"],
       "implementsActions": false,
       "isStackable": true
     }
