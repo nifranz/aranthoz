@@ -55,7 +55,7 @@
       "consumable",
       "ingredient",
       "ammunition",
-      "documents",
+      "document",
       "misc"
     ],
     "templates": {
@@ -133,6 +133,11 @@
       "isWorn": false
     },
     "ammunition": {
+      "templates": ["base"],
+      "implementsActions": false,
+      "isStackable": true
+    },
+    "document": {
       "templates": ["base"],
       "implementsActions": false,
       "isStackable": true

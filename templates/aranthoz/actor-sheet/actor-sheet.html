@@ -51,8 +51,11 @@
                     {{!--  Render Consumable Item Table --}}
                     {{> "systems/aranthoz/templates/aranthoz/actor-sheet/item-table.html" items=(lookup data.itemCollection 'consumable') headerName='Consumables' itemType="consumable" actorId=data._id }}
 
-                    {{!-- Render Document Items Table --}}
+                    {{!-- Render Ingredient Items Table --}}
                     {{> "systems/aranthoz/templates/aranthoz/actor-sheet/item-table.html" items=(lookup data.itemCollection 'ingredient') headerName='Ingredients' itemType="ingredient" actorId=data._id }}
+                    
+                    {{!-- Render Document Items Table --}}
+                    {{> "systems/aranthoz/templates/aranthoz/actor-sheet/item-table.html" items=(lookup data.itemCollection 'document') headerName='Documents' itemType="document" actorId=data._id }}
 
                     {{!-- Render Misc Item Table --}}
                     {{> "systems/aranthoz/templates/aranthoz/actor-sheet/item-table.html" items=(lookup data.itemCollection 'misc') headerName='Miscellaneous' itemType='misc' actorId=../data._id }}                    
