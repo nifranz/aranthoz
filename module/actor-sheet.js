@@ -117,7 +117,8 @@ export class AranthozActorSheet extends ActorSheet {
         const cls = getDocumentClass("Item");
         const itemType = button.getAttribute("item-type");
         if (itemType) {
-          var name = "New " + itemType[0].toUpperCase() + itemType.substring(1) + " Item"
+          var name = "New " + itemType[0].toUpperCase() + itemType.substring(1); 
+          if (itemType === 'misc') name += " Item"
         }
         const item = await cls.create({name: name || game.i18n.localize("SIMPLE.ItemNew"), type: button.getAttribute("item-type")}, {parent: this.actor});
         console.log(item);
