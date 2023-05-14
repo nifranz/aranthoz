@@ -63,7 +63,9 @@
         "description": "",
         "journalEntry": "",
         "attributes": {},
-        "groups": {} 
+        "groups": {}, 
+        "quantity": 1,
+        "rarity": "common"
       }
     },
     "htmlFields": [
@@ -71,9 +73,9 @@
     ],
     "misc": {
       "templates": ["base"],
-      "quantity": 1,
       "implementsQuantity": true,
       "implementsActions": false,
+      "implementsEquipment": false,
       "isStackable": false
     },
     "weapon": {
@@ -81,7 +83,8 @@
       "description": "",
       "skill": "handeln",
       "implementsActions": true,
-      "isStackable": false,
+      "implementsQuantity": false,
+      "implementsEquipment": false,
       "actions": {
         "slashAttack": "Slash Attack"
       },
@@ -107,7 +110,8 @@
     "skill": {
       "templates": ["base"],
       "implementsActions": true,
-      "isStackable": false, 
+      "implementsQuantity": false,
+      "implementsEquipment": false,
       "resource": "",
       "cost": {
         "onSuccess": "",
@@ -118,33 +122,44 @@
     "consumable": {
       "templates": ["base"],
       "implementsActions": true,
+      "implementsQuantity": true,
+      "implementsEquipment": false,
       "isStackable": true
     },
     "armor": {
       "templates": ["base"],
       "implementsActions": false,
-      "isStackable": false,
-      "isWorn": false
+      "implementsQuantity": false,
+      "implementsEquipment": true,
+      "isEquipped": false
     },
     "wearable": {
       "templates": ["base"],
       "implementsActions": false,
-      "isStackable": false,
-      "isWorn": false
+      "implementsQuantity": false,
+      "implementsEquipment": true,
+      "isEquipped": false
     },
     "ammunition": {
       "templates": ["base"],
       "implementsActions": false,
+      "implementsQuantity": true,
+      "implementsEquipment": true,
+      "isEquipped": false,
       "isStackable": true
     },
     "document": {
       "templates": ["base"],
       "implementsActions": false,
+      "implementsQuantity": true,
+      "implementsEquipment": false,
       "isStackable": true
     },
     "ingredient": {
       "templates": ["base"],
       "implementsActions": false,
+      "implementsQuantity": true,
+      "implementsEquipment": false,
       "isStackable": true
     }
   }
