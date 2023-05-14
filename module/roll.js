@@ -82,7 +82,7 @@ Rolls.attributeRoll = async function (actorId, attributeGroup, attributeKey) {
 
 }
 
-export async function weaponRoll (actorid, itemid) {
+Rolls.weaponRoll = async function (actorid, itemid) {
     console.log("WEAPON ROLL");
     const itemOwner = await Actor.get(actorid);
     const item = itemOwner.items.get(itemid);
@@ -261,11 +261,11 @@ export async function weaponRoll (actorid, itemid) {
     return 0;
 }
 
-export async function actionRoll (actorid, itemid) {
-    console.log("ACTION ROLL");
+Rolls.skillRoll = async function (actorid, itemid) {
+    console.log("SKILL ROLL");
     const itemOwner = Actor.get(actorid);
     const item = itemOwner.items.get(itemid);  
-    if (item.type != "action") throw new Error("actionRoll(): item is not an action."); 
+    if (item.type != "skill") throw new Error("skillRoll(): item is not a skill."); 
     const characterName = itemOwner.name;
     const skillValue = parseInt(item.system.attributes.rollValue.value);
     const appliesDamage = item.system.attributes.appliesDamage.value;
