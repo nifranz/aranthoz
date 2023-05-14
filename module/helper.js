@@ -1,4 +1,4 @@
-import { skillRoll, weaponRoll, actionRoll } from "./roll.js";
+import { Rolls } from "./roll.js";
 
 export class EntitySheetHelper {
 
@@ -351,22 +351,31 @@ export class EntitySheetHelper {
     console.log(event.currentTarget.dataset);
 
     const rollData = event.currentTarget.dataset;
+    console.log(rollData)
 
     switch (rollData.rolltype) {
+      case "attribute":
+        // call skillRoll() function to evaluate skill rolls
+        ui.notifications.info("attribute roll")
+        console.log(rollData.actorid)
+        Rolls.attributeRoll(rollData.actorid, rollData.group, rollData.key);
+        break;
+
       case "skill":
         // call skillRoll() function to evaluate skill rolls
-        skillRoll(rollData.actorid, rollData.group, rollData.key);
+        ui.notifications.info("skill roll")
+        break;
+
+      case "consumable":
+        // call weaponRoll() function to evaluate weapon roll
+        ui.notifications.info("consumable roll")
         break;
 
       case "weapon":
         // call weaponRoll() function to evaluate weapon roll
-        weaponRoll(rollData.actorid, rollData.itemid);
+        ui.notifications.info("weapon roll")
         break;
 
-      case "action":
-        // call actionRoll() function to evaluate action roll
-        actionRoll(rollData.actorid, rollData.itemid);
-        break;
       default:
         ui.notifications.error(`Item of type '${rollData.rolltype}' cannot be rolled (yet)!`)     
         break;

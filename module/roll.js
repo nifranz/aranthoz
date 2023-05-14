@@ -1,37 +1,44 @@
-export class RollHelper {}
+export let Rolls = {}
 
-export async function skillRoll (actorid, skillGroup, skillKey) {
-    const actor = Actor.get(actorid)
+Rolls.attributeRoll = async function (actorId, attributeGroup, attributeKey) {
+    // defining some variables and checking validity of the roll values
+    const actor = await Actor.get(actorId);
+    const attribute = actor.system.attributes[attributeGroup][attributeKey];
+    let attributeValue = attribute.value;
+    let attributeLabel = attribute.label;
+
     const characterName = actor.name;
-    const skill = actor.system.attributes[skillGroup][skillKey];
-    if (!skill) {
-        ui.notifications.error(`Cant find skill for Actor: ${actor.name}, Skill-Group-Key: ${skillGroup}, Skill-Key: ${skillKey}. Please check your skills tab.`);
+
+    if (!attributeLabel) {
+        ui.notifications.warn("This attribute (attribute-key: " + attributeKey + ") has no attribute label!")
+        attributeLabel= "Attribut"
+    }
+    if (!attributeValue) {
+        ui.notifications.error("This roll can't be executed, since the selected attribute has no attribute value! (attribute-key: " + attributeKey + ")");
         return
     }
-    console.log(actor)
-    console.log(skillGroup);
+    attributeValue = parseInt(attributeValue);
 
-    var skillValue = skill.value;
-    var skillLabel = skill.label;   
-    console.log(skillValue); 
+    // creating and displaying a form to the user; here he can set a modifier if needed
+    const form = '<form><label>Modifier: <input name="modifier" type="string" value="0"/></label>' + '</br></br>Ein positiver Modifier erleichtert den Wurf, ein negativer Modifier erschwert ihn.</br></br>' + '</form>';
 
-    if (!skillLabel) {
-        ui.notifications.warn("This attribute (attribute-key: " + skillKey + ") has no attribute label!")
-        skillLabel = "Attribut"
-    }
-    if (!skillValue) {
-        ui.notifications.error("This attribute (attribute-key: " + skillKey + ") has no attribute value!");
-        return
-    }
-    skillValue = parseInt(skillValue);
-    
+    new Dialog({
+        title: "Skill Check: Gib hier den Roll-Modifier vom GM ein",
+        content: form,
+        buttons: {
+            submit: {label: "Submit", callback: executeRoll},
+            cancel: {label: "Cancel"},
+        },
+    }).render(true);
+    return null;
+
     async function executeRoll(html) {
         const formElement = html[0].querySelector('form');
         const formData = new FormDataExtended(formElement);
         const formDataObject = formData.toObject();
 
         const modifier = parseInt(formDataObject.modifier);
-        const modifiedValue = skillValue + modifier
+        const modifiedValue = attributeValue + modifier
 
         // depending on if there was a value != 0 the modifier will be shown in the chat message by appending the variable modifierString to it
 
@@ -42,23 +49,23 @@ export async function skillRoll (actorid, skillGroup, skillKey) {
         let rollHit = await new Roll("1d100").evaluate();
         let results_html = '';
 
-        let rollMessage = `${characterName} würfelt auf <b>${skillLabel}</b>, sein ${skillLabel}-Wert beträgt <a class="inline-roll inline-result" data-tooltip="${skillLabel}">${skillValue}${modifierString}</a>. Er würfelt <a class="inline-roll inline-result" data-tooltip="1d100"><i class="fas fa-dice-d20"></i>${rollHit.result}</a> und `;
+        let rollMessage = `${characterName} würfelt auf <b>${attributeLabel}</b>, sein ${attributeLabel}-Wert beträgt <a class="inline-roll inline-result" data-tooltip="${attributeLabel}">${attributeValue}${modifierString}</a>. Er würfelt <a class="inline-roll inline-result" data-tooltip="1d100"><i class="fas fa-dice-d20"></i>${rollHit.result}</a> und `;
         let successStateLabel = "";
-        if(rollHit.total <= skillValue + modifier){
+        if(rollHit.total <= attributeValue + modifier){
             console.log("Success");
             
-            if(rollHit.total <= ((skillValue + modifier) / 10)){
-                // results_html = `${characterName} has a critical success with ${rollHit.result} ` + "<" + ` ${actor.system.attributes[skillGroup][skill].value} ${actor.system.attributes[skillGroup][skill].label}`
+            if(rollHit.total <= ((attributeValue + modifier) / 10)){
+                // results_html = `${characterName} has a critical success with ${rollHit.result} ` + "<" + ` ${actor.system.attributes[attributeGroup][attribute].value} ${actor.system.attributes[attributeGroup][attribute].label}`
                 results_html = rollMessage + ` hat damit einen <b>kritischen Erfolg</b>!`;
                 successStateLabel = "Kritischer Erfolg!"
             }else{
-                // results_html = `${characterName} is successful with ${rollHit.result}  + "<" + ${actor.system.attributes[skillGroup][skill].value} ${actor.system.attributes[skillGroup][skill].label}`
+                // results_html = `${characterName} is successful with ${rollHit.result}  + "<" + ${actor.system.attributes[attributeGroup][attribute].value} ${actor.system.attributes[attributeGroup][attribute].label}`
                 results_html = rollMessage + ` ist damit <b>erfolgreich</b>! `;
                 successStateLabel = "Erfolg!"
             }
         }else{
             console.log("Fail");
-            // results_html = `${characterName} failed with ${rollHit.result} ` + ">" + ` ${actor.system.attributes[skillGroup][skill].value}`;
+            // results_html = `${characterName} failed with ${rollHit.result} ` + ">" + ` ${actor.system.attributes[attributeGroup][attribute].value}`;
             results_html = rollMessage + ` ist damit <b>nicht erfolgreich</b>!`;
             successStateLabel = "Fehlschlag!"
         }
@@ -73,18 +80,6 @@ export async function skillRoll (actorid, skillGroup, skillKey) {
         });
     }
 
-    const form = '<form><label>Modifier: <input name="modifier" type="string" value="0"/></label>' + '</br></br>Ein positiver Modifier erleichtert den Wurf, ein negativer Modifier erschwert ihn.</br></br>' + 
-    '</form>';
-
-    new Dialog({
-        title: "Skill Check: Gib hier den Roll-Modifier vom GM ein",
-        content: form,
-        buttons: {
-            submit: {label: "Submit", callback: executeRoll},
-            cancel: {label: "Cancel"},
-        },
-    }).render(true);
-    return null;
 }
 
 export async function weaponRoll (actorid, itemid) {

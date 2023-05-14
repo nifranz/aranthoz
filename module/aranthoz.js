@@ -14,7 +14,7 @@ import { preloadHandlebarsTemplates } from "./templates.js";
 import { createWorldbuildingMacro } from "./macro.js";
 import { createAranthozMacro } from "./macro.js";
 import { SimpleToken, SimpleTokenDocument } from "./token.js";
-import { skillRoll, actionRoll, weaponRoll } from "./roll.js";
+import { Rolls as rolls } from "./roll.js";
 import { updateTokens, executeTokenAction, startWorkflow } from "./actions.js";
 
 /* -------------------------------------------- */
@@ -40,9 +40,7 @@ Hooks.once("init", async function() {
     SimpleActor,
     createWorldbuildingMacro,
     createAranthozMacro,
-    skillRoll,
-    weaponRoll,
-    actionRoll,
+    rolls,
     updateTokens,
     startWorkflow
   };
