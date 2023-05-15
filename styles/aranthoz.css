@@ -170,14 +170,6 @@ body {
   overflow-y: auto;
   margin-bottom: 20px;
 }
-.aranthoz .actor-sheet .content-container {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  flex-direction: column;
-}
 .aranthoz .actor-sheet .content {
   width: 100%;
   margin-top: 20px;
@@ -265,40 +257,17 @@ body {
   width: 100%;
   overflow: visible;
 }
-.aranthoz .actor-sheet .skillgroup-tables {
-  width: 95%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-}
-.aranthoz .actor-sheet .tables-header {
+.aranthoz .actor-sheet .item-table,
+.aranthoz .item-sheet .item-table {
   width: 100%;
-  height: 40px;
-  background-image: url(../assets/banner/banner-body.png);
-  background-size: 130%;
-  background-position: center;
   display: flex;
-  justify-content: center;
   align-items: center;
-}
-.aranthoz .actor-sheet .tables-header-label {
-  flex: 1;
-  text-align: center;
-  color: #fbe7cf;
-  font-size: 20px;
-}
-.aranthoz .actor-sheet .skillgroup-table {
-  width: 95%;
-  display: flex;
   justify-content: center;
-  align-items: center;
+  gap: 20px;
   flex-direction: column;
-  gap: 5px;
-  margin-bottom: 10px;
 }
-.aranthoz .actor-sheet .item-table .header {
+.aranthoz .actor-sheet .item-table .header,
+.aranthoz .item-sheet .item-table .header {
   width: 100%;
   height: 38px;
   /* background-image: url(./assets/banner_vertical_stacked2.png);
@@ -309,60 +278,97 @@ body {
   justify-content: center;
   align-items: center;
 }
-.aranthoz .actor-sheet .item-table .header .header-label {
+.aranthoz .actor-sheet .item-table .header .header-label,
+.aranthoz .item-sheet .item-table .header .header-label {
   color: #353535;
   font-size: 20px;
   flex: 1;
   text-align: center;
 }
-.aranthoz .actor-sheet .item-table .header .header-controls {
+.aranthoz .actor-sheet .item-table .header .header-controls,
+.aranthoz .item-sheet .item-table .header .header-controls {
   flex: 1;
   display: flex;
   align-items: center;
   height: 100%;
   overflow: visible;
 }
-.aranthoz .actor-sheet .item-table .header .header-controls .add {
+.aranthoz .actor-sheet .item-table .header .header-controls .add,
+.aranthoz .item-sheet .item-table .header .header-controls .add,
+.aranthoz .actor-sheet .item-table .header .header-controls .delete,
+.aranthoz .item-sheet .item-table .header .header-controls .delete {
   height: 32px;
   width: 32px;
-  transform: translateX(-7px);
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
 }
-.aranthoz .actor-sheet .item-table .header .header-controls .add i {
+.aranthoz .actor-sheet .item-table .header .header-controls .add i,
+.aranthoz .item-sheet .item-table .header .header-controls .add i,
+.aranthoz .actor-sheet .item-table .header .header-controls .delete i,
+.aranthoz .item-sheet .item-table .header .header-controls .delete i {
   transition: 0.1s;
 }
-.aranthoz .actor-sheet .item-table .header .header-controls .add .bg {
+.aranthoz .actor-sheet .item-table .header .header-controls .add .bg,
+.aranthoz .item-sheet .item-table .header .header-controls .add .bg,
+.aranthoz .actor-sheet .item-table .header .header-controls .delete .bg,
+.aranthoz .item-sheet .item-table .header .header-controls .delete .bg {
   z-index: -1;
   height: 100%;
   width: 32px;
   position: absolute;
   transition: 0.2s ease-out;
-  transform: translateX(-32px);
 }
-.aranthoz .actor-sheet .item-table .header .header-controls .add .bg::before {
+.aranthoz .actor-sheet .item-table .header .header-controls .add .bg::before,
+.aranthoz .item-sheet .item-table .header .header-controls .add .bg::before,
+.aranthoz .actor-sheet .item-table .header .header-controls .delete .bg::before,
+.aranthoz .item-sheet .item-table .header .header-controls .delete .bg::before {
   content: " ";
   display: block;
   height: 100%;
   width: 100%;
   background-color: #63160cd8;
 }
-.aranthoz .actor-sheet .item-table .header .header-controls .add:hover .bg {
+.aranthoz .actor-sheet .item-table .header .header-controls .add,
+.aranthoz .item-sheet .item-table .header .header-controls .add {
+  transform: translateX(-7px);
+}
+.aranthoz .actor-sheet .item-table .header .header-controls .add .bg,
+.aranthoz .item-sheet .item-table .header .header-controls .add .bg {
+  transform: translateX(-32px);
+}
+.aranthoz .actor-sheet .item-table .header .header-controls .delete,
+.aranthoz .item-sheet .item-table .header .header-controls .delete {
+  margin-left: auto;
+  transform: translateX(7px);
+}
+.aranthoz .actor-sheet .item-table .header .header-controls .delete .bg,
+.aranthoz .item-sheet .item-table .header .header-controls .delete .bg {
+  transform: translateX(32px);
+}
+.aranthoz .actor-sheet .item-table .header .header-controls .add:hover .bg,
+.aranthoz .item-sheet .item-table .header .header-controls .add:hover .bg,
+.aranthoz .actor-sheet .item-table .header .header-controls .delete:hover .bg,
+.aranthoz .item-sheet .item-table .header .header-controls .delete:hover .bg {
   transform: translateX(0px);
 }
-.aranthoz .actor-sheet .item-table .header .header-controls .add:hover i {
+.aranthoz .actor-sheet .item-table .header .header-controls .add:hover i,
+.aranthoz .item-sheet .item-table .header .header-controls .add:hover i,
+.aranthoz .actor-sheet .item-table .header .header-controls .delete:hover i,
+.aranthoz .item-sheet .item-table .header .header-controls .delete:hover i {
   color: #fdfbf4;
 }
-.aranthoz .actor-sheet .item-table .item-list {
+.aranthoz .actor-sheet .item-table .item-list,
+.aranthoz .item-sheet .item-table .item-list {
   display: flex;
   flex-direction: column;
   width: 100%;
   gap: 15px;
   margin-bottom: 30px;
 }
-.aranthoz .actor-sheet .item-table .item-list .item {
+.aranthoz .actor-sheet .item-table .item-list .item,
+.aranthoz .item-sheet .item-table .item-list .item {
   background-color: rgba(161, 144, 124, 0.215);
   box-shadow: 0px 2px 0px #9a7774;
   height: 37px;
@@ -370,45 +376,75 @@ body {
   align-items: center;
   border-radius: 3px;
 }
-.aranthoz .actor-sheet .item-table .item-list .item .attribute-info {
+.aranthoz .actor-sheet .item-table .item-list .item .attribute-info,
+.aranthoz .item-sheet .item-table .item-list .item .attribute-info {
   align-items: center;
   flex: 1;
   display: flex;
   gap: 10px;
 }
 .aranthoz .actor-sheet .item-table .item-list .item .attribute-info .name-input,
+.aranthoz .item-sheet .item-table .item-list .item .attribute-info .name-input,
 .aranthoz .actor-sheet .item-table .item-list .item .attribute-info .value-input,
-.aranthoz .actor-sheet .item-table .item-list .item .attribute-info .key-input {
+.aranthoz .item-sheet .item-table .item-list .item .attribute-info .value-input,
+.aranthoz .actor-sheet .item-table .item-list .item .attribute-info .key-input,
+.aranthoz .item-sheet .item-table .item-list .item .attribute-info .key-input {
   height: 100%;
   color: #282828;
   font-size: 20px;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
 }
-.aranthoz .actor-sheet .item-table .item-list .item .attribute-info .name-input {
-  width: 53%;
+.aranthoz .actor-sheet .item-table .item-list .item .attribute-info .name-input,
+.aranthoz .item-sheet .item-table .item-list .item .attribute-info .name-input {
+  width: 50%;
   text-align: left;
   padding-left: 10px;
 }
 .aranthoz .actor-sheet .item-table .item-list .item .attribute-info .value-input,
-.aranthoz .actor-sheet .item-table .item-list .item .attribute-info .key-input {
+.aranthoz .item-sheet .item-table .item-list .item .attribute-info .value-input {
   width: 20%;
+  min-width: 55px;
+}
+.aranthoz .actor-sheet .item-table .item-list .item .attribute-info .key-input,
+.aranthoz .item-sheet .item-table .item-list .item .attribute-info .key-input {
+  width: 30%;
+  min-width: 80px;
+}
+.aranthoz .actor-sheet .item-table .item-list .item .attribute-info .value-input,
+.aranthoz .item-sheet .item-table .item-list .item .attribute-info .value-input,
+.aranthoz .actor-sheet .item-table .item-list .item .attribute-info .key-input,
+.aranthoz .item-sheet .item-table .item-list .item .attribute-info .key-input {
   background-color: rgba(161, 144, 124, 0.215);
   text-align: center;
-  border-top-right-radius: 3px;
-  border-top-left-radius: 3px;
 }
-.aranthoz .actor-sheet .item-table .item-list .item .item-info {
+.aranthoz .actor-sheet .item-table .item-list .item .attribute-info input:focus::placeholder,
+.aranthoz .item-sheet .item-table .item-list .item .attribute-info input:focus::placeholder {
+  color: #e2e0d9;
+}
+.aranthoz .actor-sheet .item-table .item-list .item .attribute-info input:focus,
+.aranthoz .item-sheet .item-table .item-list .item .attribute-info input:focus {
+  color: #fdfbf4;
+  background-color: #63160cbe;
+}
+.aranthoz .actor-sheet .item-table .item-list .item .item-info,
+.aranthoz .item-sheet .item-table .item-list .item .item-info {
   align-items: center;
   flex: 1;
   display: flex;
 }
-.aranthoz .actor-sheet .item-table .item-list .item .item-info img {
+.aranthoz .actor-sheet .item-table .item-list .item .item-info img,
+.aranthoz .item-sheet .item-table .item-list .item .item-info img {
   border: none;
   border-radius: 3px;
   border-bottom-right-radius: 0px;
   border-top-right-radius: 0px;
   height: 100%;
 }
-.aranthoz .actor-sheet .item-table .item-list .item .item-info .item-name {
+.aranthoz .actor-sheet .item-table .item-list .item .item-info .item-name,
+.aranthoz .item-sheet .item-table .item-list .item .item-info .item-name {
   height: 100%;
   margin: 0;
   flex: 1;
@@ -418,10 +454,12 @@ body {
   font-size: 20px;
   margin-right: 5px;
 }
-.aranthoz .actor-sheet .item-table .item-list .item .roll-svg {
+.aranthoz .actor-sheet .item-table .item-list .item .roll-svg,
+.aranthoz .item-sheet .item-table .item-list .item .roll-svg {
   fill: #63160c;
 }
-.aranthoz .actor-sheet .item-table .item-list .item .roll-svg:hover {
+.aranthoz .actor-sheet .item-table .item-list .item .roll-svg:hover,
+.aranthoz .item-sheet .item-table .item-list .item .roll-svg:hover {
   animation: rollingDice 0.8s infinite ease-in-out;
   animation-timing-function: linear;
   animation-fill-mode: backwards;
@@ -434,7 +472,8 @@ body {
     transform: rotate(360deg);
   }
 }
-.aranthoz .actor-sheet .item-table .item-list .item .item-button {
+.aranthoz .actor-sheet .item-table .item-list .item .item-button,
+.aranthoz .item-sheet .item-table .item-list .item .item-button {
   border-top-right-radius: 3px;
   border-top-left-radius: 3px;
   height: 100%;
@@ -442,45 +481,68 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 5px;
+  margin-left: 10px;
 }
-.aranthoz .actor-sheet .item-table .item-list .item .item-button:hover {
+.aranthoz .actor-sheet .item-table .item-list .item .item-button:hover,
+.aranthoz .item-sheet .item-table .item-list .item .item-button:hover {
   transition: 0.2s;
   background-color: rgba(107, 20, 10, 0.756);
   color: #fdfbf4;
 }
-.aranthoz .actor-sheet .item-table .item-list .item .roll-button {
+.aranthoz .actor-sheet .item-table .item-list .item .roll-button,
+.aranthoz .item-sheet .item-table .item-list .item .roll-button {
+  margin-left: 10px;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 5px;
 }
-.aranthoz .actor-sheet .item-table .item-list .item .item-count {
+.aranthoz .actor-sheet .item-table .item-list .item .item-count,
+.aranthoz .item-sheet .item-table .item-list .item .item-count {
   height: 100%;
   display: flex;
+  gap: 10px;
 }
-.aranthoz .actor-sheet .item-table .item-list .item .item-count .count {
+.aranthoz .actor-sheet .item-table .item-list .item .item-count .count-button,
+.aranthoz .item-sheet .item-table .item-list .item .item-count .count-button {
   background-color: rgba(161, 144, 124, 0.215);
   color: #282828;
   text-align: center;
   font-size: 20px;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+  height: 100%;
+  width: 38px;
 }
-.aranthoz .actor-sheet .item-table .item-list .item .item-count .count:hover {
-  transition: 0.1s;
+.aranthoz .actor-sheet .item-table .item-list .item .item-count .count-button:hover,
+.aranthoz .item-sheet .item-table .item-list .item .item-count .count-button:hover {
+  transition: 0.2s;
   background-color: rgba(107, 20, 10, 0.756);
   color: #fdfbf4;
 }
-.aranthoz .actor-sheet .item-table .item-list .item .item-count .value {
-  width: 54px;
+.aranthoz .actor-sheet .item-table .item-list .item .item-count .count-display,
+.aranthoz .item-sheet .item-table .item-list .item .item-count .count-display {
+  background-color: rgba(161, 144, 124, 0.215);
+  color: #282828;
+  text-align: center;
+  font-size: 20px;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+  height: 100%;
+  min-width: 60px;
+  padding-left: 6px;
+  padding-right: 6px;
 }
-.aranthoz .actor-sheet .item-table .item-list .item:last-child:hover {
+.aranthoz .actor-sheet .item-table .item-list .item:last-child:hover,
+.aranthoz .item-sheet .item-table .item-list .item:last-child:hover {
   border-bottom-right-radius: 3px;
 }
-.aranthoz .actor-sheet .item-table .item-list .item:hover {
+.aranthoz .actor-sheet .item-table .item-list .item:hover,
+.aranthoz .item-sheet .item-table .item-list .item:hover {
   box-shadow: 0px 2px 0px #882115;
 }
-.aranthoz .actor-sheet .item-table .content-container {
+.aranthoz .actor-sheet .item-table .content-container,
+.aranthoz .item-sheet .item-table .content-container {
   width: 100%;
   display: flex;
   align-items: center;
@@ -488,64 +550,15 @@ body {
   gap: 20px;
   flex-direction: column;
 }
-.aranthoz .actor-sheet .skillgroup-table-header {
-  width: 100%;
-  height: 35px;
-  /* background-image: url(./assets/banner_vertical_stacked2.png);
-            background-size: 130%;
-            background-position: center; */
-  background-color: #ffffff85;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.aranthoz .actor-sheet .table-header-label {
-  color: #353535;
-  font-size: 20px;
-  flex: 1;
-  text-align: center;
-}
-.aranthoz .actor-sheet .table-header-controls {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  height: 100%;
-}
-.aranthoz .actor-sheet .table-header-controls .add {
-  height: 100%;
-  display: flex;
-  align-items: center;
-}
-.aranthoz .actor-sheet .attribute-control .delete {
+.aranthoz .actor-sheet .attribute-control .delete,
+.aranthoz .item-sheet .attribute-control .delete {
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.aranthoz .actor-sheet .skillgroup-table-rows {
-  width: 96%;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.aranthoz .actor-sheet .skillgroup-table-row {
-  width: 100%;
-  display: flex;
-  gap: 10px;
-}
-.aranthoz .actor-sheet .skillgroup-table-entry {
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: 1;
-}
-.aranthoz .actor-sheet .skillgroup-table-entry .skill-control {
-  height: 100%;
-  display: flex;
-  align-items: center;
-}
-.aranthoz .actor-sheet .item-add-button {
+.aranthoz .actor-sheet .item-add-button,
+.aranthoz .item-sheet .item-add-button {
   width: 60px;
   height: 30px;
   background-color: #ffffff85;
@@ -553,30 +566,31 @@ body {
   justify-content: center;
   align-items: center;
 }
+.aranthoz .actor-sheet .add-group-button,
+.aranthoz .item-sheet .add-group-button {
+  color: #52120a;
+  height: 30px;
+  background-color: #ffffff85;
+  display: flex;
+  flex: 0;
+  justify-content: center;
+  align-items: center;
+}
 .aranthoz .item-sheet {
   padding: 5px;
-  min-width: 400px;
-  overflow: hidden;
+  min-width: 470px;
 }
-.aranthoz .item-sheet .content-container {
-  display: grid;
-  grid-template-columns: [aside] 120px [content] auto;
-  grid-template-rows: [header] 120px [content] auto;
+.aranthoz .item-sheet .item-header {
+  width: 100%;
+  height: 120px;
+  display: flex;
+  margin-bottom: 10px;
+  gap: 10px;
 }
-.aranthoz .item-sheet .content-container .aside-divider {
-  position: absolute;
-  top: 35px;
-  left: 129px;
-  height: 91%;
-  border-left-color: #63160ce4;
-  border-left-width: 1px;
-  border-left-style: solid;
-}
-.aranthoz .item-sheet .content-container .img-container {
-  grid-column: aside / span 1;
-  grid-row: header / span 1;
+.aranthoz .item-sheet .item-header .img-container {
   height: 120px;
   width: 120px;
+  flex: 0 0 120px;
   overflow: visible;
   display: flex;
   align-items: center;
@@ -585,7 +599,7 @@ body {
   position: relative;
   z-index: 1;
 }
-.aranthoz .item-sheet .content-container .img-container .profile-img {
+.aranthoz .item-sheet .item-header .img-container .profile-img {
   width: 114px;
   height: 114px;
   border-style: none;
@@ -593,29 +607,25 @@ body {
   max-width: unset;
   z-index: -1;
 }
-.aranthoz .item-sheet .item-header {
-  grid-column: content / span 1;
-  grid-row: header / span 1;
-  margin-left: 10px;
-  width: 100% -10px;
-  height: 100px;
+.aranthoz .item-sheet .item-header .nav-container {
+  flex: 1;
+  height: 120px;
   display: flex;
-  margin-bottom: 10px;
-  gap: 10px;
   flex-direction: column;
+  gap: 10px;
 }
-.aranthoz .item-sheet .item-header .charname {
+.aranthoz .item-sheet .item-header .nav-container .charname {
   width: 100%;
   height: 65px;
   background-color: #ffffff85;
   font-family: "Eczar", serif;
 }
-.aranthoz .item-sheet .item-header .charname input {
+.aranthoz .item-sheet .item-header .nav-container .charname input {
   width: 100%;
   height: 100%;
   font-size: 30px;
 }
-.aranthoz .item-sheet .item-header .item-nav {
+.aranthoz .item-sheet .item-header .nav-container .item-nav {
   width: 100%;
   height: 45px;
   background-image: url(../assets/banner/banner-body.png);
@@ -627,7 +637,7 @@ body {
   align-items: center;
   overflow: visible;
 }
-.aranthoz .item-sheet .item-header .item-nav .nav-link {
+.aranthoz .item-sheet .item-header .nav-container .item-nav .nav-link {
   text-align: center;
   margin-left: 18px;
   margin-right: 18px;
@@ -635,115 +645,146 @@ body {
   font-size: 16px;
   text-shadow: 0px 2px 3px rgba(0, 0, 0, 0.8);
 }
-.aranthoz .item-sheet .item-header .item-nav .active {
+.aranthoz .item-sheet .item-header .nav-container .item-nav .active {
   color: #fefaef;
   text-decoration: underline;
 }
-.aranthoz .item-sheet .aside-properties {
-  margin-top: 10px;
-  grid-column: aside / span 1;
-  grid-row: content / span 1;
-}
-.aranthoz .item-sheet .aside-properties .properties-container {
-  width: 100%;
-  overflow: hidden;
+.aranthoz .item-sheet .properties {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+  flex-direction: column;
 }
-.aranthoz .item-sheet .aside-properties .properties-container .property {
-  width: 100%;
+.aranthoz .item-sheet .properties-container {
+  overflow: hidden;
+  flex: 0 0 auto;
+  transform: translateY(-5px);
+  display: flex;
+  gap: 20px;
 }
-.aranthoz .item-sheet .aside-properties .properties-container .property .item-type {
-  height: 31px;
+.aranthoz .item-sheet .properties-container .property {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.aranthoz .item-sheet .properties-container .property .property-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
-  margin-right: auto;
+  height: 32px;
   padding-left: 5px;
   padding-right: 5px;
   border-radius: 3px;
   color: aliceblue;
   box-shadow: 0px 0px 3px -1px #1e1e1e6d;
   text-shadow: 0.5px 0.5px 0.5px #1e1e1e6d;
+  font-size: 18px;
+}
+.aranthoz .item-sheet .properties-container .property .multiple-property {
+  display: flex;
+  gap: 10px;
+}
+.aranthoz .item-sheet .properties-container .property .property-label {
+  color: #63160c;
+}
+.aranthoz .item-sheet .properties-container .property .item-rarity {
+  border: none;
+}
+.aranthoz .item-sheet .properties-container .property .legendary {
+  background-color: #b4660080;
+}
+.aranthoz .item-sheet .properties-container .property .item-type {
+  text-align: center;
+  margin-right: auto;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.aranthoz .item-sheet .aside-properties .properties-container .property .weapon {
+.aranthoz .item-sheet .properties-container .property .weapon {
   background-color: #9d000051;
 }
-.aranthoz .item-sheet .aside-properties .properties-container .property .skill {
+.aranthoz .item-sheet .properties-container .property .skill {
   background-color: #c5310051;
 }
-.aranthoz .item-sheet .aside-properties .properties-container .property .armor {
+.aranthoz .item-sheet .properties-container .property .armor {
   background-color: #9b9b9b51;
 }
-.aranthoz .item-sheet .aside-properties .properties-container .property .wearable {
+.aranthoz .item-sheet .properties-container .property .wearable {
   background-color: #009d8d51;
 }
-.aranthoz .item-sheet .aside-properties .properties-container .property .ammunition {
+.aranthoz .item-sheet .properties-container .property .ammunition {
   background-color: #9d510051;
 }
-.aranthoz .item-sheet .aside-properties .properties-container .property .consumable {
+.aranthoz .item-sheet .properties-container .property .consumable {
   background-color: #129d0051;
 }
-.aranthoz .item-sheet .aside-properties .properties-container .property .ingredient {
+.aranthoz .item-sheet .properties-container .property .ingredient {
   background-color: #59009d51;
 }
-.aranthoz .item-sheet .aside-properties .properties-container .property .document {
+.aranthoz .item-sheet .properties-container .property .document {
   background-color: #9d004151;
 }
-.aranthoz .item-sheet .aside-properties .properties-container .property .misc {
+.aranthoz .item-sheet .properties-container .property .misc {
   background-color: #9a9d0051;
 }
-.aranthoz .item-sheet .aside-properties .properties-container .item-rarity {
-  height: 31px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-radius: 3px;
-  color: aliceblue;
-  box-shadow: 0px 0px 3px -1px #1e1e1e6d;
-  text-shadow: 0.5px 0.5px 0.5px #1e1e1e6d;
-  border: none;
+.aranthoz .item-sheet .properties-container .property .quantity {
+  background-color: #0000000f;
+  color: #272727;
+  width: 70px;
 }
-.aranthoz .item-sheet .aside-properties .properties-container .legendary {
-  background-color: #b4660080;
+.aranthoz .item-sheet .properties-container .property .quantity-count {
+  background-color: #0000000f;
+  color: #272727;
+  width: 32px;
+  text-align: center;
 }
-.aranthoz .item-sheet .item-body {
-  grid-column: content / span 1;
-  grid-row: content / span 1;
-  padding: 10px;
+.aranthoz .item-sheet .properties-container .property .quantity-count:hover {
+  background-color: #71180db4;
+  color: #fdfbf4;
+  transition: 0.2s;
+}
+.aranthoz .item-sheet .properties-container .property .stack {
+  background-color: #0000000f;
+  color: #272727;
+}
+.aranthoz .item-sheet .sheet-body {
+  overflow-y: scroll;
   width: 100%;
-  margin-top: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
-.aranthoz .item-sheet .item-body .general {
+.aranthoz .item-sheet .sheet-body .tab-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.aranthoz .item-sheet .sheet-body .general {
   width: 100%;
   min-height: 150px;
 }
-.aranthoz .item-sheet .item-body .general .description {
+.aranthoz .item-sheet .sheet-body .general .description {
   display: block;
   width: 100%;
   overflow: visible;
 }
-.aranthoz .item-sheet .item-body .general .description .editor {
+.aranthoz .item-sheet .sheet-body .general .description .editor {
   height: 100%;
   min-height: 70px;
   width: 100%;
   overflow: visible;
 }
-.aranthoz .item-sheet .item-body .general .description .editor-content {
+.aranthoz .item-sheet .sheet-body .general .description .editor-content {
   height: 100%;
   width: 100%;
   overflow: visible;
   position: unset;
 }
-.aranthoz .item-sheet .item-body .general .options {
+.aranthoz .item-sheet .sheet-body .general .options {
   width: 100%;
 }
-.aranthoz .item-sheet .item-body .general .options .option {
+.aranthoz .item-sheet .sheet-body .general .options .option {
   font-size: 16px;
   width: 100%;
   background-color: rgba(161, 144, 124, 0.4);
@@ -754,10 +795,7 @@ body {
 }
 .aranthoz .isDisabled {
   cursor: not-allowed;
-  color: #118c59d8;
-}
-.aranthoz .hvr {
-  cursor: pointer;
+  background-color: #272727;
 }
 .aranthoz .divider {
   height: 0px;
@@ -774,6 +812,9 @@ body {
   border: 10px solid transparent;
   border-image: url(../assets/nav_borderimg_ne.png) 12 round;
 }
+.aranthoz .nohvr:hover {
+  all: unset;
+}
 .aranthoz input {
   -moz-background-clip: text;
   background-clip: text;
@@ -789,6 +830,7 @@ body {
 }
 .aranthoz .button:hover {
   cursor: pointer;
+  user-select: none;
 }
 .aranthoz .selected {
   text-decoration: underline;
