@@ -1,44 +1,19 @@
 <form class=" {{cssClass}} item-sheet _item-sheet" autocomplete="off">
-    <div class="content-container">
-        <div class="aside-divider"></div>
-        {{!-- Profile Img --}}
-        <div class="img-container borderimg">
-            <img class="profile-img hvr" src="{{data.img}}" data-edit="img" title="{{data.name}}"/>
-        </div>
     
         {{!-- Sheet Header --}}
         {{> "systems/aranthoz/templates/aranthoz/item-sheet/item-header.html" data=data systemData=systemData}}
-
-        {{!-- Aside Properties --}}
+    <hr />
+        <!-- {{!-- Aside Properties --}}
         <div class="aside-properties">
-            <div class="properties-container">
-                <div class="property">
-                    <select class="item-rarity legendary">
-                        <option selected>Legendary</option>
-                        <option >Epic</option>
-                        <option >Rare</option>
-                        <option >Common</option>
-                    </select>
-                </div>
-                <div class="property">
-                    <span class="item-type {{data.type}}">{{data.type}}</span>
-                </div>
-                <div class="property">
-                    <div class="item-type {{data.type}}">{{data.type}}</div>
-                </div>
-                <div class="property">
-                    <div class="item-type {{data.type}}">{{data.type}}</div>
-                </div>
-            </div>
-        </div>
+        </div> -->
     
         {{!-- Sheet Body --}}
-        <div class="item-body _sheet-body">
+        <div class="sheet-body _sheet-body">
             {{!-- General Tab --}}
-            {{> "systems/aranthoz/templates/aranthoz/item-sheet/general-tab.html"}}
+            {{> "systems/aranthoz/templates/aranthoz/item-sheet/general-tab.html" ownerId=ownerId systemData=systemData}}
     
             {{!-- Attributes Tab --}}
-            {{> "systems/aranthoz/templates/aranthoz/item-sheet/attributes-tab.html"}}
+            {{> "systems/aranthoz/templates/aranthoz/item-sheet/attributes-tab.html" attributes=systemData.ungroupedAttributes groups=systemData.groups}}
     
             {{!-- Actions Tab --}}
             {{#if systemData.implementsActions}}

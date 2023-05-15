@@ -1,8 +1,14 @@
 <div class="item-header">
-    <div class="charname borderimg">
-        <input name="name" type="text" value="{{data.name}}" placeholder="Name"/>
+    {{!-- Profile Img --}}
+    <div class="img-container borderimg">
+        <img class="profile-img hvr" src="{{data.img}}" data-edit="img" title="{{data.name}}"/>
     </div>
-    {{> "systems/aranthoz/templates/aranthoz/item-sheet/item-navigation.html" systemData=systemData}}
+    <div class="nav-container">
+        <div class="charname borderimg">
+            <input name="name" type="text" value="{{data.name}}" placeholder="Name"/>
+        </div>
+        {{> "systems/aranthoz/templates/aranthoz/item-sheet/item-navigation.html" systemData=systemData}}
+    </div>
     <!-- <div class="item-properties">
         <select class="item-rarity legendary">
             <option selected>Legendary</option>
