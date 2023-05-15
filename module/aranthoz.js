@@ -6,8 +6,8 @@
 // Import Modules
 import { SimpleActor } from "./actor.js";
 import { SimpleItem } from "./item.js";
-import { SimpleItemSheet } from "./item-sheet.js";
-import { SimpleActorSheet } from "./actor-sheet.js";
+import { SimpleItemSheet } from "./simple/simple-item-sheet.js";
+import { SimpleActorSheet } from "./simple/simple-actor-sheet.js";
 import { AranthozItemSheet } from "./item-sheet.js";
 import { AranthozActorSheet } from "./actor-sheet.js";
 import { preloadHandlebarsTemplates } from "./templates.js";
