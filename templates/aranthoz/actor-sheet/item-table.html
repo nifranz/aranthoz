@@ -1,5 +1,5 @@
 <!-- HB Props: items, itemType, headerName, actorId -->
-<div class="item-table content-container">
+<div class="item-table ">
     {{!-- Item Table Header --}}
     {{#if headerName}} <!-- If a header name is given, render a header with an "add item" for the table. If no header name is given, render a single "add item" button at the bottom of the table-->
     <div class="header borderimg-ne">
@@ -9,7 +9,7 @@
     </div>
     {{/if}}
     {{#unless headerName}} <!-- If no header name is given, render an "add item" button-->
-        <div class="item-add-button button borderimg-ne _item-control" data-action="create" item-type="{{itemType}}"><span class="material-symbols-outlined">add</span></a></div>
+        <div class="item-add-button item-button button borderimg-ne _item-control" data-action="create" item-type="{{itemType}}"><span class="material-symbols-outlined">add</span></div>
     {{/unless}}
 
     {{!-- Item List --}}

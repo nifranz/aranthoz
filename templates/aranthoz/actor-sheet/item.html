@@ -22,9 +22,10 @@
     {{!-- Item Stack Controls --}}
     {{#if item.system.isStackable}}
     <div class="item-count">
-        <div class="button count item-button update" type="decr">-</div>
-        <input class="count _item-control item-button value" value="2">
-        <div class="item-button button count update" type="incr">+</div>
+
+        <div class="count-button button _quantity-control" data-actorid="{{actorId}}" data-itemid="{{item._id}}" data-action="decrease">-</div>
+        <div class="count-display _item-control ">{{item.system.quantity}}</div>
+        <div class="count-button button _quantity-control" data-actorid="{{actorId}}" data-itemid="{{item._id}}" data-action="increase">+</div>
     </div>    
     {{/if}}
     

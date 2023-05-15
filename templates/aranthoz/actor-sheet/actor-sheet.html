@@ -36,14 +36,14 @@
                     {{!-- Render Weapon Items Table --}}
                     {{> "systems/aranthoz/templates/aranthoz/actor-sheet/item-table.html" headerName="Weapons" items=(lookup data.itemCollection 'weapon') itemType="weapon" actorId=data._id }}
 
+                    {{!-- Render Ammunition Items Table--}}
+                    {{> "systems/aranthoz/templates/aranthoz/actor-sheet/item-table.html" headerName="Ammunition" items=(lookup data.itemCollection 'ammunition') itemType="ammunition" actorId=data._id }}
+
                     {{!-- Render Armor Items Table --}}
                     {{> "systems/aranthoz/templates/aranthoz/actor-sheet/item-table.html" headerName="Armor" items=(lookup data.itemCollection 'armor') itemType="armor" actorId=data._id }}
 
                     {{!-- Render Wearable Items Table--}}
                     {{> "systems/aranthoz/templates/aranthoz/actor-sheet/item-table.html" headerName="Wearables" items=(lookup data.itemCollection 'wearable') itemType="wearable" actorId=data._id }}
-
-                    {{!-- Render Ammunition Items Table--}}
-                    {{> "systems/aranthoz/templates/aranthoz/actor-sheet/item-table.html" headerName="Ammunition" items=(lookup data.itemCollection 'ammunition') itemType="ammunition" actorId=data._id }}
                 </section>
 
                 {{!-- Inventory Tab --}}
