@@ -1,22 +1,52 @@
 <section class="tab general" data-group="primary" data-tab="general">
-    {{!-- Item Description Editor --}}
-    <h2>Item Description</h2>
-    <div class="description">
-        {{editor descriptionHTML target="system.description" button=true editable=editable engine="prosemirror"}}
-    </div>
-    <h2>Item Options</h2>
-    <div class="options">
-        {{#if systmData.implementsQuantity}}
-        <div class="option">
-            <input type="checkbox" name="system.isStackable" {{#if systemData.isStackable}}checked{{/if}}>
-            <label>Show item quantity controls in the Actor Sheet</label>
+    <div class="tab-body">
+        {{!-- Item Properties --}}
+        <div class="properties">
+            <h2>Item Properties</h2>
+            <div class="properties-container">
+
+                {{!-- General Item Properties --}}
+                <div class="property">
+                    <div class="property-label">Rarity</div>
+                    <select class="property-box item-rarity legendary">
+                        <option selected>Legendary</option>
+                        <option >Epic</option>
+                        <option >Rare</option>
+                        <option >Common</option>
+                    </select>
+                </div>
+                <div class="property">
+                    <div class="property-label">Type</div>
+                    <span class="property-box item-type {{data.type}}">{{systemData.typeLabel}}</span>
+                </div>
+
+                {{!-- Quantity Properties --}}
+                {{#if systemData.implementsQuantity}}
+                <div class="property">
+                    <div class="property-label">Quantity</div>
+                    <div class="multiple-property">
+                        <div class="property-box button quantity-count _quantity-control" data-actorid="{{ownerId}}" data-itemid="{{data._id}}" data-action="decrease">-</div>
+                        <input class="property-box quantity" name="system.quantity" value="{{systemData.quantity}}">
+                        <div class="property-box button quantity-count _quantity-control" data-actorid="{{ownerId}}" data-itemid="{{data._id}}" data-action="increase">+</div>
+                    </div>
+                </div>
+                <div class="property">
+                    <div class="property-label">Show Stack</div>
+                    <div class="property-box stack">
+                        <input type="checkbox" name="system.isStackable" {{#if systemData.isStackable}}checked{{/if}}>
+                        <label>Actor Sheet</label>
+                    </div>
+                </div>
+                {{/if}}
+            </div>
+            <hr />
         </div>
-        {{/if}}
-        {{#if systemData.implementsActions}}
-        <div class="option">
-            <input type="checkbox" name="system.actionsEnabled" {{#if systemData.actionsEnabled}}checked{{/if}}>
-            <label>Enable rollable actions for this item</label>
+        {{!-- Item Description Editor --}}
+        <h2>Item Description</h2>
+        <div class="description">
+            {{editor descriptionHTML target="system.description" button=true editable=editable engine="prosemirror"}}
         </div>
+        {{#if systemData.implementsQuantity}}
         {{/if}}
     </div>
 </section>
