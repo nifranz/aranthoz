@@ -253,6 +253,40 @@ export class EntitySheetHelper {
 
   /* -------------------------------------------- */
 
+  static async onItemQuantityControl(event) {
+    event.preventDefault();
+    const a = event.currentTarget;
+    const action = a.dataset.action;
+    const itemId = a.dataset.itemid;
+    const actorId = a.dataset.actorid;
+
+    console.log(itemId);
+    console.log(actorId);
+    switch ( action ) {
+      case "increase":
+        return EntitySheetHelper.increaseItemQuantity(actorId, itemId)
+      case "decrease":
+        return EntitySheetHelper.decreaseItemQuantity(actorId, itemId)
+    }
+  }
+  static async decreaseItemQuantity(actorId, itemId) {
+    const actor = await Actor.get(actorId);
+    const item = await actor.items.get(itemId);
+    const currentQuantity = item.system.quantity;
+    if (currentQuantity < 1) return;
+    const decreasedQuantity = parseInt(currentQuantity) - 1;
+
+    item.update({"system.quantity": decreasedQuantity})
+  }
+  static async increaseItemQuantity(actorId, itemId) {
+    const actor = await Actor.get(actorId);
+    const item = await actor.items.get(itemId);
+    const currentQuantity = item.system.quantity;
+    const increasedQuantity = parseInt(currentQuantity) + 1;
+    
+    item.update({"system.quantity": increasedQuantity})
+  }
+
   /**
    * Listen for click events on an skill submit button to modify the linked skill
    * @param {MouseEvent} event    The originating left click event
