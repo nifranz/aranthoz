@@ -29,6 +29,7 @@ export const preloadHandlebarsTemplates = async function () {
       "systems/aranthoz/templates/aranthoz/item-sheet/general-tab.html",
       "systems/aranthoz/templates/aranthoz/item-sheet/attributes-tab.html",
       "systems/aranthoz/templates/aranthoz/item-sheet/actions-tab.html",
+      "systems/aranthoz/templates/aranthoz/item-sheet/journal-selector.html",
     ];
 
   // Load the template parts

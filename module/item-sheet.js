@@ -1,7 +1,7 @@
 import { EntitySheetHelper } from "./helper.js";
 import { SimpleEntitySheetHelper } from "./simple/simple-helper.js";
 import { ATTRIBUTE_TYPES } from "./constants.js";
-
+import { ActionSequences } from "./action-sheet.js";
 
 export class AranthozItemSheet extends ItemSheet {
 
@@ -13,8 +13,9 @@ export class AranthozItemSheet extends ItemSheet {
       width: 570,
       height: 480,
       tabs: [{navSelector: "._item-nav", contentSelector: "._sheet-body", initial: "general"}],
-      scrollY: [".attributes"]
+      // scrollY: [".attributes"]
       // scrollY: ["._sheet-body"],
+      dragDrop: [{dragSelector: null},{dropSelector: ["._item-sheet"]}]
     });
   }
 
@@ -28,6 +29,7 @@ export class AranthozItemSheet extends ItemSheet {
    */
 
   async getData(options) {
+
     const context = await super.getData(options);
     console.log("Context");
     console.log(context)
@@ -89,7 +91,7 @@ export class AranthozItemSheet extends ItemSheet {
     } else {
       context.ownerRessource = "Ressource"
     }
-   
+    
     context.dtypes = ATTRIBUTE_TYPES;
     context.descriptionHTML = await TextEditor.enrichHTML(context.systemData.description, {
       secrets: this.document.isOwner,
@@ -100,6 +102,21 @@ export class AranthozItemSheet extends ItemSheet {
     if (appliesDamage) {
       context.appliesDamage = appliesDamage.value;
     }
+
+    // reset the link when no journalEntry can be found under the stored id (which would be the case if the journalEntry itself has been deleted)
+    const journalEntry = await JournalEntry.get(context.data.system.journalEntry);
+    if (!journalEntry) {
+      item.update({"system.journalEntry": ""});
+    }
+    
+    let rarityBoolean = {};
+    for (let rarity of ["legendary", "rare", "epic", "common"]) {
+      let rarityCapitalized = rarity.charAt(0).toUpperCase() + rarity.slice(1)
+      rarityBoolean["is" + rarityCapitalized] = context.systemData.rarity === rarity;
+    }
+    console.log("raritybool", rarityBoolean)
+    context.rarityBoolean = rarityBoolean;
+
 
     console.log("Item Context")
     console.log(context)
@@ -122,14 +139,57 @@ export class AranthozItemSheet extends ItemSheet {
     html.find(".skill").on("change", ".skill-select", EntitySheetHelper.onSkillChange.bind(this));
     html.find("._quantity-control").on("click", EntitySheetHelper.onItemQuantityControl.bind(this));
 
+    html.find("._open-journal-button").on("click", EntitySheetHelper.openItemJournal.bind(this));
+    html.find("._unlink-journal-button").on("click", EntitySheetHelper.unlinkItemJournal.bind(this));
+
+    html.find("._open-action-rolls-sheet").on("click", EntitySheetHelper.openActionRollsSheet.bind(this));
+    html.find("._open-action-sequences-sheet").on("click", EntitySheetHelper.openActionSequencesSheet.bind(this));
+    html.find("._show-actions-info-sheet").on("click", EntitySheetHelper.showActionsInfoSheet.bind(this));
+    
+    // Add draggable for Macro creation
+    html.find("_item-sheet").each((i, a) => {
+      console.log(a)
+      a.addEventListener("drop", ev => {
+        console.log("yo")
+      }, false);
+    });
+
     // Add draggable for Macro creation
     html.find(".attributes a.attribute-roll").each((i, a) => {
+      console.log(a)
       a.setAttribute("draggable", true);
       a.addEventListener("dragstart", ev => {
         let dragData = ev.currentTarget.dataset;
         ev.dataTransfer.setData('text/plain', JSON.stringify(dragData));
       }, false);
     });
+  }
+  async _onDragOver (event) {
+    console.log("dragover");
+    const dropbg = event.target.closest('.dragbg');
+    console.log(dropbg)
+    if (!dropbg) return;
+    dropbg.classlist.add('drag-over')
+  }
+  async _onDrop(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    let data;
+    try {
+      data = JSON.parse(event.dataTransfer.getData("text/plain"));
+    }
+    catch (err) {
+      return false;
+    }
+    console.log(data)
+
+    const journalEntryId = JSON.parse(event.dataTransfer.getData('text/plain')).uuid.split('.')[1];
+    const journalEntry = await game.journal.get(journalEntryId);
+    console.log(journalEntryId)
+    const targetItem = this.object;
+
+    targetItem.update({"system.journalEntry": journalEntry._id});
+    targetItem.update({"system.journalEntryName": journalEntry.name})
   }
 
   /* -------------------------------------------- */

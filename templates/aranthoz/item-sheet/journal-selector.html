@@ -1,0 +1,16 @@
+<div class="aranthoz" title="Journal Folders">
+    <form>
+    <ul class="journal-folder-list">
+        {{#each folders as |folder name|}}
+            <li><h2>{{folder.name}}</h2>
+                <ul>
+                    {{#each folder.entries as |entry index|}}
+
+                    <li><input type="radio" name="je" value="{{entry._id}}"><label class="option-label">{{entry.name}}</label></label></li>
+                    {{/each}}
+                </ul>
+            </li>
+        {{/each}}
+    </ul>
+    </form>
+</div>

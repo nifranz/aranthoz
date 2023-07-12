@@ -13,8 +13,18 @@
                         <div class="banner-tile-content-label">HP</div>
                     </div>
                     <div class="banner-tile-content max-hp">
-                        <input class="banner-tile-content-value" name="system.health.max" value="{{systemData.health.max}}">
+                        <div class="banner-tile-content-value max">{{systemData.health.max}}</div>
                         <div class="banner-tile-content-label">Max-HP</div>
+                    </div>
+                </section>
+                <section class="banner-tile ressources">
+                    <div class="banner-tile-content mana">
+                        <input class="banner-tile-content-value" name="system.power.value" value="{{systemData.power.value}}">
+                        <div class="banner-tile-content-label">{{#if isMage}}Mana{{else}}Stamina{{/if}}</div>
+                    </div>
+                    <div class="banner-tile-content stamina">
+                        <div class="banner-tile-content-value max">{{systemData.power.max}}</div>
+                        <div class="banner-tile-content-label">Max-{{#if isMage}}Mana{{else}}Stamina{{/if}}</div>
                     </div>
                 </section>
                 <section class="banner-tile defenses">
@@ -25,16 +35,6 @@
                     <div class="banner-tile-content shield">
                         <input class="banner-tile-content-value" value ="0">
                         <div class="banner-tile-content-label">Shield</div>
-                    </div>
-                </section>
-                <section class="banner-tile ressources">
-                    <div class="banner-tile-content mana">
-                        <input class="banner-tile-content-value" name="system.power.value" value="{{systemData.power.value}}">
-                        <div class="banner-tile-content-label">{{#if isMage}}Mana{{else}}Stamina{{/if}}</div>
-                    </div>
-                    <div class="banner-tile-content stamina">
-                        <input class="banner-tile-content-value" name="system.power.max" value="{{systemData.power.max}}">
-                        <div class="banner-tile-content-label">Max-{{#if isMage}}Mana{{else}}Stamina{{/if}}</div>
                     </div>
                 </section>
             </div>

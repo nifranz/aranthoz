@@ -1,10 +1,65 @@
 <section class="tab actions" data-group="primary" data-tab="actions">
-    <h2>Item Actions</h2>
-    <p>In the Actions-section of your actionable item, such as Skills, Weapons and Consumables, you can define one rollable action, which will automatically roll 1d100, checking it against a specific threshhold value, and apply additional effects such as calculating health and mana.</p>
-    <h3>Skills</h3>
-    <p>For Skills you'll have to define a roll threshhold value similar to the attribute values of your character-attributes, which will determine whether your item-roll is sucessfull by checking this value against 1d100. For Skills, you'll also have to define the ressource costs upon a successfull or unsucessfull throw, which will then be automatically substracted from your characters ressource pool.</p>
-    <h3>Weapons</h3>
-    <p>As you can't use a weapon without a suitable character attribute - a sword for example can only be used efficiently by a character that has learned a "Swordfighting"-attribtue of some sorts. Reflecting this limitation, you'll have to define an attribute-link instead of a roll threshhold value. By selecting an attribute from your characters attributes, the attribute-link creates a connection between your weapon and your selected actionable attribute. The attribute value of your linked attribute will now serve as your roll threshhold value upon using your weapon by rolling 1d100, determining if the use of your weapon was successfull</p>
-    <h3>Consumables</h3>
-    <p>Consumables can be used without any restrictions besides the amount of consumables you have in your possession. Naturally, if the amount of held consumables is less than 1 for any given consumable, you won't be able to use said consumable. Similarly to Skills reducing your characters ressource-pool, using a consumable will automatically reduce the amount of hold consumables of this type in your inventory by 1.</p>
+
+    <div class="tab-body">
+        <div class="item-section">
+            {{!-- Skill Action --}}
+            <div class="properties">
+                <div class="section-heading borderimg">
+                    Skill Action:
+                    <input type="text" class="heading-inline-input ml-1" placeholder="Roll Name">
+                </div>
+                <div class="section-body borderimg-ne">
+                    <div class="properties-row">
+                        <div class="property">
+                            <div class="property-label">Name</div>
+                            <input class="property-box name" placeholder="Action Name" name="" value="{{systemData.rollValue}}">
+                        </div>
+                        <div class="property">
+                            <div class="property-label">Key</div>
+                            <input class="property-box name" placeholder="Action Key" name="" value="{{systemData.rollValue}}">
+                        </div>
+                    </div>
+                    <div class="properties-row">
+                        {{!-- Skill Value --}}
+                        <div class="property">
+                            <div class="property-label">Roll Value</div>
+                            <input class="property-box quantity" placeholder="-" name="system.rollValue" value="{{systemData.rollValue}}">
+                        </div>
+                        
+                        <div class="property">
+                            <div class="property-label">Ressource</div>
+                            <div class="property-box ">{{ownerRessource}}</div>
+                        </div>
+        
+                        {{!-- Ressource Cost --}}
+                        <div class="property">
+                            <div class="property-label">Cost</div>
+                            <div class="multiple-property">
+                                <div class="property-box labeled-property">
+                                    <div class="property-inline-label success">Success</div>
+                                    <input class="property-box quantity" placeholder="-" name="system.cost.onSuccess" value="{{systemData.cost.onSuccess}}">
+                                </div>
+                                <i class="fas fa-unlink button inline-text"></i>
+                                <div class="property-box labeled-property">
+                                    <div class="property-inline-label failure">Failure</div>
+                                    <input class="property-box quantity" placeholder="-" name="system.cost.onFailure" value="{{systemData.cost.onFailure}}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="properties-row">
+                        <div class="property">
+                            <div class="property-label">Action Sequences</div>
+                            <div class="property-box button _open-action-sequences-sheet" data-actorid="{{ownerId}}" data-itemid="{{data._id}}"><i class="fas fa-edit mgr-1"></i>Edit Action Sequences</div>
+                        </div>
+                        <div class="property">
+                            <div class="property-label">Rolls</div>
+                            <div class="property-box button _open-action-rolls-sheet" data-actorid="{{ownerId}}" data-itemid="{{data._id}}"><i class="fas fa-edit mgr-1"></i>Edit Action Rolls</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="button _show-actions-info-sheet">Actions Info</div>
 </section>

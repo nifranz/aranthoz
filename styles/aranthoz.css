@@ -120,6 +120,12 @@ body {
   color: #fff8e8;
   text-shadow: 0px 2px 3px rgba(0, 0, 0, 0.8);
 }
+.aranthoz .actor-sheet .banner-container .sheet-banner .banner-body .banner-tiles-container .max {
+  margin-top: 2px;
+  margin-bottom: 6px;
+  color: #ffeab8;
+  text-shadow: inset 2px 2px 2px black;
+}
 .aranthoz .actor-sheet .banner-container .sheet-banner .banner-body .banner-tiles-container .banner-tile-content-label {
   font-size: 11px;
   color: #dfcfb1;
@@ -257,19 +263,25 @@ body {
   width: 100%;
   overflow: visible;
 }
+.aranthoz .actor-sheet .item-tables,
+.aranthoz .item-sheet .item-tables {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
 .aranthoz .actor-sheet .item-table,
 .aranthoz .item-sheet .item-table {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px;
   flex-direction: column;
 }
 .aranthoz .actor-sheet .item-table .header,
 .aranthoz .item-sheet .item-table .header {
   width: 100%;
   height: 38px;
+  margin-bottom: 10px;
   /* background-image: url(./assets/banner_vertical_stacked2.png);
                 background-size: 130%;
                 background-position: center; */
@@ -365,7 +377,6 @@ body {
   flex-direction: column;
   width: 100%;
   gap: 15px;
-  margin-bottom: 30px;
 }
 .aranthoz .actor-sheet .item-table .item-list .item,
 .aranthoz .item-sheet .item-table .item-list .item {
@@ -577,8 +588,41 @@ body {
   align-items: center;
 }
 .aranthoz .item-sheet {
-  padding: 5px;
   min-width: 470px;
+  height: 100%;
+  overflow-y: hidden;
+  position: relative;
+}
+.aranthoz .item-sheet .dragbg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #141414b3;
+  z-index: 10;
+  backdrop-filter: blur(5px);
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 100px black;
+}
+.aranthoz .item-sheet .dragbg .drop-heading {
+  font-size: 40px;
+  margin-top: auto;
+  margin-bottom: auto;
+  text-align: center;
+  color: #fefaef;
+  text-shadow: 2px 2px #272727;
+}
+.aranthoz .item-sheet .drag-over {
+  display: flex;
+}
+.aranthoz .item-sheet .sheet-content {
+  height: 100%;
+  width: 100%;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
 }
 .aranthoz .item-sheet .item-header {
   width: 100%;
@@ -649,22 +693,333 @@ body {
   color: #fefaef;
   text-decoration: underline;
 }
+.aranthoz .item-sheet .item-section {
+  display: flex;
+  flex-direction: column;
+}
+.aranthoz .item-sheet .item-section .section-heading {
+  height: 38px;
+  font-size: 20px;
+  /* background-image: url(./assets/banner_vertical_stacked2.png);
+                background-size: 130%;
+                background-position: center; */
+  background-color: #ffffff85;
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+.aranthoz .item-sheet .item-section .section-heading .heading-inline-input {
+  flex: 1;
+  text-align: left;
+}
+.aranthoz .item-sheet .item-section .section-body {
+  flex: 0 0 auto;
+  transform: translateY(-5px);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  border-top: none;
+  margin-inline: 10px;
+  padding: 3px;
+  padding-top: 10px;
+  background-color: #d2d2d256;
+}
+.aranthoz .item-sheet .item-section .section-body .sequence {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 5px;
+}
+.aranthoz .item-sheet .item-section .section-body .sequence .sequence-header {
+  display: flex;
+  font-size: 14px;
+  color: #52120a;
+  border-bottom: 1px solid #52120a;
+}
+.aranthoz .item-sheet .item-section .section-body .sequence-elements {
+  width: 100%;
+  height: 33px;
+  border-radius: 3px;
+  display: flex;
+  gap: 10px;
+}
+.aranthoz .item-sheet .item-section .section-body .sequence-elements .composite-element {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 0px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 3px -1px #1e1e1e6d;
+}
+.aranthoz .item-sheet .item-section .section-body .sequence-elements .element {
+  height: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.aranthoz .item-sheet .item-section .section-body .sequence-elements .composite-label {
+  padding-inline: 5px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  background-color: #ffffff85;
+}
+.aranthoz .item-sheet .item-section .section-body .sequence-elements .composite-select {
+  border: none;
+  box-shadow: none;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+  background-color: #fffdf93c;
+}
+.aranthoz .item-sheet .item-section .section-body .properties-row {
+  width: 100%;
+  flex: 0 0 auto;
+  transform: translateY(-5px);
+  display: flex;
+  gap: 25px;
+  border-top: none;
+}
+.aranthoz .item-sheet .item-section .section-body .properties-row .property {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.aranthoz .item-sheet .item-section .section-body .properties-row .property .inline-text {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.aranthoz .item-sheet .item-section .section-body .properties-row .property .composite-journal-button {
+  display: flex;
+  height: 32px;
+  box-shadow: 0px 0px 3px -1px #1e1e1e6d;
+  text-shadow: 0.5px 0.5px 0.5px #1e1e1e6d;
+  border-radius: 3px;
+  font-size: 18px;
+}
+.aranthoz .item-sheet .item-section .section-body .properties-row .property .composite-journal-button .open-journal-button {
+  display: flex;
+  align-items: center;
+  padding-inline: 8px;
+  color: #fdfbf4;
+  position: relative;
+  overflow: hidden;
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
+}
+.aranthoz .item-sheet .item-section .section-body .properties-row .property .composite-journal-button .unlink-journal-button {
+  display: flex;
+  align-items: center;
+  color: #fdfbf4;
+  padding-inline: 5px;
+  border-bottom-left-radius: 3px;
+  border-top-left-radius: 3px;
+}
+.aranthoz .item-sheet .item-section .section-body .properties-row .property .composite-journal-button .open-journal-button-active {
+  background-color: #841608b1;
+}
+.aranthoz .item-sheet .item-section .section-body .properties-row .property .composite-journal-button .open-journal-button-inactive {
+  background-color: #70332a9d;
+}
+.aranthoz .item-sheet .item-section .section-body .properties-row .property .composite-journal-button .open-journal-button-active:hover {
+  transition: 0.2s;
+  background-color: #6b2a21d9;
+  background-color: #531006c2;
+}
+.aranthoz .item-sheet .item-section .section-body .properties-row .property .property-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 32px;
+  padding-inline: 5px;
+  border-radius: 3px;
+  color: aliceblue;
+  box-shadow: 0px 0px 3px -1px #1e1e1e6d;
+  text-shadow: 0.5px 0.5px 0.5px #1e1e1e6d;
+  font-size: 18px;
+}
+.aranthoz .item-sheet .item-section .section-body .properties-row .property .name {
+  text-align: left;
+  background-color: #0000000f;
+  color: #272727;
+  width: 200px;
+}
+.aranthoz .item-sheet .item-section .section-body .properties-row .property .multiple-property {
+  display: flex;
+  gap: 10px;
+}
+.aranthoz .item-sheet .item-section .section-body .properties-row .property .property-label {
+  font-weight: bold;
+  color: #63160c;
+}
+.aranthoz .item-sheet .item-section .section-body .properties-row .property .labeled-property {
+  padding-inline: 0px;
+}
+.aranthoz .item-sheet .item-section .section-body .properties-row .property .labeled-property .property-box {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  box-shadow: none;
+}
+.aranthoz .item-sheet .item-section .section-body .properties-row .property .labeled-property .property-inline-label {
+  color: #fdfbf4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  padding-inline: 5px;
+}
+.aranthoz .item-sheet .item-section .section-body .properties-row .property .labeled-property .success {
+  background-color: #0d710051;
+}
+.aranthoz .item-sheet .item-section .section-body .properties-row .property .labeled-property .failure {
+  background-color: #8e110090;
+}
+.aranthoz .item-sheet .item-section .section-body .properties-row .property .item-rarity {
+  border: none;
+}
+.aranthoz .item-sheet .item-section .section-body .properties-row .property .legendary {
+  background-color: #b4660080;
+}
+.aranthoz .item-sheet .item-section .section-body .properties-row .property .epic {
+  background-color: #7930a080;
+}
+.aranthoz .item-sheet .item-section .section-body .properties-row .property .rare {
+  background-color: #0355ba73;
+}
+.aranthoz .item-sheet .item-section .section-body .properties-row .property .common {
+  background-color: #7d7d7d80;
+}
+.aranthoz .item-sheet .item-section .section-body .properties-row .property .item-type {
+  text-align: center;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.aranthoz .item-sheet .item-section .section-body .properties-row .property .weapon {
+  background-color: #9d000051;
+}
+.aranthoz .item-sheet .item-section .section-body .properties-row .property .skill {
+  background-color: #c5310051;
+}
+.aranthoz .item-sheet .item-section .section-body .properties-row .property .armor {
+  background-color: #9b9b9b51;
+}
+.aranthoz .item-sheet .item-section .section-body .properties-row .property .wearable {
+  background-color: #009d8d51;
+}
+.aranthoz .item-sheet .item-section .section-body .properties-row .property .ammunition {
+  background-color: #9d510051;
+}
+.aranthoz .item-sheet .item-section .section-body .properties-row .property .consumable {
+  background-color: #129d0051;
+}
+.aranthoz .item-sheet .item-section .section-body .properties-row .property .ingredient {
+  background-color: #59009d51;
+}
+.aranthoz .item-sheet .item-section .section-body .properties-row .property .document {
+  background-color: #9d004151;
+}
+.aranthoz .item-sheet .item-section .section-body .properties-row .property .misc {
+  background-color: #9a9d0051;
+}
+.aranthoz .item-sheet .item-section .section-body .properties-row .property .quantity {
+  background-color: #0000000f;
+  color: #272727;
+  width: 70px;
+}
+.aranthoz .item-sheet .item-section .section-body .properties-row .property .quantity-count {
+  background-color: #0000000f;
+  color: #272727;
+  width: 32px;
+  text-align: center;
+}
+.aranthoz .item-sheet .item-section .section-body .properties-row .property .quantity-count:hover {
+  background-color: #71180db4;
+  color: #fdfbf4;
+  transition: 0.2s;
+}
+.aranthoz .item-sheet .item-section .section-body .properties-row .property .stack {
+  background-color: #0000000f;
+  color: #272727;
+}
+.aranthoz .item-sheet .item-section .section-body .properties-row::before {
+  content: "";
+  position: absolute;
+  top: 27px;
+  width: 100%;
+  border-bottom: 1px solid #70180c;
+}
 .aranthoz .item-sheet .properties {
   display: flex;
   flex-direction: column;
+}
+.aranthoz .item-sheet .properties-container::before {
+  content: "";
+  position: absolute;
+  top: 27px;
+  width: 100%;
+  border-bottom: 1px solid #70180c;
 }
 .aranthoz .item-sheet .properties-container {
   overflow: hidden;
   flex: 0 0 auto;
   transform: translateY(-5px);
   display: flex;
-  gap: 20px;
+  gap: 25px;
+  border-top: none;
+  margin-inline: 10px;
+  padding: 3px;
+  background-color: #d2d2d256;
 }
 .aranthoz .item-sheet .properties-container .property {
   flex: 0 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 10px;
+}
+.aranthoz .item-sheet .properties-container .property .inline-text {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.aranthoz .item-sheet .properties-container .property .composite-journal-button {
+  display: flex;
+  height: 32px;
+  box-shadow: 0px 0px 3px -1px #1e1e1e6d;
+  text-shadow: 0.5px 0.5px 0.5px #1e1e1e6d;
+  font-size: 18px;
+}
+.aranthoz .item-sheet .properties-container .property .composite-journal-button .open-journal-button {
+  display: flex;
+  align-items: center;
+  padding-inline: 8px;
+  color: #fdfbf4;
+  position: relative;
+  overflow: hidden;
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
+}
+.aranthoz .item-sheet .properties-container .property .composite-journal-button .unlink-journal-button {
+  display: flex;
+  align-items: center;
+  color: #fdfbf4;
+  padding-inline: 5px;
+  border-bottom-left-radius: 3px;
+  border-top-left-radius: 3px;
+}
+.aranthoz .item-sheet .properties-container .property .composite-journal-button .open-journal-button-active {
+  background-color: #841608b1;
+}
+.aranthoz .item-sheet .properties-container .property .composite-journal-button .open-journal-button-inactive {
+  background-color: #70332a9d;
+}
+.aranthoz .item-sheet .properties-container .property .composite-journal-button .open-journal-button-active:hover {
+  transition: 0.2s;
+  background-color: #6b2a21d9;
+  background-color: #531006c2;
 }
 .aranthoz .item-sheet .properties-container .property .property-box {
   display: flex;
@@ -672,8 +1027,7 @@ body {
   align-items: center;
   text-align: center;
   height: 32px;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-inline: 5px;
   border-radius: 3px;
   color: aliceblue;
   box-shadow: 0px 0px 3px -1px #1e1e1e6d;
@@ -687,11 +1041,44 @@ body {
 .aranthoz .item-sheet .properties-container .property .property-label {
   color: #63160c;
 }
+.aranthoz .item-sheet .properties-container .property .labeled-property {
+  padding-inline: 0px;
+}
+.aranthoz .item-sheet .properties-container .property .labeled-property .property-box {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  box-shadow: none;
+}
+.aranthoz .item-sheet .properties-container .property .labeled-property .property-inline-label {
+  color: #fdfbf4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  padding-inline: 5px;
+}
+.aranthoz .item-sheet .properties-container .property .labeled-property .success {
+  background-color: #0d710051;
+}
+.aranthoz .item-sheet .properties-container .property .labeled-property .failure {
+  background-color: #8e110090;
+}
 .aranthoz .item-sheet .properties-container .property .item-rarity {
   border: none;
 }
 .aranthoz .item-sheet .properties-container .property .legendary {
   background-color: #b4660080;
+}
+.aranthoz .item-sheet .properties-container .property .epic {
+  background-color: #7930a080;
+}
+.aranthoz .item-sheet .properties-container .property .rare {
+  background-color: #0355ba73;
+}
+.aranthoz .item-sheet .properties-container .property .common {
+  background-color: #7d7d7d80;
 }
 .aranthoz .item-sheet .properties-container .property .item-type {
   text-align: center;
@@ -748,11 +1135,11 @@ body {
   color: #272727;
 }
 .aranthoz .item-sheet .sheet-body {
-  overflow-y: scroll;
   width: 100%;
+  flex: 1 0px;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  overflow-x: hidden;
+  overflow-y: scroll;
   flex-direction: column;
 }
 .aranthoz .item-sheet .sheet-body .tab-body {
@@ -764,18 +1151,32 @@ body {
   width: 100%;
   min-height: 150px;
 }
+.aranthoz .item-sheet .sheet-body .general .heading {
+  height: 38px;
+  font-size: 20px;
+  /* background-image: url(./assets/banner_vertical_stacked2.png);
+                    background-size: 130%;
+                    background-position: center; */
+  background-color: #ffffff85;
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
 .aranthoz .item-sheet .sheet-body .general .description {
   display: block;
-  width: 100%;
   overflow: visible;
 }
 .aranthoz .item-sheet .sheet-body .general .description .editor {
+  margin-top: -17px;
   height: 100%;
   min-height: 70px;
   width: 100%;
   overflow: visible;
 }
-.aranthoz .item-sheet .sheet-body .general .description .editor-content {
+.aranthoz .item-sheet .sheet-body .general .description .editor .editor-menu {
+  transform: translateY(10px);
+}
+.aranthoz .item-sheet .sheet-body .general .description .editor .editor-content {
   height: 100%;
   width: 100%;
   overflow: visible;
@@ -839,4 +1240,20 @@ body {
   padding: 0;
   margin: 0;
   list-style-type: none;
+}
+.aranthoz .journal-folder-list .option-label {
+  padding-left: 10px;
+  font-size: 16px;
+}
+.aranthoz .mgr-1 {
+  margin-right: 9px;
+}
+.aranthoz .mt-2 {
+  margin-top: 15px;
+}
+.aranthoz .ml-1 {
+  margin-left: 9px;
+}
+.aranthoz .ml-a {
+  margin-left: auto;
 }

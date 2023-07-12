@@ -1,27 +1,11 @@
 <section class="tab general" data-group="primary" data-tab="general">
     <div class="tab-body">
-        {{!-- Item Properties --}}
+        {{!-- Quantity Properties --}}
+        {{#if systemData.implementsQuantity}}
         <div class="properties">
-            <h2>Item Properties</h2>
-            <div class="properties-container">
+            <div class="heading borderimg">Quantity</div>
+            <div class="properties-container borderimg-ne">
 
-                {{!-- General Item Properties --}}
-                <div class="property">
-                    <div class="property-label">Rarity</div>
-                    <select class="property-box item-rarity legendary">
-                        <option selected>Legendary</option>
-                        <option >Epic</option>
-                        <option >Rare</option>
-                        <option >Common</option>
-                    </select>
-                </div>
-                <div class="property">
-                    <div class="property-label">Type</div>
-                    <span class="property-box item-type {{data.type}}">{{systemData.typeLabel}}</span>
-                </div>
-
-                {{!-- Quantity Properties --}}
-                {{#if systemData.implementsQuantity}}
                 <div class="property">
                     <div class="property-label">Quantity</div>
                     <div class="multiple-property">
@@ -37,16 +21,53 @@
                         <label>Actor Sheet</label>
                     </div>
                 </div>
-                {{/if}}
             </div>
-            <hr />
         </div>
-        {{!-- Item Description Editor --}}
-        <h2>Item Description</h2>
-        <div class="description">
-            {{editor descriptionHTML target="system.description" button=true editable=editable engine="prosemirror"}}
-        </div>
-        {{#if systemData.implementsQuantity}}
         {{/if}}
+
+        {{!-- Skill Description --}}
+        <div class="item-section">
+            <div class="section-heading borderimg">{{systemData.typeLabel}} Description</div>
+            <div class="section-body borderimg-ne">
+                <div class="properties-row">
+                    <div class="property">
+                        <div class="property-label">Journal Entry Link</div>
+                        <div class="composite-journal-button"> 
+                            <div data-itemid="{{data._id}}" data-actorid="{{ownerId}}" class="{{#if systemData.journalEntry}}button unlink-journal-button open-journal-button-active _unlink-journal-button{{else}}unlink-journal-button open-journal-button-inactive isDisabled{{/if}}">
+                                {{#if systemData.journalEntry}}
+                                <i class="fas fa-link "></i> 
+                                {{else}}
+                                <i class="fas fa-unlink "></i>
+                                {{/if}}
+                            </div>
+                            <div class="{{#if systemData.journalEntry}}button open-journal-button open-journal-button-active _open-journal-button{{else}}isDisabled open-journal-button open-journal-button-inactive{{/if}}" data-journalentry="{{systemData.journalEntry}}">
+                                {{#if systemData.journalEntry}}
+                                Open Journal
+                                {{else}}
+                                No Link Set 
+                                {{/if}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="property">
+                        <div class="property-label">Rarity</div>
+                        <select class="property-box item-rarity {{systemData.rarity}}" name="system.rarity">
+                            <option value="legendary" {{#if rarityBoolean.isLegendary}} selected {{/if}}>Legendary</option>
+                            <option value="epic" {{#if rarityBoolean.isEpic}} selected {{/if}}>Epic</option>
+                            <option value="rare" {{#if rarityBoolean.isRare}} selected {{/if}}>Rare</option>
+                            <option value="common" {{#if rarityBoolean.isCommon}} selected {{/if}}>Common</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="properties-row">
+                    <div class="property">
+                        <div class="property-label">Item Description Text</div>
+                    </div>
+                </div>
+                <div class="description">
+                    {{editor descriptionHTML target="system.description" button=true editable=editable engine="prosemirror"}}
+                </div>
+            </div>
+        </div>
     </div>
 </section>

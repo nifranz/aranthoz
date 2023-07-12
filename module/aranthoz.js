@@ -204,3 +204,139 @@ Hooks.on("getItemDirectoryEntryContext", (html, options) => {
     }
   });
 });
+
+
+
+// Hooks.on("renderAranthozItemSheet", (sheet, html, data) => {
+//   html.find('._item-sheet').off('drop');
+//   console.log("own hook")
+//   html.find('._item-sheet').on('dragenter', (event) => {
+//     console.log(event)
+//     event.preventDefault();
+//     event.stopPropagation();
+//     html.addClass('dragover');
+//   });
+
+//   html.find('._item-sheet').on('dragleave', (event) => {
+//     event.preventDefault();
+//     event.stopPropagation();
+//     html.removeClass('dragover');
+//   });
+
+//   html.find('._item-sheet').on('dragover', (event) => {
+//     event.preventDefault();
+//     event.stopPropagation();
+//   });
+  
+//   html.find('._item-sheet').on('drop', handleDrop)
+//   async function handleDrop(event) {
+//     event.preventDefault();
+//     event.stopPropagation();
+//     html.removeClass('dragover');
+
+//     console.log(event)
+//     const journalEntryId = JSON.parse(event.originalEvent.dataTransfer.getData('text/plain')).uuid.split('.')[1];
+//     const journalEntry = await game.journal.get(journalEntryId);
+//     console.log(journalEntryId)
+//     const targetItem = sheet.object;
+
+//     targetItem.update({"system.journalEntry": journalEntry._id});
+//     targetItem.update({"system.journalEntryName": journalEntry.name})
+//     // Perform actions based on the dropped journal entry and target item
+//   } 
+
+// });
+
+function handleJournalEntryDrop(journalEntry, targetItem) {
+  targetItem.update({"system.journalEntry": journalEntry._id});
+  targetItem.update({"system.journalEntryName": journalEntry.name})
+  // Perform actions based on the dropped journal entry and target item
+  // Add your logic here based on the dropped journal entry and target item
+}
+
+// JournalEntry Item Selector Dialog implementation
+// Add a new button to the item sheet
+Hooks.on("renderItemSheet", function (sheet, html, data) {
+  const openJournalButton = html.find("._journal-selector-button")
+  // Handle button click event
+  openJournalButton.click((event) => {
+    event.preventDefault();
+    openJournalDialog();
+  });
+
+});
+
+// Open the journal dialog
+async function openJournalDialog() {
+  console.log("opening...")
+  const dialogTemplate = 'systems/aranthoz/templates/aranthoz/item-sheet/journal-selector.html';
+  const dialogOptions = {
+    width: 400,
+    height: 300,
+    resizable: false,
+  };
+
+  const ownedEntries = game.journal.directory.documents;
+  console.log(ownedEntries)
+  let folderIds = [];
+  for (let e of ownedEntries) {
+    if (e.folder) {
+      const folderId = e.folder._id;
+      if (!folderIds.includes(folderId)) {
+        folderIds.push(folderId)
+      }
+    } 
+  }
+  let folders = {}
+  folders["folderless"] = {
+    "name": "No folder",
+    "entries": []
+  }
+  for (let id of folderIds) {
+    const folder = await game.folders.get(id)
+    folders[id] = {
+      "name": folder.name,
+      "entries": game.journal.filter(je => {
+        console.log(je)
+        if (je.folder) return je.folder._id === id
+        else {
+          if (!folders["folderless"]["entries"].includes(je)) {
+            folders["folderless"]["entries"].push(je);
+          }
+        }
+      }) 
+    }
+  }
+  console.log(folders)
+
+  const data = {folders}
+  const rendered_html = await renderTemplate(dialogTemplate, data)
+
+  // Load the dialog template and render the dialog
+  new Dialog({
+    title: dialogOptions.title,
+    content: rendered_html,
+    buttons: {},
+    default: 'close',
+  }).render(true);
+
+}
+
+Hooks.on("dropData", (canvas, data) => {
+  // Check if the dropped data is a JournalEntry
+    ui.notifications.info("dropped")
+  if (data.type === "JournalEntry") {
+    const droppedJournalEntryId = data.id;
+    const targetItem = canvas.tokens.controlled[0]?.actor?.items?.get(data.pack);
+    
+    // Check if the target item is an ItemSheet
+    if (targetItem?.sheet?.rendered) {
+      const itemSheet = targetItem.sheet;
+
+      console.log("dropped something!")
+      ui.notifications.info("dropped something")
+      // Handle the drop action on the item sheet
+      // handleJournalEntryDrop(itemSheet, droppedJournalEntryId);
+    }
+  }
+});

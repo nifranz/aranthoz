@@ -1,4 +1,5 @@
 import { Rolls } from "./roll.js";
+import { ActionSequences, ActionRolls } from "./action-sheet.js";
 
 export class EntitySheetHelper {
 
@@ -567,6 +568,58 @@ export class EntitySheetHelper {
       li.parentElement.removeChild(li);
       await app._onSubmit(event);
     }
+  }
+
+  static async openItemJournal(event, app) {
+    const a = event.currentTarget;
+    const journalEntryId = a.dataset.journalentry;
+    const journalEntry = await game.journal.get(journalEntryId);
+
+    await journalEntry.sheet.render(true);
+  }
+  static async unlinkItemJournal(event, app) {
+    const a = event.currentTarget;
+    const actorId = a.dataset.actorid;
+    const itemId = a.dataset.itemid;
+    const actor = await Actor.get(actorId);
+    const item = await actor.items.get(itemId);
+
+    item.update({"system.journalEntry": ""})
+  }
+  
+  static async openActionSequencesSheet(event) {
+    const a = event.currentTarget;
+    const actorId = a.dataset.actorid;
+    const itemId = a.dataset.itemid;
+    const actionKey = a.dataset.actionKey;
+
+    const item = this.object;
+    new ActionSequences(item).render(true, {title: item.name + " Action Sequences"});
+  }
+  static async openActionRollsSheet(event) {
+    const a = event.currentTarget;
+    const actorId = a.dataset.actorid;
+    const itemId = a.dataset.itemid;
+    const actionKey = a.dataset.actionKey;
+
+    const item = this.object;
+    new ActionRolls(item).render(true, {title: item.name + " Action Rolls"});
+  }
+  static async showActionsInfoSheet() {
+    console.log("hey")
+    const html = await renderTemplate("systems/aranthoz/templates/aranthoz/item-sheet/actions/action-info.html")
+    const sheet = new Dialog({
+      title: "Actions Info",
+      content: html,
+      buttons: {
+        ok: {
+          icon: '<i class="fas fa-check"></i>',
+          label: "OK"
+        }
+      },
+      default: "ok"
+    });
+    sheet.render(true);
   }
 
   /* -------------------------------------------- */

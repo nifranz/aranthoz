@@ -60,6 +60,7 @@
     ],
     "templates": {
       "base": {
+        "img": "icons/svg/anchor.svg",
         "description": "",
         "journalEntry": "",
         "attributes": {},
@@ -87,23 +88,27 @@
       "implementsActions": true,
       "implementsQuantity": false,
       "implementsEquipment": false,
-      "actions": {
-        "slashAttack": "Slash Attack"
-      },
+      "actions": [
+        {
+          "name": "Slash Attack",
+          "key": "slashAttack",
+          "attributeLink": "handeln.Schwertkampf"
+        }
+      ],
       "rolls": [
         {
-          "name": "damage",
+          "name": "Damage",
+          "key": "damage",
           "formula": "4d10",
           "action": "slashAttack"
         }
       ],
-      "actionElements": [
+      "actionSequences": [
         {
-          "name": "attack",
           "targets": "targets",
           "label": "Slash attack",
           "animation": "",
-          "roll": "damage",
+          "roll":"damage",
           "type": "attack",
           "action": "slashAttack"
         }
@@ -115,13 +120,64 @@
       "implementsActions": true,
       "implementsQuantity": false,
       "implementsEquipment": false,
-
       "ressource": "",
       "cost": {
         "onSuccess": "",
         "onFailure": ""
       },
-      "formula": ""
+      "actions3": {
+        "actionKey": {
+          "rolls": {
+            "damage": {
+              "label": "Damage",
+              "forumla": "1d10"
+            },
+            "heal": {
+              "label": "Heal",
+              "forumla": "1d10"
+            }
+          },
+          "sequences": [
+            {
+              "targets": "self",
+              "label": "slashAttack",
+              "rollKey": "damage",
+              "type": "attack"
+            }
+          ]
+        }
+      },
+      "actions": [
+        {
+          "name": "Slash Attack",
+          "key": "slashAttack",
+          "attributeLink": "handeln.Schwertkampf"
+        }
+      ],
+      "rolls": [
+        {
+          "name": "Damage",
+          "key": "damage",
+          "formula": "4d10",
+          "action": "slashAttack"
+        }
+      ],
+      "actionSequences": [
+        {
+          "targets": "targets",
+          "label": "Slash attack",
+          "animation": "",
+          "roll":"damage",
+          "type": "attack",
+          "action": "slashAttack"
+        }
+      ],
+      "costs": {
+        "actionKey": {
+          "onSuccess": "",
+          "onFailure": ""
+        }
+      }
     },
     "consumable": {
       "typeLabel": "Consumable",
@@ -162,7 +218,7 @@
       "implementsActions": false,
       "implementsQuantity": true,
       "implementsEquipment": false,
-      "isStackable": true
+      "isStackable": false
     },
     "ingredient": {
       "typeLabel": "Ingredient",

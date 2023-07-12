@@ -1,24 +1,27 @@
-<form class=" {{cssClass}} item-sheet _item-sheet" autocomplete="off">
-    
-        {{!-- Sheet Header --}}
-        {{> "systems/aranthoz/templates/aranthoz/item-sheet/item-header.html" data=data systemData=systemData}}
-    <hr />
-        <!-- {{!-- Aside Properties --}}
-        <div class="aside-properties">
-        </div> -->
-    
-        {{!-- Sheet Body --}}
-        <div class="sheet-body _sheet-body">
-            {{!-- General Tab --}}
-            {{> "systems/aranthoz/templates/aranthoz/item-sheet/general-tab.html" ownerId=ownerId systemData=systemData}}
-    
-            {{!-- Attributes Tab --}}
-            {{> "systems/aranthoz/templates/aranthoz/item-sheet/attributes-tab.html" attributes=systemData.ungroupedAttributes groups=systemData.groups}}
-    
-            {{!-- Actions Tab --}}
-            {{#if systemData.implementsActions}}
-            {{> "systems/aranthoz/templates/aranthoz/item-sheet/actions-tab.html"}}
-            {{/if}}
+<form class=" {{cssClass}} item-sheet _item-sheet " autocomplete="off">
+        <div class="dragbg">
+            <div class="drop-heading">Drop JournalEntry here</div>
+        </div>
+        <div class="sheet-content">
+            {{!-- Sheet Header --}}
+            {{> "systems/aranthoz/templates/aranthoz/item-sheet/item-header.html" data=data systemData=systemData}}
+            <!-- {{!-- Aside Properties --}}
+            <div class="aside-properties">
+            </div> -->
+        
+            {{!-- Sheet Body --}}
+            <div class="sheet-body _sheet-body">
+                {{!-- General Tab --}}
+                {{> "systems/aranthoz/templates/aranthoz/item-sheet/general-tab.html" ownerId=ownerId ownerRessource=ownerRessource systemData=systemData}}
+        
+                {{!-- Attributes Tab --}}
+                {{> "systems/aranthoz/templates/aranthoz/item-sheet/attributes-tab.html" attributes=systemData.ungroupedAttributes groups=systemData.groups}}
+        
+                {{!-- Actions Tab --}}
+                {{#if systemData.implementsActions}}
+                {{> "systems/aranthoz/templates/aranthoz/item-sheet/actions-tab.html" ownerId=ownerId data=data systemData=systemData}}
+                {{/if}}
+            </div>
         </div>
     </div>
 </form>

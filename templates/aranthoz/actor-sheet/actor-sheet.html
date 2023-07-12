@@ -33,32 +33,36 @@
 
                 {{!-- Armory Tab --}}
                 <section class="tab gear" data-group="primary" data-tab="gear">
-                    {{!-- Render Weapon Items Table --}}
-                    {{> "systems/aranthoz/templates/aranthoz/actor-sheet/item-table.html" headerName="Weapons" items=(lookup data.itemCollection 'weapon') itemType="weapon" actorId=data._id }}
+                    <div class="item-tables">
+                        {{!-- Render Weapon Items Table --}}
+                        {{> "systems/aranthoz/templates/aranthoz/actor-sheet/item-table.html" headerName="Weapons" items=(lookup data.itemCollection 'weapon') itemType="weapon" actorId=data._id }}
 
-                    {{!-- Render Ammunition Items Table--}}
-                    {{> "systems/aranthoz/templates/aranthoz/actor-sheet/item-table.html" headerName="Ammunition" items=(lookup data.itemCollection 'ammunition') itemType="ammunition" actorId=data._id }}
+                        {{!-- Render Ammunition Items Table--}}
+                        {{> "systems/aranthoz/templates/aranthoz/actor-sheet/item-table.html" headerName="Ammunition" items=(lookup data.itemCollection 'ammunition') itemType="ammunition" actorId=data._id }}
 
-                    {{!-- Render Armor Items Table --}}
-                    {{> "systems/aranthoz/templates/aranthoz/actor-sheet/item-table.html" headerName="Armor" items=(lookup data.itemCollection 'armor') itemType="armor" actorId=data._id }}
+                        {{!-- Render Armor Items Table --}}
+                        {{> "systems/aranthoz/templates/aranthoz/actor-sheet/item-table.html" headerName="Armor" items=(lookup data.itemCollection 'armor') itemType="armor" actorId=data._id }}
 
-                    {{!-- Render Wearable Items Table--}}
-                    {{> "systems/aranthoz/templates/aranthoz/actor-sheet/item-table.html" headerName="Wearables" items=(lookup data.itemCollection 'wearable') itemType="wearable" actorId=data._id }}
+                        {{!-- Render Wearable Items Table--}}
+                        {{> "systems/aranthoz/templates/aranthoz/actor-sheet/item-table.html" headerName="Wearables" items=(lookup data.itemCollection 'wearable') itemType="wearable" actorId=data._id }}
+                    </div>
                 </section>
 
                 {{!-- Inventory Tab --}}
                 <section class="tab inventory" data-group="primary" data-tab="inventory">
-                    {{!--  Render Consumable Item Table --}}
-                    {{> "systems/aranthoz/templates/aranthoz/actor-sheet/item-table.html" items=(lookup data.itemCollection 'consumable') headerName='Consumables' itemType="consumable" actorId=data._id }}
-
-                    {{!-- Render Ingredient Items Table --}}
-                    {{> "systems/aranthoz/templates/aranthoz/actor-sheet/item-table.html" items=(lookup data.itemCollection 'ingredient') headerName='Ingredients' itemType="ingredient" actorId=data._id }}
-                    
-                    {{!-- Render Document Items Table --}}
-                    {{> "systems/aranthoz/templates/aranthoz/actor-sheet/item-table.html" items=(lookup data.itemCollection 'document') headerName='Documents' itemType="document" actorId=data._id }}
-
-                    {{!-- Render Misc Item Table --}}
-                    {{> "systems/aranthoz/templates/aranthoz/actor-sheet/item-table.html" items=(lookup data.itemCollection 'misc') headerName='Miscellaneous' itemType='misc' actorId=../data._id }}                    
+                    <div class="item-tables">
+                        {{!--  Render Consumable Item Table --}}
+                        {{> "systems/aranthoz/templates/aranthoz/actor-sheet/item-table.html" items=(lookup data.itemCollection 'consumable') headerName='Consumables' itemType="consumable" actorId=data._id }}
+    
+                        {{!-- Render Ingredient Items Table --}}
+                        {{> "systems/aranthoz/templates/aranthoz/actor-sheet/item-table.html" items=(lookup data.itemCollection 'ingredient') headerName='Ingredients' itemType="ingredient" actorId=data._id }}
+                        
+                        {{!-- Render Document Items Table --}}
+                        {{> "systems/aranthoz/templates/aranthoz/actor-sheet/item-table.html" items=(lookup data.itemCollection 'document') headerName='Documents' itemType="document" actorId=data._id }}
+    
+                        {{!-- Render Misc Item Table --}}
+                        {{> "systems/aranthoz/templates/aranthoz/actor-sheet/item-table.html" items=(lookup data.itemCollection 'misc') headerName='Miscellaneous' itemType='misc' actorId=../data._id }}                    
+                    </div>
                 </section>
             </section>
         </div>
