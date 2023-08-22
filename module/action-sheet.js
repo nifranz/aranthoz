@@ -72,7 +72,6 @@ async function createSequence(event, app) {
     await app._onSubmit(event);
 }
 function onClickSequenceControl(event) {
-    // console.log("actioncontrol");
     event.preventDefault();
     const a = event.currentTarget;
     const action = a.dataset.action;
