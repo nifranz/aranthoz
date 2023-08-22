@@ -1,0 +1,143 @@
+<form class="aranthoz actions">
+    <div class="item-sheet">
+        <div class="tab-body">
+            <div class="item-section">
+                {{!-- Skill Action --}}
+                <div class="properties">
+                    <div class="section-heading borderimg">
+                        Skill Action:
+                        <div class="heading-inline-input ml-1">{{action.name}}</div>
+                    </div>
+                    <div class="section-body borderimg-ne">
+                        <div class="properties-row">
+                            <div class="property">
+                                <div class="property-label">Name{{action.key}}</div>
+                                <input class="property-box name" placeholder="Action Name" name="system.actions.{{action.key}}.name" value="{{action.name}}">
+                            </div>
+                            <div class="property">
+                                <div class="property-label">Key</div>
+                                <input class="property-box name _action-key" placeholder="Action Key" name="" value="{{action.key}}">
+                            </div>
+                        </div>
+                        <div class="properties-row">
+                            {{!-- Skill Value --}}
+                            <div class="property">
+                                <div class="property-label">Roll Value</div>
+                                <input class="property-box quantity _action-roll-value" placeholder="/" name="system.actions.{{action.key}}.rollValue" value="{{action.rollValue}}">
+                            </div>
+                            
+                            <div class="property">
+                                <div class="property-label">Ressource</div>
+                                <div class="property-box ">{{ownerRessource}}</div>
+                            </div>
+                            
+                            {{!-- Ressource Cost --}}
+                            <div class="property">
+                                <div class="property-label">Cost</div>
+                                <div class="multiple-property">
+                                    <div class="property-box labeled-property">
+                                        <div class="property-inline-label success _edit-action-button" actionkey="act-key">Success</div>
+                                        <input class="property-box quantity _action-cost" placeholder="/" name="system.actions.{{action.key}}.cost.onSuccess" value="{{action.cost.onSuccess}}">
+                                    </div>
+                                    <i class="fas fa-unlink button inline-text"></i>
+                                    <div class="property-box labeled-property">
+                                        <div class="property-inline-label failure">Failure</div>
+                                        <input class="property-box quantity _action-cost" placeholder="/" name="system.actions.{{action.key}}.cost.onFailure" value="{{action.cost.onFailure}}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-section">
+                    <div class="properties">
+                        </select>
+                        <div class="section-heading borderimg">Action Sequences</div>
+                        <div class="ml-a button _sequence-control item-button material-symbols-outlined" data-action="create">create</div>
+                        <div class="section-body borderimg-ne">
+                            {{#unless action.sequences}}
+                                <p>This action has no sequences yet!</p>
+                            {{/unless}}
+                            {{#each action.sequences as |seq index|}}
+                            <div class="sequence">
+                                <div class="sequence-header">Step {{index}}
+                                    <div class="ml-a button _sequence-control item-button material-symbols-outlined" data-action="delete">delete</div>
+                                </div>
+                                <div class="sequence-elements">
+                                    <div class="composite-element">
+                                        <label class="element composite-label">Type:</label>
+                                        <select name="sequences.{{index}}.type" class="element composite-select type">
+                                            {{#select seq.type}}
+                                            {{#each ../sequenceData.types as |type|}}
+                                            <option value="{{type.key}}">{{type.label}}</option>
+                                            {{/each}}
+                                            <option value="" disabled>Status Effect</option>
+                                            {{/select}}
+                                        </select>
+                                    </div>
+                                    <div class="composite-element">
+                                        <label class="element composite-label">Targets:</label>
+                                        <select name="sequences.{{index}}.target" class="element composite-select target">
+                                            {{#select seq.target}}
+                                            {{#each ../sequenceData.targets as |target|}}
+                                            <option value="{{target.key}}">{{target.label}}</option>
+                                            {{/each}}
+                                            {{/select}}
+                                        </select>
+                                    </div>
+                                    <div class="composite-element">
+                                        <label class="element composite-label">Roll:</label>
+                                        <select name="sequences.{{index}}.roll" class="element composite-select roll">
+                                            {{#select seq.roll}}
+                                            <option value="">None</option>
+                                            {{#each ../action.rollkeys as |rollkey index|}}
+                                            <option value="{{rollkey}}">{{rollkey}}</option>
+                                            {{/each}}
+                                            {{/select}}
+                                        </select>
+                                    </div>
+                                    <div class="composite-element">
+                                        <label class="element composite-label">Animation:</label>
+                                        <select name="sequences.{{index}}.animation" class="element composite-select type">
+                                            <option value="none" disabled selected>None</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+                {{!-- Action Rolls --}}
+                <div class="item-section">
+                    <div class="properties">
+                        <div class="section-heading borderimg">Action Rolls</div>
+                        <div class="ml-a button _roll-control item-button material-symbols-outlined" data-action="create">create</div>
+                        <div class="section-body borderimg-ne">
+                            {{#if bools.rollIsEmpty}}
+                            <p>This action has no rolls yet!</p>
+                            {{/if}}
+                            {{#each action.rolls as |roll index|}}
+                            <div class="sequence">
+                                <div class="sequence-header">Roll
+                                    <div class="ml-a button _roll-control item-button material-symbols-outlined" data-action="delete" data-rollkey="{{roll.key}}">delete</div>
+                                </div>
+                                <div class="sequence-elements">
+                                    <div class="composite-element">
+                                        <label class="element composite-label">Key:</label>
+                                        <input class="element composite-select _roll-key" name="rolls.{{roll.key}}.key" value="{{roll.key}}">
+                                    </div>
+                                    <div class="composite-element">
+                                        <label class="element composite-label">Formula:</label>
+                                        <input class="element composite-select _roll-formula" placeholder='e.g. "1d10"' name="rolls.{{roll.key}}.value" value="{{roll.value}}">
+                                    </div>
+                                </div>
+                            </div>
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

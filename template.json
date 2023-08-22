@@ -67,6 +67,19 @@
         "groups": {}, 
         "quantity": 1,
         "rarity": "common"
+      },
+      "implements-actions": {
+        "actions": {
+          "key1": {
+            "name": "",
+            "cost": {
+              "onSuccess": 0,
+              "onFailure": 0
+            },
+            "sequences": [],
+            "rolls": {}
+          }
+        }
       }
     },
     "htmlFields": [
@@ -82,102 +95,19 @@
     },
     "weapon": {
       "typeLabel": "Weapon",
-      "templates": ["base"],
+      "templates": ["base", "implements-actions"],
       "description": "",
       "skill": "handeln",
       "implementsActions": true,
       "implementsQuantity": false,
-      "implementsEquipment": false,
-      "actions": [
-        {
-          "name": "Slash Attack",
-          "key": "slashAttack",
-          "attributeLink": "handeln.Schwertkampf"
-        }
-      ],
-      "rolls": [
-        {
-          "name": "Damage",
-          "key": "damage",
-          "formula": "4d10",
-          "action": "slashAttack"
-        }
-      ],
-      "actionSequences": [
-        {
-          "targets": "targets",
-          "label": "Slash attack",
-          "animation": "",
-          "roll":"damage",
-          "type": "attack",
-          "action": "slashAttack"
-        }
-      ]
+      "implementsEquipment": false
     },
     "skill": {
       "typeLabel": "Skill",
-      "templates": ["base"],
+      "templates": ["base","implements-actions"],
       "implementsActions": true,
       "implementsQuantity": false,
-      "implementsEquipment": false,
-      "ressource": "",
-      "cost": {
-        "onSuccess": "",
-        "onFailure": ""
-      },
-      "actions3": {
-        "actionKey": {
-          "rolls": {
-            "damage": {
-              "label": "Damage",
-              "forumla": "1d10"
-            },
-            "heal": {
-              "label": "Heal",
-              "forumla": "1d10"
-            }
-          },
-          "sequences": [
-            {
-              "targets": "self",
-              "label": "slashAttack",
-              "rollKey": "damage",
-              "type": "attack"
-            }
-          ]
-        }
-      },
-      "actions": [
-        {
-          "name": "Slash Attack",
-          "key": "slashAttack",
-          "attributeLink": "handeln.Schwertkampf"
-        }
-      ],
-      "rolls": [
-        {
-          "name": "Damage",
-          "key": "damage",
-          "formula": "4d10",
-          "action": "slashAttack"
-        }
-      ],
-      "actionSequences": [
-        {
-          "targets": "targets",
-          "label": "Slash attack",
-          "animation": "",
-          "roll":"damage",
-          "type": "attack",
-          "action": "slashAttack"
-        }
-      ],
-      "costs": {
-        "actionKey": {
-          "onSuccess": "",
-          "onFailure": ""
-        }
-      }
+      "implementsEquipment": false
     },
     "consumable": {
       "typeLabel": "Consumable",

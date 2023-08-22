@@ -713,6 +713,7 @@ body {
   text-align: left;
 }
 .aranthoz .item-sheet .item-section .section-body {
+  overflow: hidden;
   flex: 0 0 auto;
   transform: translateY(-5px);
   display: flex;
@@ -724,13 +725,15 @@ body {
   padding-top: 10px;
   background-color: #d2d2d256;
 }
-.aranthoz .item-sheet .item-section .section-body .sequence {
+.aranthoz .item-sheet .item-section .section-body .sequence,
+.aranthoz .item-sheet .item-section .section-body roll {
   display: flex;
   flex-direction: column;
   width: 100%;
   gap: 5px;
 }
-.aranthoz .item-sheet .item-section .section-body .sequence .sequence-header {
+.aranthoz .item-sheet .item-section .section-body .sequence .sequence-header,
+.aranthoz .item-sheet .item-section .section-body roll .sequence-header {
   display: flex;
   font-size: 14px;
   color: #52120a;

@@ -12,21 +12,6 @@ export class SimpleItem extends Item {
     this.system.groups = this.system.groups || {};
     this.system.attributes = this.system.attributes || {};
     EntitySheetHelper.clampResourceValues(this.system.attributes);
-    this.system.actions2 = [
-      { 
-        "key": "actionKey", 
-        "elements": [
-          {
-            "type": "heal",
-            "targets": "self",
-          }
-        ],
-        "costs": {
-          "onSuccess": "10",
-          "onFailure": "20",
-        }
-      }
-    ]
   }
 
   /* -------------------------------------------- */

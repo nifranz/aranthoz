@@ -117,6 +117,7 @@ export class AranthozActorSheet extends ActorSheet {
       case "create": 
       {
         const cls = getDocumentClass("Item");
+        console.log(cls);
         const itemType = button.getAttribute("item-type");
         if (itemType) {
           var name = "New " + itemType[0].toUpperCase() + itemType.substring(1); 

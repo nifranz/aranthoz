@@ -1,5 +1,5 @@
 import { Rolls } from "./roll.js";
-import { ActionSequences, ActionRolls } from "./action-sheet.js";
+import { ActionEditorSheet } from "./action-sheet.js";
 
 export class EntitySheetHelper {
 
@@ -594,7 +594,7 @@ export class EntitySheetHelper {
     const actionKey = a.dataset.actionKey;
 
     const item = this.object;
-    new ActionSequences(item).render(true, {title: item.name + " Action Sequences"});
+    // new ActionSequences(item).render(true, {title: item.name + " Action Sequences"});
   }
   static async openActionRollsSheet(event) {
     const a = event.currentTarget;
@@ -603,7 +603,17 @@ export class EntitySheetHelper {
     const actionKey = a.dataset.actionKey;
 
     const item = this.object;
-    new ActionRolls(item).render(true, {title: item.name + " Action Rolls"});
+    // new ActionRolls(item).render(true, {title: item.name + " Action Rolls"});
+  }
+  static async openActionEditorSheet(event) {
+    const a = event.currentTarget;
+    const actorId = a.dataset.actorid;
+    const itemId = a.dataset.itemid;
+    const actionKey = a.dataset.actionkey;
+    console.log("actionkey lol", a.dataset)
+
+    const item = this.object;
+    new ActionEditorSheet(item, actionKey).render(true, {title: " Skill Action Editor (Item: " + item.name + ")"});
   }
   static async showActionsInfoSheet() {
     console.log("hey")
@@ -679,6 +689,8 @@ export class EntitySheetHelper {
     }).render(true);
   }
 
+
+
   /* -------------------------------------------- */
 
   /**
@@ -744,6 +756,7 @@ export class EntitySheetHelper {
       obj[e[0]] = e[1];
       return obj;
     }, {_id: document.id, "system.attributes": attributes});
+    console.log("end formdata update",formData)
 
     return formData;
   }

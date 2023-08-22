@@ -756,6 +756,7 @@
 
             }
             .section-body {
+                overflow: hidden;
                 flex: 0 0 auto;
                 transform: translateY(-5px);
                 display:flex;
@@ -767,11 +768,12 @@
                 padding-top: 10px;
                 background-color: #d2d2d256;
                 
-                .sequence {
+                .sequence,roll {
                     display: flex;
                     flex-direction: column;
                     width: 100%;
                     gap: 5px;
+                    // overflow-x: hidden;
 
                     .sequence-header {
                         display: flex;

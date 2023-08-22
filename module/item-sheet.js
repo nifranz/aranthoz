@@ -1,7 +1,6 @@
 import { EntitySheetHelper } from "./helper.js";
 import { SimpleEntitySheetHelper } from "./simple/simple-helper.js";
 import { ATTRIBUTE_TYPES } from "./constants.js";
-import { ActionSequences } from "./action-sheet.js";
 
 export class AranthozItemSheet extends ItemSheet {
 
@@ -89,7 +88,7 @@ export class AranthozItemSheet extends ItemSheet {
       }
       context.ownerAttributes = ownerAttributeList;
     } else {
-      context.ownerRessource = "Ressource"
+      context.ownerRessource = "<Actor Ressource>"
     }
     
     context.dtypes = ATTRIBUTE_TYPES;
@@ -142,8 +141,7 @@ export class AranthozItemSheet extends ItemSheet {
     html.find("._open-journal-button").on("click", EntitySheetHelper.openItemJournal.bind(this));
     html.find("._unlink-journal-button").on("click", EntitySheetHelper.unlinkItemJournal.bind(this));
 
-    html.find("._open-action-rolls-sheet").on("click", EntitySheetHelper.openActionRollsSheet.bind(this));
-    html.find("._open-action-sequences-sheet").on("click", EntitySheetHelper.openActionSequencesSheet.bind(this));
+    html.find("._edit-action-button").on("click", EntitySheetHelper.openActionEditorSheet.bind(this));
     html.find("._show-actions-info-sheet").on("click", EntitySheetHelper.showActionsInfoSheet.bind(this));
     
     // Add draggable for Macro creation
@@ -171,6 +169,7 @@ export class AranthozItemSheet extends ItemSheet {
     if (!dropbg) return;
     dropbg.classlist.add('drag-over')
   }
+
   async _onDrop(event) {
     event.preventDefault();
     event.stopPropagation();
@@ -196,9 +195,14 @@ export class AranthozItemSheet extends ItemSheet {
 
   /** @override */
   _getSubmitData(updateData) {
+    console.log("hi");
+    console.log(updateData)
     let formData = super._getSubmitData(updateData);
+    console.log(formData)
+    console.log(this.object)
     formData = EntitySheetHelper.updateAttributes(formData, this.object);
     formData = EntitySheetHelper.updateGroups(formData, this.object);
     return formData;
   }
+
 }
