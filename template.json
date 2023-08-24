@@ -69,17 +69,7 @@
         "rarity": "common"
       },
       "implements-actions": {
-        "actions": {
-          "key1": {
-            "name": "",
-            "cost": {
-              "onSuccess": 0,
-              "onFailure": 0
-            },
-            "sequences": [],
-            "rolls": {}
-          }
-        }
+        "actions": {}
       }
     },
     "htmlFields": [
@@ -111,7 +101,7 @@
     },
     "consumable": {
       "typeLabel": "Consumable",
-      "templates": ["base"],
+      "templates": ["base", "implements-actions"],
       "implementsActions": true,
       "implementsQuantity": true,
       "implementsEquipment": false,

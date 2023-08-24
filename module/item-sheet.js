@@ -28,7 +28,8 @@ export class AranthozItemSheet extends ItemSheet {
    */
 
   async getData(options) {
-
+    console.log("this", this)
+    
     const context = await super.getData(options);
     console.log("Context");
     console.log(context)
@@ -143,6 +144,8 @@ export class AranthozItemSheet extends ItemSheet {
 
     html.find("._edit-action-button").on("click", EntitySheetHelper.openActionEditorSheet.bind(this));
     html.find("._show-actions-info-sheet").on("click", EntitySheetHelper.showActionsInfoSheet.bind(this));
+
+    html.find("._action-control").on("click", EntitySheetHelper.onClickActionControl.bind(this));
     
     // Add draggable for Macro creation
     html.find("_item-sheet").each((i, a) => {

@@ -35,14 +35,15 @@ Hooks.once("init", async function() {
     formula: "1d20",
     decimals: 2
   };
-
+  let formAppInstances = {}
   game.aranthoz = {
     SimpleActor,
     createWorldbuildingMacro,
     createAranthozMacro,
     rolls,
     updateTokens,
-    startWorkflow
+    startWorkflow,
+    formAppInstances
   };
 
   // Define custom Document classes

@@ -236,6 +236,55 @@ export class EntitySheetHelper {
 
   /* -------------------------------------------- */
 
+    /**
+   * Listen for click events on an attribute control to modify the composition of attributes in the sheet
+   * @param {MouseEvent} event    The originating left click event
+   */
+    static async onClickActionControl(event) {
+      event.preventDefault();
+      const a = event.currentTarget;
+      const action = a.dataset.action;
+      switch ( action ) {
+        case "create":
+          return await EntitySheetHelper.createAction(event, this);
+        case "delete":
+          return EntitySheetHelper.deleteAction(event, this);
+      }
+    }
+
+    static async createAction(event, app) {
+      const el = event.currentTarget;
+      let newKey = 1
+      while(app.object.system.actions["action"+newKey] != undefined) {
+        newKey += 1
+      }
+      newKey = `action${newKey}`
+      console.log(newKey)
+      let newActionData = {
+        name: 'New Action',
+        key: newKey,
+        rolls: {},
+        sequences: [],
+        cost: { 'onSuccess': 0, 'onFailure': 0 }
+      }
+      let updates = {}
+      updates[`system.actions.${newKey}`] = newActionData
+      await app.object.update(updates);
+    }
+
+    static async deleteAction(event, app) {
+      const el = event.currentTarget;
+      const actionKey = el.dataset.actionkey
+      let updates = {}
+      console.log(app.object)
+      let actions = app.object.system.actions
+      console.log(actions)
+      actions[`-=${actionKey}`] = null
+      updates[`system.actions`] = actions
+      await app.object.update(updates);
+
+    }
+
   /**
    * Listen for click events on an attribute control to modify the composition of attributes in the sheet
    * @param {MouseEvent} event    The originating left click event
@@ -616,7 +665,6 @@ export class EntitySheetHelper {
     new ActionEditorSheet(item, actionKey).render(true, {title: " Skill Action Editor (Item: " + item.name + ")"});
   }
   static async showActionsInfoSheet() {
-    console.log("hey")
     const html = await renderTemplate("systems/aranthoz/templates/aranthoz/item-sheet/actions/action-info.html")
     const sheet = new Dialog({
       title: "Actions Info",

@@ -1,3 +1,19 @@
+async function showActionsInfoSheet() {
+    const html = await renderTemplate("systems/aranthoz/templates/aranthoz/item-sheet/actions/action-info.html")
+    const sheet = new Dialog({
+      title: "Actions Info",
+      content: html,
+      buttons: {
+        ok: {
+          icon: '<i class="fas fa-check"></i>',
+          label: "OK"
+        }
+      },
+      default: "ok"
+    });
+    sheet.render(true);
+  }
+
 function getSequenceHtml(index) {
     return `
     <div class="sequence">
@@ -36,7 +52,7 @@ function updateRolls(formData, document, actionKey) {
         return obj;
       }, {_id: document.id});
 
-    formData[`system.actions.key1.rolls`] = rolls
+    formData[`system.actions.${actionKey}.rolls`] = rolls
 
     return formData
 }
@@ -62,6 +78,7 @@ async function deleteSequence(event, app) {
 }
 async function createSequence(event, app) {
     const form = app.form;
+    console.log(app.object.system)
     const sequences = (app.object.system.actions[app.actionKey].sequences)
     let newSequence = document.createElement("div");
 
@@ -126,6 +143,8 @@ export class ActionEditorSheet extends FormApplication {
         super(object);
         this.item = object
         this.actionKey = actionKey
+        game.aranthoz.formAppInstances[this.appId] = this
+
     }
 
     activateListeners(html) {
@@ -152,7 +171,12 @@ export class ActionEditorSheet extends FormApplication {
     /** @override */
     async getData(options) {  console.log("getData()");
         // sending data to the template 
+        if (this.renderCycle === undefined) this.renderCycle = 0
+        else {
+            this.renderCycle += 1
+        }
         const context = await super.getData(options);
+        context.renderCycle = this.renderCycle
         context.bools = {} //  initiate bools variable for later use
 
         context.systemData = context.object.system
@@ -186,6 +210,9 @@ export class ActionEditorSheet extends FormApplication {
         context.ownerRessource = item.actor.system.identityAttributes.ressource;
         context.ownerRessource = context.ownerRessource.charAt(0).toUpperCase() + context.ownerRessource.slice(1);
 
+        console.log("action sheet context", context)
+        console.log(this)
+        context.applicationId = this.appId
         return context
     }
 
@@ -195,7 +222,7 @@ export class ActionEditorSheet extends FormApplication {
         // some constraints need to be checked below
 
         const el = event.currentTarget;
-        if ( !el ) return
+        if ( !el ) return super._onSubmit(event)
 
         if ( el.classList.contains("_roll-key") ) {
             // check key constraints
@@ -232,8 +259,9 @@ export class ActionEditorSheet extends FormApplication {
 
     /** @override */
     async _updateObject(event, data) {  console.log("_updateObject()");
+        console.log("submitdata", data)
         await this.object.update(data)
-        this.render(); // re-render the application sheet upon changes
+        if (event.currentTarget) this.render(); // re-render the application sheet upon changes
     }
 
     /** @override */
@@ -244,19 +272,24 @@ export class ActionEditorSheet extends FormApplication {
         formData = updateRolls(formData, this.object, this.actionKey);
 
         let presentRollKeys = []
-        for (let roll of Object.values(formData[`system.actions.${this.actionKey}.rolls`])) {
-            if (roll) {
-                presentRollKeys.push(roll.key)
-            }
-        }
-
-        for (let seq of Object.values(formData[`system.actions.${this.actionKey}.sequences`])) {
-            if (seq) {
-                if (!presentRollKeys.includes(seq.roll)) {
-                    seq.roll = undefined
+        if (formData[`system.actions.${this.actionKey}.rolls`]) {
+            for (let roll of Object.values(formData[`system.actions.${this.actionKey}.rolls`])) {
+                if (roll) {
+                    presentRollKeys.push(roll.key)
                 }
             }
         }
+
+        if (formData[`system.actions.${this.actionKey}.sequences`]) {
+            for (let seq of Object.values(formData[`system.actions.${this.actionKey}.sequences`])) {
+                if (seq) {
+                    if (!presentRollKeys.includes(seq.roll)) {
+                        seq.roll = undefined
+                    }
+                }
+            }
+        }
+
 
         return formData
     }

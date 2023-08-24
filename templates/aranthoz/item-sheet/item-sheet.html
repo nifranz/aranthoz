@@ -16,11 +16,6 @@
         
                 {{!-- Attributes Tab --}}
                 {{> "systems/aranthoz/templates/aranthoz/item-sheet/attributes-tab.html" attributes=systemData.ungroupedAttributes groups=systemData.groups}}
-        
-                {{!-- Actions Tab --}}
-                {{#if systemData.implementsActions}}
-                {{> "systems/aranthoz/templates/aranthoz/item-sheet/actions-tab.html" ownerId=ownerId data=data systemData=systemData}}
-                {{/if}}
             </div>
         </div>
     </div>
