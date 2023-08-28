@@ -12,8 +12,10 @@ async function showActionsInfoSheet() {
       default: "ok"
     });
     sheet.render(true);
-  }
-
+}
+function clickButton() {
+    console.log("button lickced, this:",this)
+}
 function getSequenceHtml(index) {
     return `
     <div class="sequence">
@@ -141,10 +143,9 @@ function onClickRollControl(event) {
 export class ActionEditorSheet extends FormApplication {
     constructor(object, actionKey) {
         super(object);
-        this.item = object
-        this.actionKey = actionKey
+        this.item = object;
+        this.actionKey = actionKey;
         game.aranthoz.formAppInstances[this.appId] = this
-
     }
 
     activateListeners(html) {
@@ -152,7 +153,6 @@ export class ActionEditorSheet extends FormApplication {
 
         // Everything below here is only needed if the sheet is editable
         if ( !this.isEditable ) return;
-        
         html.find("._sequence-control").on("click", onClickSequenceControl.bind(this));
         html.find("._roll-control").on("click", onClickRollControl.bind(this));
 
@@ -168,14 +168,28 @@ export class ActionEditorSheet extends FormApplication {
         });
     }
 
+
+    _getHeaderButtons() {
+        let buttons = super._getHeaderButtons();
+        buttons.unshift({
+            label: "Settings",
+            class: "custom-button",
+            icon: "fas fa-cog",
+            onClick: (html) => clickButton(html)
+        });
+        buttons.unshift({
+            label: "Verify",
+            class: "custom-button",
+            icon: "fas fa-check",
+            onClick: (html) => clickButton(html)
+        })
+        return buttons;
+    }
+
     /** @override */
     async getData(options) {  console.log("getData()");
-        // sending data to the template 
-        if (this.renderCycle === undefined) this.renderCycle = 0
-        else {
-            this.renderCycle += 1
-        }
         const context = await super.getData(options);
+        const item = context.object
         context.renderCycle = this.renderCycle
         context.bools = {} //  initiate bools variable for later use
 
@@ -200,10 +214,37 @@ export class ActionEditorSheet extends FormApplication {
                 { key: "selected", label: "Selected" }
             ],
         }
+
+        // get item type data
+        context.bools.isOfType = {};
+        for ( const type of Item.TYPES ) {
+          context.bools.isOfType[type] = item.type === type;
+        }
         
-        // everything below is not needed if item has no actor
-        const item = context.object
-        if (!item.actor) return context 
+        // everything below is not needed if item belongs to no actor
+        context.applicationId = this.appId
+
+        if (!item.actor) return context
+
+        // add owner Attributes
+        context.ownerGroupedAttributes = []
+        let ownerAttributes = Actor.get(item.actor.id).system.attributes
+        let ownerGroups = Actor.get(item.actor.id).system.groups
+        for (let group of Object.values(ownerGroups)) {
+            let attributes = ownerAttributes[group.key]
+            let groupAttributes = []
+            // Loop through the attributes
+            if (attributes) {
+                for (let attr of Object.entries(attributes)) {
+                    // Append an attribute to the attribute list
+                    let attribute = attr[1]
+                    attribute["key"] = attr[0]
+                    groupAttributes.push(attribute)
+                    attribute["label"] = attribute.label || "{Empty Label}"
+                }
+            }
+            context.ownerGroupedAttributes.push( { label: group.label, key: group.key, attributeKeys: groupAttributes } )
+        }
 
         // add item specific information to hbs context
         context.ownerId = item.actor._id; 
@@ -211,8 +252,6 @@ export class ActionEditorSheet extends FormApplication {
         context.ownerRessource = context.ownerRessource.charAt(0).toUpperCase() + context.ownerRessource.slice(1);
 
         console.log("action sheet context", context)
-        console.log(this)
-        context.applicationId = this.appId
         return context
     }
 
@@ -294,3 +333,22 @@ export class ActionEditorSheet extends FormApplication {
         return formData
     }
 }
+
+
+/*
+TODO
+- functionality 
+    X attribute link for weapons
+    - roll execution
+    - action verification -> is it complete in terms of executing a roll with the action?
+    - settings
+        - show keys for attributes
+- ui improvements
+    - select attribute link
+    - ressource background
+    - better seperation of sequence/roll entries ( table? )
+    - save button ( cancel button? )
+- only one action sheet open per action
+- keep interface state between renders ( for example closed rolls )
+
+*/

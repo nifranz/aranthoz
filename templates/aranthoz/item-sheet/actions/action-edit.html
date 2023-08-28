@@ -19,13 +19,31 @@
                                 <input class="property-box name _action-key" disabled placeholder="Action Key" name="system.actions.{{action.key}}.key" value="{{action.key}}">
                             </div>
                         </div>
+                        {{#unless bools.isOfType.consumable}}
                         <div class="properties-row">
+                            {{#if bools.isOfType.weapon}}
+                            <div class="property">
+                                <div class="property-label">Attribute Link</div>
+                                <select name="system.actions.{{action.key}}.attributeLink">
+                                {{#select action.attributeLink}}
+                                <option value="">{{group.key}}None</option>
+                                {{#each ownerGroupedAttributes as |group|}}
+                                <optgroup label="{{group.label}}">
+                                    {{#each group.attributeKeys as |attribute|}}
+                                    <option value="{{group.key}}.{{attribute.key}}">{{attribute.key}} | {{attribute.label}}</option>
+                                    {{/each}}
+                                </optgroup>
+                                {{/each}}
+                                {{/select}}
+                                </select>
+                            </div>
+
+                            {{else}}
                             {{!-- Skill Value --}}
                             <div class="property">
                                 <div class="property-label">Roll Value</div>
                                 <input class="property-box quantity _action-roll-value" placeholder="/" name="system.actions.{{action.key}}.rollValue" value="{{action.rollValue}}">
                             </div>
-                            
                             <div class="property">
                                 <div class="property-label">Ressource</div>
                                 <div class="property-box ">{{ownerRessource}}</div>
@@ -46,7 +64,9 @@
                                     </div>
                                 </div>
                             </div>
+                            {{/if}}
                         </div>
+                        {{/unless}}
                     </div>
                 </div>
                 <div class="item-section">
