@@ -265,7 +265,7 @@ export class EntitySheetHelper {
         key: newKey,
         rolls: {},
         sequences: [],
-        cost: { 'onSuccess': 0, 'onFailure': 0 }
+        cost: { 'onSuccess': "", 'onFailure': "" }
       }
       let updates = {}
       updates[`system.actions.${newKey}`] = newActionData
