@@ -155,6 +155,15 @@ export class AranthozItemSheet extends ItemSheet {
       }, false);
     });
 
+    html.find("._action-roll-button").each((i, a) => {
+      a.setAttribute("draggable", true);
+      a.addEventListener("dragstart", e => {
+        let dragData = e.currentTarget.dataset;
+        console.log(dragData)
+        e.dataTransfer.setData('text/plain', JSON.stringify(dragData))
+      }, false)
+    })
+
     // Add draggable for Macro creation
     html.find(".attributes a.attribute-roll").each((i, a) => {
       console.log(a)

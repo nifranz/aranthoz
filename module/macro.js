@@ -29,23 +29,28 @@ export async function createAranthozMacro(data, slot) {
   console.log(data.rolltype);
   if (!data.rolltype) return;
 
-  // after major changes broken legacy code for reference
+  // creating macro contents
   switch (data.rolltype) {
-    case "skill":
-      var command = `game.aranthoz.rolls.skillRoll("${data.actorid}", "${data.itemid}")`
-      var macroName = data.name;
+    case "action":
+      var command = `game.aranthoz.rolls.actionRoll("${data.actorid}", "${data.itemid}", "${data.actionkey}")`
+      var macroName = `${data.itemname}: ${ data.name || "Unnamed Actio" }`;
       break;
-    case "weapon":
-      var command = `game.aranthoz.rolls.weaponRoll("${data.actorid}", "${data.itemid}")`;
-      var macroName = data.name;
-      break;
+
     case "attribute":
       var command = `game.aranthoz.rolls.attributeRoll("${data.actorid}", "${data.group}", "${data.key}")`;
       var macroName = data.label || "Unknown Attribute"
       break;
+        // case "skill":
+        //   var command = `game.aranthoz.rolls.skillRoll("${data.actorid}", "${data.itemid}")`
+        //   var macroName = data.name;
+        //   break;
+        // case "weapon":
+        //   var command = `game.aranthoz.rolls.weaponRoll("${data.actorid}", "${data.itemid}")`;
+        //   var macroName = data.name;
+        //   break;
   }
-  // if(!data.rolltype || !data.key || !data.group || !data.actorid) return;
 
+  // creating the macro in the hotbar
   let macro = game.macros.find(m => (m.name === data.label) && (m.command === command));
   console.log(macro)
   if (!macro) {
@@ -53,9 +58,13 @@ export async function createAranthozMacro(data, slot) {
       name: (macroName || "Unknown") + " Roll",
       type: "script",
       command: command,
-      flags: { "aranthoz.attrMacro": true }
+      img: data.img || "icons/svg/d20.svg",
+      flags: { "aranthoz.attrMacro": true}
     });
   }
+  console.log(Macro)
   game.user.assignHotbarMacro(macro, slot);
   return false;
 }
+
+
