@@ -240,7 +240,6 @@ export class ActionEditorSheet extends FormApplication {
                     let attribute = attr[1]
                     attribute["key"] = attr[0]
                     groupAttributes.push(attribute)
-                    attribute["label"] = attribute.label || "{Empty Label}"
                 }
             }
             context.ownerGroupedAttributes.push( { label: group.label, key: group.key, attributeKeys: groupAttributes } )

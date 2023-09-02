@@ -30,7 +30,7 @@
                                 {{#each ownerGroupedAttributes as |group|}}
                                 <optgroup label="{{group.label}}">
                                     {{#each group.attributeKeys as |attribute|}}
-                                    <option value="{{group.key}}.{{attribute.key}}">{{attribute.key}} | {{attribute.label}}</option>
+                                    <option value="{{group.key}}.{{attribute.key}}">{{attribute.key}} | {{#if attribute.label}}{{attribute.label}}{{else}}{Empty Label}{{/if}}</option>
                                     {{/each}}
                                 </optgroup>
                                 {{/each}}
