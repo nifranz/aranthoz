@@ -34,11 +34,13 @@ export async function createAranthozMacro(data, slot) {
     case "action":
       var command = `game.aranthoz.rolls.actionRoll("${data.actorid}", "${data.itemid}", "${data.actionkey}")`
       var macroName = `${data.itemname}: ${ data.name || "Unnamed Actio" }`;
+      var macroType = "actionRoll"
       break;
 
     case "attribute":
       var command = `game.aranthoz.rolls.attributeRoll("${data.actorid}", "${data.group}", "${data.key}")`;
       var macroName = data.label || "Unknown Attribute"
+      var macroType = "attributeRoll"
       break;
         // case "skill":
         //   var command = `game.aranthoz.rolls.skillRoll("${data.actorid}", "${data.itemid}")`
@@ -62,9 +64,12 @@ export async function createAranthozMacro(data, slot) {
       flags: { "aranthoz.attrMacro": true}
     });
   }
-  console.log(Macro)
+  macro.setFlag("aranthoz", "macroType", macroType)
+  console.log(macro)
+  console.log(macro.getFlag("aranthoz", "macroType"))
   game.user.assignHotbarMacro(macro, slot);
   return false;
 }
 
 
+ 
