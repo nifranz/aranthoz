@@ -785,16 +785,19 @@ body {
 .aranthoz .item-sheet .sheet-content {
   height: 100%;
   width: 100%;
-  padding: 5px;
   display: flex;
   flex-direction: column;
 }
 .aranthoz .item-sheet .item-header {
   width: 100%;
-  height: 120px;
+  height: 137px;
   display: flex;
   margin-bottom: 10px;
   gap: 10px;
+  padding: 5px;
+  background-color: #ffffff13;
+  box-shadow: 0px 0px 6px #27272784;
+  border-bottom: solid 1px rgba(100, 68, 49, 0.55);
 }
 .aranthoz .item-sheet .item-header .img-container {
   height: 120px;
@@ -1319,6 +1322,7 @@ body {
   color: #272727;
 }
 .aranthoz .item-sheet .sheet-body {
+  padding: 5px;
   width: 100%;
   flex: 1 0px;
   display: flex;
